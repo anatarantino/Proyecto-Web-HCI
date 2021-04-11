@@ -1,7 +1,16 @@
 <template>
   <v-app>
-    <router-view></router-view>
+    <!-- Must have the app property -->
+
+<!--    <v-app-bar app></v-app-bar>-->
+    <v-main>
+          <router-view></router-view>
+
+    </v-main>
   </v-app>
+<!--  <v-app>-->
+<!--    <router-view></router-view>-->
+<!--  </v-app>-->
 </template>
 
 <script>
