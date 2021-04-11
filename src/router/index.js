@@ -1,14 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import LandingPageLayoutLayout from '../layouts/LandingPageLayout';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path:'',
+    component: LandingPageLayoutLayout,
+    children:[
+      {
+        path:'',
+        name:'Home',
+        component:Home
+      }
+    ]
   },
 
 ]
