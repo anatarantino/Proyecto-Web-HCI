@@ -29,11 +29,11 @@
           ><h5 class="font-weight-bold">Ingresar</h5></v-btn>
 <!--        </v-col>-->
 <!--        <v-col cols="2" class="d-flex justify-center align-center">-->
-          <v-btn
-              color="#FFFFFF"
-              text
-          ><v-icon> mdi-translate </v-icon>
-          </v-btn>
+<!--          <v-btn-->
+<!--              color="#FFFFFF"-->
+<!--              text-->
+<!--          ><v-icon> mdi-translate </v-icon>-->
+<!--          </v-btn>-->
 <!--        </v-col>-->
       </v-flex>
     </v-app-bar>
