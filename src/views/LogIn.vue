@@ -11,7 +11,7 @@
     </v-flex>
     <v-flex text-xs-right xs8 sm7 md5 lg4>
       <v-row align="right">
-        <v-col cols="5" class="d-flex justify-center align-center">
+        <v-col cols="5" sm="6" class="d-flex justify-center align-center">
           <h4 class="let">
             ¿No tienes una cuenta?
           </h4>
