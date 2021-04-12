@@ -48,7 +48,7 @@
 import loginButt from "./LogIn";
 
 export default {
-  name: 'Home',
+  name: 'MainPage',
   components: {
     loginButt,
   }

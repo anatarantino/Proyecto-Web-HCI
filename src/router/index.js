@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/MainPage.vue'
+import Home from '../views/Home.vue'
 import LandingPageLayoutLayout from '../layouts/LandingPageLayout';
 import LogIn from "../views/LogIn.vue";
 import SignIn from "../views/SignIn";
+import DefaultLayout from "@/layouts/DefaultLayout";
+import MainPage from "@/views/MainPage";
 
 Vue.use(VueRouter)
 
@@ -14,8 +16,8 @@ const routes = [
     children:[
       {
         path:'',
-        name:'Home',
-        component:Home
+        name:'MainPage',
+        component:MainPage
       },
       {
         path: '/login',
@@ -29,6 +31,17 @@ const routes = [
       }
     ]
   },
+  {
+    path:'/home',
+    component: DefaultLayout,
+    children: [
+      {
+        path:'',
+        name:'Home',
+        component: Home
+      }
+    ]
+  }
 
 
 ]
