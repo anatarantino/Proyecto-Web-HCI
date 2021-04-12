@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/MainPage.vue'
 import LandingPageLayoutLayout from '../layouts/LandingPageLayout';
+import LogIn from "../views/LogIn.vue";
 
 Vue.use(VueRouter)
 
@@ -14,9 +15,15 @@ const routes = [
         path:'',
         name:'Home',
         component:Home
+      },
+      {
+        path: '/login',
+        name:'LogIn',
+        component: LogIn
       }
     ]
   },
+
 
 ]
 
