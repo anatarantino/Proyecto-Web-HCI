@@ -1,16 +1,13 @@
 <template>
 
-
 </template>
 
 <script>
-
 export default {
-  name: 'Home'
+  name: "CreateRoutine"
 }
 </script>
 
 <style scoped>
 
 </style>
-

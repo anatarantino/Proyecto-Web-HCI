@@ -11,7 +11,7 @@
     <v-flex text-xs-right xs8 sm7 md5 lg5>
       <template>
         <v-tabs background-color="rgb(0,0,0,0)" color="green">
-          <v-tab >Inicio</v-tab>
+          <v-tab>Inicio</v-tab>
           <v-tab>Explorar rutinas</v-tab>
           <v-tab>Mis rutinas</v-tab>
           <v-tab>Mi perfil</v-tab>

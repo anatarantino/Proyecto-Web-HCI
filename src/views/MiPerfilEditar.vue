@@ -1,16 +1,13 @@
 <template>
 
-
 </template>
 
 <script>
-
 export default {
-  name: 'Home'
+  name: "MiPerfilEditar"
 }
 </script>
 
 <style scoped>
 
 </style>
-
