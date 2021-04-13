@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "MiPerfilLogros"
+  name: "MyProfileTrophies"
 }
 </script>
 

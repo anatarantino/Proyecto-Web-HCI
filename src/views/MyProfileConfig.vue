@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "MiPerfilConfig"
+  name: "MyProfileConfig"
 }
 </script>
 

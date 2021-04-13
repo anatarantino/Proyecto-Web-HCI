@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "MiPerfilEjs"
+  name: "MyProfileEjs"
 }
 </script>
 
