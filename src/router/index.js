@@ -53,51 +53,51 @@ const routes = [
       },
       {
         path:'/info',
-        name:'infoRutina',
-        component: InfoRutina
+        name:'infoRoutine',
+        component: InfoRoutine
       },
       {
-        path:'/miPerfil',
-        name:'MiPerfil',
-        component: MiPerfil
+        path:'/myprofile',
+        name:'MyProfile',
+        component: MyProfile
       },
       {
-        path:'/miPerfilEditar',
-        name:'MiPerfilEditar',
-        component: MiPerfilEditar
+        path:'/myprofileedit',
+        name:'MyProfileEdit',
+        component: MyProfileEdit
       },
       {
-        path:'/miPerfilConfig',
-        name:'MiPerfilConfig',
-        component: MiPerfilConfig
+        path:'/myprofileconfig',
+        name:'MyProfileConfig',
+        component: MyProfileConfig
       },
       {
-        path:'/miPerfilEjs',
-        name:'MiPerfilEjs',
-        component: MiPerfilEjs
+        path:'/myprofileejs',
+        name:'MyProfileEjs',
+        component: MyProfileEjs
       },
       {
-        path:'/miPerfilLogros',
-        name:'MiPerfilLogros',
-        component: MiPerfilLogros
+        path:'/myprofiletrophies',
+        name:'MyProfileTrophies',
+        component: MyProfileTrophies
       },
       {
-        path:'/createRoutine',
+        path:'/createroutine',
         name:'CreateRoutine',
         component: CreateRoutine
       },
       {
-        path:'/editRoutine',
+        path:'/editroutine',
         name:'editRoutine',
         component: EditRoutine
       },
       {
-        path:'/createExercise',
+        path:'/createexercise',
         name:'createExercise',
         component: CreateExercise
       },
       {
-        path:'/editExercise',
+        path:'/editexercise',
         name:'editExercise',
         component: EditExercise
       }
