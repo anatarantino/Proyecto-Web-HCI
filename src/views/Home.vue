@@ -1,108 +1,113 @@
 <template>
   <v-container>
-    <v-row>
-      <h1 class="let">¡Bienvenido!</h1>
+    <v-row class="d-flex ma-0 pa-0">
+      <v-col cols="12" class="d-flex ma-0 pa-0">
+        <h1 class="let">¡Bienvenido!</h1>
+      </v-col>
+      <v-col cols="12" class="d-flex ma-0 pa-0">
+        <v-container fluid>
+          <v-row class="d-flex ma-0 pa-0">
+            <v-col cols="12" class="d-flex ma-0 pa-0">
+              <h3 class="subt">Tus últimos entrenamientos</h3>
+            </v-col>
+            <v-col cols="4" v-for="rout in routines">
+              <RoutineCard :routine="rout"></RoutineCard>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-col>
+      <v-col cols="12" class="d-flex ma-0 pa-0">
+        <v-container fluid>
+          <v-row class="d-flex ma-0 pa-0">
+            <v-col cols="12" class="d-flex ma-0 pa-0">
+              <h3 class="subt">Tus rutinas favoritas</h3>
+            </v-col>
+            <v-col cols="4" v-for="fav in favorites">
+              <RoutineCard :routine="fav"></RoutineCard>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-col>
     </v-row>
-    <v-container>
-
-      <v-row>
-        <h3 class="subt">Tus últimos entrenamientos</h3>
-      </v-row>
-
-      <v-row align="center">
-        <v-col cols="4" class="d-flex justify-center align-center">
-          <v-sheet
-              color="white"
-              elevation="15"
-              height="150"
-              rounded
-              width="300"
-          >
-           <v-toolbar dense color="rgb(103, 103, 103)" elevation="0">
-             <v-toolbar-title><h5 class="let">Cardio</h5></v-toolbar-title>
-             <v-spacer></v-spacer>
-             <v-btn icon>
-               <v-icon color="white">mdi-plus</v-icon>
-             </v-btn>
-           </v-toolbar>
-            <v-col>
-              <div class="text-caption">Entrada en calor: 15 min</div>
-              <div class="text-caption">Ejercitación: 35 min</div>
-              <div class="text-caption">Enfriamiento: 10 min</div>
-              <v-btn icon x-small>
-                <v-icon color="orange">mdi-fire</v-icon>
-                <v-icon color="orange">mdi-fire</v-icon>
-                <v-icon color="orange">mdi-fire</v-icon>
-              </v-btn>
-            </v-col>
-            <v-col>
-              <v-img>
-                
-              </v-img>
-            </v-col>
-          </v-sheet>
-        </v-col>
-        <v-col cols="4" class="d-flex justify-center align-center">
-          <v-sheet
-              color="rgb(196, 199, 195 )"
-              elevation="15"
-              height="136"
-              rounded
-              width="300"
-          ></v-sheet>
-
-        </v-col>
-      </v-row>
-      <v-row align="start">
-        <h3 class="subt">Tus últimos entrenamientos</h3>
-      </v-row>
-      <v-row align="end">
-        <v-col cols="4" class="d-flex justify-center align-center">
-          <v-sheet
-              color="rgb(196, 199, 195 )"
-              elevation="15"
-              height="136"
-              rounded
-              width="247"
-          ></v-sheet>
-        </v-col>
-        <v-col cols="4" class="d-flex justify-center align-center">
-          <v-sheet
-              color="rgb(196, 199, 195 )"
-              elevation="15"
-              height="136"
-              rounded
-              width="247"
-          ></v-sheet>
-        </v-col>
-        <v-col cols="4" class="d-flex justify-center align-center">
-          <v-sheet
-              color="rgb(196, 199, 195 )"
-              elevation="15"
-              height="136"
-              rounded
-              width="247"
-          ></v-sheet>
-        </v-col>
-      </v-row>
-    </v-container>
   </v-container>
 </template>
 
+
 <script>
 
+import RoutineCard from "@/components/RoutineCard";
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  components: {RoutineCard},
+  data() {
+    return {
+      categoryOptions:[
+        {option: "Cardio", value:1},
+        {option: "Fuerza", value: 2},
+        {option: "Abdominales", value:3}
+      ],
+      routines: [
+        {
+          name: "Cardio",
+          entradaEnCalor: 15,
+          ejercitacion: 35,
+          enfriamiento: 10,
+          dificultad: 4,
+          rating: 3,
+          category:1
+        },
+        {
+          name: "Cardio",
+          entradaEnCalor: 10,
+          ejercitacion: 15,
+          enfriamiento: 5,
+          dificultad: 1,
+          rating: 3,
+          category: 1
+        },
+      ],
+      favorites: [
+        {
+          name: "Fuerza",
+          entradaEnCalor: 10,
+          ejercitacion: 40,
+          enfriamiento: 10,
+          dificultad: 2,
+          rating: 5,
+          category:2
+        },
+        {
+          name: "Abdominales",
+          entradaEnCalor: 15,
+          ejercitacion: 30,
+          enfriamiento: 15,
+          dificultad: 3,
+          rating: 5,
+          category: 3
+        },
+        {
+          name: "Cardio",
+          entradaEnCalor: 15,
+          ejercitacion: 35,
+          enfriamiento: 10,
+          dificultad: 3,
+          rating: 4,
+          category: 1
+        }
+      ]
+    }
+  }
 }
 </script>
 
 <style scoped>
 
-.let{
+.let {
   color: white;
 }
 
-.subt{
+.subt {
   color: #02ff00;
 }
 

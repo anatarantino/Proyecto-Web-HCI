@@ -1,5 +1,5 @@
 <template>
-  <v-footer app absolute color="rgba(0,0,0,0)" >
+  <v-footer app absolute padless tile height="60px" color="rgba(0,0,0,0)" >
     <v-row align="center" justify="end">
       <v-col cols="3" md="2" class="d-flex justify-space-around align-content-center">
         <v-btn
