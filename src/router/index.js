@@ -54,12 +54,12 @@ const routes = [
                 component: Home
             },
             {
-                path: '/explore',
+                path: 'exploreRoutines',
                 name: 'ExploreRoutines',
                 component: ExploreRoutines
             },
             {
-                path: '/myroutines',
+                path: 'myRoutines',
                 name: 'MyRoutines',
                 component: MyRoutines
             },
@@ -69,7 +69,7 @@ const routes = [
                 component: InfoRoutine
             },
             {
-                path: '/myprofile',
+                path: 'myProfile',
                 name: 'MyProfile',
                 component: MyProfile
             },

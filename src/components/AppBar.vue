@@ -11,10 +11,10 @@
     <v-flex xs10 sm9 md8 lg5>
       <template>
         <v-tabs append background-color="rgb(0,0,0,0)" color="green">
-          <v-tab>Inicio</v-tab>
-          <v-tab>Explorar rutinas</v-tab>
-          <v-tab>Mis rutinas</v-tab>
-          <v-tab>Mi perfil</v-tab>
+          <v-tab to="/home" exact>Inicio</v-tab>
+          <v-tab to="/home/exploreRoutines">Explorar rutinas</v-tab>
+          <v-tab to="/home/myRoutines">Mis rutinas</v-tab>
+          <v-tab to="/home/myProfile">Mi perfil</v-tab>
         </v-tabs>
       </template>
     </v-flex>
