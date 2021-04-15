@@ -28,7 +28,7 @@
       <v-col cols="12" class="d-flex ma-0 pa-0">
         <v-container fluid>
           <v-row class="d-flex ma-0 pa-0">
-            <v-col cols="4" v-for="rout in routines">
+            <v-col cols="4" v-for="rout in routines" :key="rout">
               <RoutineCard :routine="rout"></RoutineCard>
             </v-col>
           </v-row>
@@ -37,7 +37,7 @@
       <v-col cols="12" class="d-flex ma-0 pa-0">
         <v-container fluid>
           <v-row class="d-flex ma-0 pa-0">
-            <v-col cols="4" v-for="fav in favorites">
+            <v-col cols="4" v-for="fav in favorites" :key="fav">
               <RoutineCard :routine="fav"></RoutineCard>
             </v-col>
           </v-row>

@@ -10,7 +10,7 @@
             <v-col cols="12" class="d-flex ma-0 pa-0">
               <h3 class="subt">Tus últimos entrenamientos</h3>
             </v-col>
-            <v-col cols="4" v-for="rout in routines">
+            <v-col cols="4" v-for="rout in routines" :key="rout">
               <RoutineCard :routine="rout"></RoutineCard>
             </v-col>
           </v-row>
@@ -22,7 +22,7 @@
             <v-col cols="12" class="d-flex ma-0 pa-0">
               <h3 class="subt">Tus rutinas favoritas</h3>
             </v-col>
-            <v-col cols="4" v-for="fav in favorites">
+            <v-col cols="4" v-for="fav in favorites" :key="fav">
               <RoutineCard :routine="fav"></RoutineCard>
             </v-col>
           </v-row>
