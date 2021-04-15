@@ -21,6 +21,8 @@
                 color="#4DFF00"
                 elevation="3"
                 rounded
+                width="150"
+                class="text-capitalize"
             ><h5 class="font-bold">Ingresar</h5></v-btn>
           </v-col>
         </v-row>
@@ -86,8 +88,10 @@
                         color="#4DFF00"
                         elevation="3"
                         rounded
-                    ><h5 class="font-bold">Registrarme</h5></v-btn>
-
+                        class="text-capitalize"
+                        width="150"
+                    >Registrarme
+                    </v-btn>
                   </v-col>
                 </v-col>
               </v-row>
@@ -109,7 +113,7 @@ export default {
 <style scoped>
 
 
-.let{
+.let {
   color: #ffffff;
 }
 

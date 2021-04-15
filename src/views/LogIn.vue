@@ -21,7 +21,8 @@
               color="#4DFF00"
               elevation="3"
               rounded
-          ><h5 class="font-bold">Registrarme</h5></v-btn>
+              class="text-capitalize"
+          >Registrarme</v-btn>
         </v-col>
       </v-row>
     </v-flex>
@@ -58,6 +59,8 @@
                       color="#4DFF00"
                       elevation="3"
                       rounded
+                      class="text-capitalize"
+                      width="100"
                   ><h5 class="font-bold">Ingresar</h5></v-btn>
 
                 </v-col>
