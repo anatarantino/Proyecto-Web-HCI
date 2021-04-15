@@ -47,6 +47,8 @@
           color="#4DFF00"
           depressed
           rounded
+          class="text-capitalize"
+          width="150"
       >Crear rutinas
       </v-btn>
     </v-row>
