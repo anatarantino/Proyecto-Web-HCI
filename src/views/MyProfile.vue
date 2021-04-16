@@ -1,6 +1,11 @@
 <template>
   <v-app>
-    <MyProfileBase></MyProfileBase>
+    <MyProfileBase>
+    
+    </MyProfileBase>
+    <div>
+      <h1> ESCRIBIENDO ARRIBA DEL COMPONENT</h1>
+    </div>
   </v-app>
 </template>
 
