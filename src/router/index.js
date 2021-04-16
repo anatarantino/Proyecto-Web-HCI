@@ -74,7 +74,7 @@ const routes = [
                 component: MyProfile
             },
             {
-                path: '/myprofileedit',
+                path: 'myprofileedit',
                 name: 'MyProfileEdit',
                 component: MyProfileEdit
             },
@@ -89,7 +89,7 @@ const routes = [
                 component: MyProfileEjs
             },
             {
-                path: '/myprofiletrophies',
+                path: 'myprofiletrophies',
                 name: 'MyProfileTrophies',
                 component: MyProfileTrophies
             },
