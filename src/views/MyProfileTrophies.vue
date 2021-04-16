@@ -1,7 +1,5 @@
 <template>
-  <v-app>
     <MyProfileBase></MyProfileBase>
-  </v-app>
 </template>
 
 <script>

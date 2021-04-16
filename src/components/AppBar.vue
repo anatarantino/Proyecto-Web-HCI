@@ -1,20 +1,22 @@
 <template>
   <v-app-bar app color="rgb(0,0,0,0)" elevation="0">
     <v-flex text-xs-left>
-      <v-img
-          position="top"
-          max-height="48"
-          max-width="163"
-          src="../assets/images/logo.png"
-      ></v-img>
+      <v-btn text color="transparent" to="/home">
+        <v-img
+            position="top"
+            max-height="48"
+            max-width="163"
+            src="../assets/images/logo.png"
+        ></v-img>
+      </v-btn>
     </v-flex>
-    <v-flex text-xs-right xs8 sm7 md5 lg5>
+    <v-flex xs10 sm9 md8 lg5>
       <template>
-        <v-tabs background-color="rgb(0,0,0,0)" color="green">
-          <v-tab>Inicio</v-tab>
-          <v-tab>Explorar rutinas</v-tab>
-          <v-tab>Mis rutinas</v-tab>
-          <v-tab>Mi perfil</v-tab>
+        <v-tabs append background-color="rgb(0,0,0,0)" color="green">
+          <v-tab to="/home" exact>Inicio</v-tab>
+          <v-tab to="/home/exploreRoutines">Explorar rutinas</v-tab>
+          <v-tab to="/home/myRoutines">Mis rutinas</v-tab>
+          <v-tab to="/home/myProfile">Mi perfil</v-tab>
         </v-tabs>
       </template>
     </v-flex>

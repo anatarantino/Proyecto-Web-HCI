@@ -1,12 +1,5 @@
 <template>
-  <v-app>
-    <MyProfileBase>
-    
-    </MyProfileBase>
-    <div>
-      <h1> ESCRIBIENDO ARRIBA DEL COMPONENT</h1>
-    </div>
-  </v-app>
+    <MyProfileBase></MyProfileBase>
 </template>
 
 <script>
