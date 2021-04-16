@@ -79,12 +79,12 @@ const routes = [
                 component: MyProfileEdit
             },
             {
-                path: '/myprofileconfig',
+                path: 'myprofileconfig',
                 name: 'MyProfileConfig',
                 component: MyProfileConfig
             },
             {
-                path: '/myprofileejs',
+                path: 'myprofileejs',
                 name: 'MyProfileEjs',
                 component: MyProfileEjs
             },
