@@ -1,12 +1,14 @@
 <template>
   <v-app-bar app color="rgb(0,0,0,0)" elevation="0">
     <v-flex text-xs-left>
-      <v-img
-          position="top"
-          max-height="48"
-          max-width="163"
-          src="../assets/images/logo.png"
-      ></v-img>
+      <v-btn text color="transparent" to="/home">
+        <v-img
+            position="top"
+            max-height="48"
+            max-width="163"
+            src="../assets/images/logo.png"
+        ></v-img>
+      </v-btn>
     </v-flex>
     <v-flex xs10 sm9 md8 lg5>
       <template>

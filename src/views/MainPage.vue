@@ -2,12 +2,14 @@
   <v-container>
     <v-app-bar app color="rgb(0,0,0,0)" elevation="0">
       <v-flex text-xs-left>
+       <v-btn text to="/">
         <v-img
             position="top"
             max-height="48"
             max-width="163"
             src="../assets/images/logo.png"
         ></v-img>
+        </v-btn>
       </v-flex>
       <v-flex text-xs-right xs8 sm7 md5 lg3>
         <v-btn
@@ -16,6 +18,7 @@
             rounded
             class="text-capitalize"
             width="150"
+            to="/login"
         ><h5 class="font-weight-bold">Registrarme</h5></v-btn>
         <v-btn
             @click="loginButt=true"
@@ -24,6 +27,7 @@
             rounded
             class="text-capitalize"
             width="150"
+            to="/signin"
         ><h5 class="font-weight-bold">Ingresar</h5></v-btn>
       </v-flex>
     </v-app-bar>
@@ -36,7 +40,7 @@
 
 <script>
 
-import loginButt from "./LogIn";
+import loginButt from "./SignIn";
 
 export default {
   name: 'MainPage',

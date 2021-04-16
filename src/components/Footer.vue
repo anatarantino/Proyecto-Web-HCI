@@ -5,16 +5,19 @@
         <v-btn
             color="#FFFFFF"
             text
+            href="https://www.youtube.com/"
         ><v-icon> mdi-youtube </v-icon>
         </v-btn>
         <v-btn
             color="#FFFFFF"
             text
+            href="https://www.instagram.com/"
         ><v-icon> mdi-instagram </v-icon>
         </v-btn>
         <v-btn
             color="#FFFFFF"
             text
+            href="https://www.twitter.com/"
         ><v-icon> mdi-twitter </v-icon>
         </v-btn>
       </v-col>
