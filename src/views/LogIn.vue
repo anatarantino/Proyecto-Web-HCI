@@ -26,7 +26,7 @@
                 width="150"
                 class="text-capitalize"
                 to="/signin"
-            ><h5 class="font-bold">Ingresar</h5></v-btn>
+            >Ingresar</v-btn>
           </v-col>
         </v-row>
       </v-flex>
@@ -41,7 +41,7 @@
               </div>
             </v-card-title>
             <v-card-text>
-              <v-row align="center" justify="center">
+              <v-row align="center" justify="center" class="mt-2">
                 <v-col cols="12" sm="6" md="6" class="justify-center">
                   <v-text-field
                       label="Nombre"

@@ -12,7 +12,18 @@
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        <div style="width: 100%; height: 100vh; display: flex; align-items:center; justify-content: center">
+        <div style="border: solid black 1px; width: 150vw; height:20vh; background-color: #E57373;
+         display: flex; align-items:center;justify-content: center">
+            <div>
+                <h1 style="text-align: center; font-size: 3rem; font-weight: bold">ERROR</h1>
+                <p style="text-align: center;font-size: 1.5rem; padding: 0 20px">
+                    We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+                    Please enable it to continue.
+                </p>
+            </div>
+        </div>
+    </div>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->

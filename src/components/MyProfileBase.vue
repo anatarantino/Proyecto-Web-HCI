@@ -9,16 +9,16 @@
             </v-icon>
           </v-avatar>
         </v-row>
-        <v-row justify="center">       
+        <v-row justify="center">
           <h2 class="white--text ma-2">
             NatiNat
-          </h2>        
+          </h2>
         </v-row>
         <v-row justify="center">
           <v-btn
-            @click="activeEx = !activeEx"
-            :color="activeEx ? '#00B14A' : '#757575'"
-            class="ma-2 pt-6 pb-6"
+              @click="activeEx = !activeEx"
+              :color="activeEx ? '#00B14A' : '#757575'"
+              class="ma-2 pt-6 pb-6"
           >
             <h2 class="custom-transform-class text-none white--text">
               Mis ejercicios
@@ -27,10 +27,10 @@
         </v-row>
         <v-row justify="center">
           <v-btn
-            @click="activeTr = !activeTr"
-            :color="activeTr ? '#00B14A' : '#757575'"
-            class="ma-2 pt-6 pb-6"
-            width="180"
+              @click="activeTr = !activeTr"
+              :color="activeTr ? '#00B14A' : '#757575'"
+              class="ma-2 pt-6 pb-6"
+              width="180"
           >
             <h2 class="custom-transform-class text-none white--text">
               Mis logros
@@ -39,10 +39,10 @@
         </v-row>
         <v-row justify="center">
           <v-btn
-            @click="activeEd = !activeEd"
-            :color="activeEd ? '#00B14A' : '#757575'"
-            class="ma-2 pt-6 pb-6"
-            width="180"
+              @click="activeEd = !activeEd"
+              :color="activeEd ? '#00B14A' : '#757575'"
+              class="ma-2 pt-6 pb-6"
+              width="180"
           >
             <h2 class="custom-transform-class text-none white--text">
               Editar Perfil
@@ -51,9 +51,9 @@
         </v-row>
         <v-row justify="center">
           <v-btn
-            class="ma-2 pt-6 pb-6"
-            @click="activeCo = !activeCo"
-            :color="activeCo ? '#00B14A' : '#757575'"
+              class="ma-2 pt-6 pb-6"
+              @click="activeCo = !activeCo"
+              :color="activeCo ? '#00B14A' : '#757575'"
           >
             <h2 class="custom-transform-class text-none white--text">
               Configuración
@@ -63,12 +63,12 @@
       </v-col>
       <v-col md="8">
         <v-card
-          class="pa-2 rounded-xl"
-          outlined
-          max-width="80%"
-          height="600"
+            class="pa-2 rounded-xl"
+            outlined
+            max-width="80%"
+            height="600"
         >
-          
+
         </v-card>
       </v-col>
     </v-row>
@@ -79,11 +79,11 @@
 export default {
   name: "MyProfileBase",
   data: () => ({
-      activeCo: false,
-      activeEd: false,
-      activeEx: false,
-      activeTr: false,
-    }),
+    activeCo: false,
+    activeEd: false,
+    activeEx: false,
+    activeTr: false,
+  }),
 }
 </script>
 

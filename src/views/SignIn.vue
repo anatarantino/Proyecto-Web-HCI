@@ -23,6 +23,7 @@
                 color="#4DFF00"
                 elevation="3"
                 rounded
+                width="150"
                 class="text-capitalize"
                 to="/login"
             >Registrarme
@@ -35,14 +36,14 @@
       <v-layout>
         <v-flex xs12 sm6 offset-sm3>
           <v-card color="rgb(0, 0, 0, 0)" elevation="0">
-            <v-card-title primary-title>
+            <v-card-title primary-title class="justify-center">
               <div>
                 <h3 class="let headline mb-0">Bienvenido nuevamente!</h3>
               </div>
             </v-card-title>
             <v-card-text>
-              <v-row>
-                <v-col cols="12" sm="6" md="6">
+              <v-row justify="center" class="mt-2">
+                <v-col cols="12" sm="6" md="6" class="justify-center">
                   <v-text-field
                       label="Mail"
                       filled
@@ -64,9 +65,8 @@
                         elevation="3"
                         rounded
                         class="text-capitalize"
-                        width="100"
-                    ><h5 class="font-bold">Ingresar</h5></v-btn>
-
+                        width="150"
+                    >Ingresar</v-btn>
                   </v-col>
                 </v-col>
               </v-row>

@@ -79,7 +79,7 @@ const routes = [
                 component: MyProfileEdit
             },
             {
-                path: '/myprofileconfig',
+                path: '/myProfileConfig',
                 name: 'MyProfileConfig',
                 component: MyProfileConfig
             },

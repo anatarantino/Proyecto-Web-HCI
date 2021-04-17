@@ -61,7 +61,7 @@ export default {
 }
 
 .title {
-  color: #5a5151;
+  color: rgb(174, 181, 158);
 }
 
 

@@ -6,9 +6,11 @@
           <v-col cols="2">
             <v-text-field
                 label="Buscar"
+                prepend-inner-icon="mdi-magnify"
                 filled
                 dense
                 solo
+                hide-details
             ></v-text-field>
           </v-col>
           <v-menu offset-y>
@@ -18,6 +20,7 @@
                   depressed
                   v-bind="attrs"
                   v-on="on"
+                  class="text-capitalize"
               >
                 <v-icon>mdi-chevron-down</v-icon>
                 Puntuación
@@ -29,7 +32,7 @@
                   :key="item"
                   link
               >
-                <v-list-item-title>{{ item.it }}</v-list-item-title>
+                <v-list-item-title><v-icon color="rgb(255,254,0)" v-for="rating in item.it" :key="rating">mdi-star</v-icon></v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
