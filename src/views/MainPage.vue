@@ -2,7 +2,7 @@
   <v-container>
     <v-app-bar app color="rgb(0,0,0,0)" elevation="0">
       <v-flex text-xs-left>
-       <v-btn text to="/">
+       <v-btn text color="transparent" to="/">
         <v-img
             position="top"
             max-height="48"

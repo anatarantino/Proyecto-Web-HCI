@@ -54,12 +54,12 @@ const routes = [
                 component: Home
             },
             {
-                path: 'exploreRoutines',
+                path: 'exploreroutines',
                 name: 'ExploreRoutines',
                 component: ExploreRoutines
             },
             {
-                path: 'myRoutines',
+                path: 'myroutines',
                 name: 'MyRoutines',
                 component: MyRoutines
             },
@@ -69,47 +69,47 @@ const routes = [
                 component: InfoRoutine
             },
             {
-                path: 'myProfile',
+                path: 'myprofile',
                 name: 'MyProfile',
                 component: MyProfile
             },
             {
-                path: '/myprofileedit',
+                path: 'myprofileedit',
                 name: 'MyProfileEdit',
                 component: MyProfileEdit
             },
             {
-                path: '/myProfileConfig',
+                path: 'myprofileconfig',
                 name: 'MyProfileConfig',
                 component: MyProfileConfig
             },
             {
-                path: '/myprofileejs',
+                path: 'myprofileejs',
                 name: 'MyProfileEjs',
                 component: MyProfileEjs
             },
             {
-                path: '/myprofiletrophies',
+                path: 'myprofiletrophies',
                 name: 'MyProfileTrophies',
                 component: MyProfileTrophies
             },
             {
-                path: '/createroutine',
+                path: 'createroutine',
                 name: 'CreateRoutine',
                 component: CreateRoutine
             },
             {
-                path: '/editroutine',
+                path: 'editroutine',
                 name: 'editRoutine',
                 component: EditRoutine
             },
             {
-                path: '/createexercise',
+                path: 'createexercise',
                 name: 'createExercise',
                 component: CreateExercise
             },
             {
-                path: '/editexercise',
+                path: 'editexercise',
                 name: 'editExercise',
                 component: EditExercise
             }

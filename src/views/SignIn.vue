@@ -3,12 +3,12 @@
     <v-app-bar app color="rgb(0, 0, 0, 0)" elevation="0">
       <v-flex text-xs-left>
         <v-btn text to="/">
-        <v-img
-            position="top"
-            max-height="48"
-            max-width="163"
-            src="../assets/images/logo.png"
-        ></v-img>
+          <v-img
+              position="top"
+              max-height="48"
+              max-width="163"
+              src="../assets/images/logo.png"
+          ></v-img>
         </v-btn>
       </v-flex>
       <v-flex text-xs-right xs8 sm7 md5 lg4>
@@ -50,13 +50,22 @@
                       rounded
                       dense
                       solo
+                      outlined
+                      append-icon="mdi-email"
+                      v-model="email"
+                      @blur="$v.email.$touch()"
                   ></v-text-field>
-                  <v-text-field type="password"
-                                label="Contraseña"
-                                solo
-                                filled
-                                rounded
-                                dense
+                  <v-text-field
+                      type="password"
+                      label="Contraseña"
+                      :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                      :type="show ? 'text' : 'password'"
+                      solo
+                      filled
+                      rounded
+                      dense
+                      outlined
+                      @click:append="show=!show"
                   ></v-text-field>
                   <v-col class="d-flex justify-center align-center">
 
@@ -66,7 +75,8 @@
                         rounded
                         class="text-capitalize"
                         width="150"
-                    >Ingresar</v-btn>
+                    >Ingresar
+                    </v-btn>
                   </v-col>
                 </v-col>
               </v-row>
@@ -80,15 +90,24 @@
 
 <script>
 import Footer from "../components/Footer";
+import {required, email} from 'vuelidate/lib/validators'
 
 export default {
   name: 'SignIn',
   components: {Footer},
-  // methods:{
-  //   IconClick(){
-  //
-  //   }
-  // }
+  data() {
+    return {
+      show: false,
+      email: '',
+      password: '',
+    }
+  },
+  validations: {
+    email: {
+      email,
+      required
+    }
+  }
 }
 </script>
 
