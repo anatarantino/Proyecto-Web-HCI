@@ -1,10 +1,31 @@
 <template>
+  <v-container>
+    <v-col cols="12">
+      <routine-comp :routine="types[0]"></routine-comp>
+
+    </v-col>
+  </v-container>
 
 </template>
 
+
+
 <script>
+
+import routineComp from "@/components/routineComp";
+
 export default {
-  name: "CreateRoutine"
+  name: "CreateRoutine",
+  components: {routineComp},
+  data(){
+    return{
+      types: [
+      {
+        title: "Creá tu rutina"
+      }
+      ]
+    }
+  }
 }
 </script>
 

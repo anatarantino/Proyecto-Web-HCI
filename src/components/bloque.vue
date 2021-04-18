@@ -1,0 +1,133 @@
+<template>
+  <v-card
+
+  >
+    <v-toolbar
+        color="grey"
+        dark
+    >
+
+          <v-text-field
+              label="Ingresa un nombre"
+              outlined
+              clearable
+              hide-details
+
+
+          >
+
+          </v-text-field>
+
+          <v-spacer></v-spacer>
+
+          <v-text-field
+              label="repeticiones"
+              class="mt-0 pt-0 ml-6"
+              hide-details
+              single-line
+              type="number"
+              min="1"
+
+          ></v-text-field>
+          <v-btn icon>
+            <v-icon>mdi-magnify</v-icon>
+          </v-btn>
+
+
+
+
+    </v-toolbar>
+
+    <v-list two-line>
+      <v-list-item-group
+          v-model="selected"
+          multiple
+      >
+        <template v-for="(item, index) in items">
+          <v-list-item :key="item.title" active-class="green--text text--accent-6">
+            <template v-slot:default="{ active }">
+              <v-list-item-content>
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+
+                <v-list-item-subtitle
+                    class="text--primary"
+                    v-text="item.headline"
+                ></v-list-item-subtitle>
+
+                <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
+
+              </v-list-item-content>
+
+              <v-list-item-action>
+                <v-checkbox
+                    :input-value="active"
+                    color="blue"
+                ></v-checkbox>
+              </v-list-item-action>
+            </template>
+          </v-list-item>
+          <v-row>
+            <v-text-field
+                label="cantidad"
+
+                class="mt-0 pt-0 ml-6 mb-4 text-center"
+                hide-details
+                single-line
+                type="number"
+                min="1"
+                style="width: 50px"
+
+            ></v-text-field>
+            <v-radio-group
+                v-model="row"
+                row
+                mandatory
+            >
+              <v-radio
+                  label="segundos"
+                  color="blue"
+                  value="seg"
+              ></v-radio>
+              <v-radio
+                  label="repeticiones"
+                  color="blue"
+                  value="reps"
+              ></v-radio>
+            </v-radio-group>
+          </v-row>
+
+          <v-divider
+              v-if="index < items.length - 1"
+              :key="index"
+          ></v-divider>
+        </template>
+      </v-list-item-group>
+      <v-col class="d-flex align-center justify-center">
+      <v-btn text outlined>Crear nuevo ejercico</v-btn>
+      </v-col>
+    </v-list>
+  </v-card>
+
+</template>
+
+<script>
+export default {
+  name: "bloque",
+  props: ["bloque"],
+  data() {
+    return {
+      items: [
+        {
+          title: "ejercicio 1",
+          subtitle: "subtitulo",
+
+        },
+        {
+          title: "ejercicio 2",
+          subtitle: "subtitulo 2",
+        }
+      ]
+    }
+  }}
+
+</script>
