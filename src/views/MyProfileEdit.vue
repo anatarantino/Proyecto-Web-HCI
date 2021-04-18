@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid mt-8>
+  <v-container fluid mt-8>
     <v-row align="center" justify="space-around">
       <MyProfileBase></MyProfileBase>
       <v-col md="8">
