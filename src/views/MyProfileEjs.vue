@@ -10,24 +10,35 @@
           height="600"
           elevation="2"
         >
-          <v-row>
-            <v-col cols="4">
-              <ExerciseCard></ExerciseCard>
-            </v-col>
-            <v-col>
-              <v-btn
-                color="#00B14A"
-                elevation="2"
-                class="mx-2"
-                fab
-                dark
-              >
-                <v-icon dark>
-                  mdi-plus
-                </v-icon>
-              </v-btn>
-            </v-col>
-          </v-row>
+          <v-container ma-5>
+            <v-row align="center">
+              <v-col cols="6">
+                <v-row>
+                  <v-col cols="11">
+                    <ExerciseCard></ExerciseCard>
+                  </v-col>
+                  <v-col cols="1">
+                    <v-icon>
+                      mdi-pencil
+                    </v-icon>
+                  </v-col>
+                </v-row>  
+              </v-col>
+              <v-col>
+                <v-btn
+                  color="#00B14A"
+                  elevation="2"
+                  class="mx-2"
+                  fab
+                  dark
+                >
+                  <v-icon dark>
+                    mdi-plus
+                  </v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-card>
       </v-col>
     </v-row>

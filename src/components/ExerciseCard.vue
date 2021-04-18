@@ -9,10 +9,14 @@
           <v-container fluid>
             <v-row>
               <v-col cols="12" class="d-flex justify-start align-center pa-0">
-                <p class="text-start">Puente con la pierna estirada</p>
+                <v-text class="d-flex">Puente con la pierna estirada</v-text>
               </v-col>
-              <v-col cols="4" class="green d-flex align-center pa-0 rounded-xl">
-                <h4 class="text-caption" align="center">Cardio</h4>
+              <v-col cols="12" class="d-flex align-center pa-0">
+                <div
+                  class="align-center rounded-xl green pl-2 pr-2 white--text"
+                >
+                  Cardio
+                </div>
               </v-col>
             </v-row>
           </v-container>
@@ -25,7 +29,7 @@
                     position="top"
                     max-height="150"
                     max-width="100"
-                    class="rounded-lg"
+                    class="d-flex rounded-lg"
                     :src="categoryImg"
                 ></v-img>
               </v-col>
