@@ -24,7 +24,7 @@ export default {
   background: linear-gradient(
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0)
-  ), url("../assets/images/main.jpg") no-repeat center;
+  ), url("../assets/images/center.jpeg") no-repeat center;
   background-size: cover;
 }
 

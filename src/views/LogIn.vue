@@ -3,12 +3,12 @@
     <v-app-bar app color="rgb(0, 0, 0, 0)" elevation="0">
       <v-flex text-xs-left>
         <v-btn text to="/">
-        <v-img
-            position="top"
-            max-height="48"
-            max-width="163"
-            src="../assets/images/logo.png"
-        ></v-img>
+          <v-img
+              position="top"
+              max-height="48"
+              max-width="163"
+              src="../assets/images/logo.png"
+          ></v-img>
         </v-btn>
       </v-flex>
       <v-flex text-xs-right xs8 sm7 md5 lg4>
@@ -26,7 +26,8 @@
                 width="150"
                 class="text-capitalize"
                 to="/signin"
-            >Ingresar</v-btn>
+            >Ingresar
+            </v-btn>
           </v-col>
         </v-row>
       </v-flex>
@@ -48,42 +49,69 @@
                       filled
                       rounded
                       dense
+                      outlined
                       solo
+                      append-icon="mdi-pencil"
+                      v-model="name"
                   ></v-text-field>
                   <v-text-field
                       label="Apellido"
                       filled
                       rounded
                       dense
+                      outlined
                       solo
+                      append-icon="mdi-pencil"
+                      v-model="lastName"
                   ></v-text-field>
                   <v-text-field
                       label="Mail"
                       filled
                       rounded
                       dense
+                      outlined
                       solo
+                      append-icon="mdi-email"
+                      @blur="$v.email.$touch()"
+                      v-model="email"
                   ></v-text-field>
                   <v-text-field
                       label="Usuario"
                       filled
                       rounded
                       dense
+                      outlined
                       solo
+                      append-icon="mdi-account"
+                      v-model="user"
                   ></v-text-field>
-                  <v-text-field type="password"
-                                label="Contraseña"
-                                solo
-                                filled
-                                rounded
-                                dense
+                  <v-text-field
+                      type="password"
+                      label="Contraseña"
+                      hint="Mínimo 8 caracteres"
+                      :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                      :type="show1 ? 'text' : 'password'"
+                      solo
+                      filled
+                      outlined
+                      rounded
+                      dense
+                      counter
+                      @click:append="show1=!show1"
+                      v-model="password"
                   ></v-text-field>
-                  <v-text-field type="password"
-                                label="Contraseña"
-                                solo
-                                filled
-                                rounded
-                                dense
+                  <v-text-field
+                      type="password"
+                      label="Repite la contraseña"
+                      :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                      :type="show2 ? 'text' : 'password'"
+                      solo
+                      filled
+                      outlined
+                      rounded
+                      dense
+                      counter
+                      @click:append="show2=!show2"
                   ></v-text-field>
                   <v-col class="d-flex justify-center align-center">
 
@@ -108,13 +136,31 @@
 </template>
 
 <script>
+import {required, maxLength, minLength, email} from 'vuelidate/lib/validators'
+
 export default {
   name: 'LogIn',
+  data() {
+    return {
+      show1: false,
+      show2: false,
+      email:'',
+      password: '',
+      user: '',
+      name: '',
+      lastName: ''
+    }
+  },
+  validations:{
+    email:{
+      email,
+      required
+    }
+  }
 }
 </script>
 
 <style scoped>
-
 
 .let {
   color: #ffffff;
