@@ -64,7 +64,7 @@ const routes = [
                 component: MyRoutines
             },
             {
-                path: '/info',
+                path: 'info',
                 name: 'infoRoutine',
                 component: InfoRoutine
             },
