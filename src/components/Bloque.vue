@@ -21,7 +21,7 @@
           <v-spacer></v-spacer>
 
           <v-text-field
-              label="repeticiones"
+              label="Repeticiones"
               class="mt-0 pt-0 ml-6"
               hide-details
               single-line
@@ -66,11 +66,11 @@
               </v-list-item-action>
             </template>
           </v-list-item>
-          <v-row>
+          <v-row pa-3>
             <v-text-field
-                label="cantidad"
+                label="Cantidad"
 
-                class="mt-0 pt-0 ml-6 mb-4 text-center"
+                class="mt-0 pt-3 ml-6 mb-4 text-center"
                 hide-details
                 single-line
                 type="number"
@@ -84,12 +84,12 @@
                 mandatory
             >
               <v-radio
-                  label="segundos"
+                  label="Segundos"
                   color="blue"
                   value="seg"
               ></v-radio>
               <v-radio
-                  label="repeticiones"
+                  label="Repeticiones"
                   color="blue"
                   value="reps"
               ></v-radio>
