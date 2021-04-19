@@ -19,7 +19,7 @@
             class="text-capitalize"
             width="150"
             to="/login"
-        ><h5 class="font-weight-bold">Registrarme</h5></v-btn>
+        >Registrarme</v-btn>
         <v-btn
             @click="loginButt=true"
             color="#FFFFFF"
@@ -28,7 +28,7 @@
             class="text-capitalize"
             width="150"
             to="/signin"
-        ><h5 class="font-weight-bold">Ingresar</h5></v-btn>
+        >Ingresar</v-btn>
       </v-flex>
     </v-app-bar>
     <v-col cols="12" class="d-flex justify-center align-self-center">

@@ -52,6 +52,7 @@
                       outlined
                       solo
                       append-icon="mdi-pencil"
+                      @blur="$v.name.$touch()"
                       v-model="name"
                   ></v-text-field>
                   <v-text-field
@@ -62,6 +63,7 @@
                       outlined
                       solo
                       append-icon="mdi-pencil"
+                      @blur="$v.lastName.$touch()"
                       v-model="lastName"
                   ></v-text-field>
                   <v-text-field
@@ -75,6 +77,7 @@
                       @blur="$v.email.$touch()"
                       v-model="email"
                   ></v-text-field>
+                  <!--                  <p v-if="$v.email.$error">Por favor ingrese un mail correcto.</p>-->
                   <v-text-field
                       label="Usuario"
                       filled
@@ -83,6 +86,7 @@
                       outlined
                       solo
                       append-icon="mdi-account"
+                      @blur="$v.user.$touch()"
                       v-model="user"
                   ></v-text-field>
                   <v-text-field
@@ -98,6 +102,7 @@
                       dense
                       counter
                       @click:append="show1=!show1"
+                      @blur="$v.password.$touch()"
                       v-model="password"
                   ></v-text-field>
                   <v-text-field
@@ -111,10 +116,11 @@
                       rounded
                       dense
                       counter
+                      @blur="$v.confirmPassword.$touch()"
+                      v-model="confirmPassword"
                       @click:append="show2=!show2"
                   ></v-text-field>
                   <v-col class="d-flex justify-center align-center">
-
                     <v-btn
                         color="#4DFF00"
                         elevation="3"
@@ -136,7 +142,7 @@
 </template>
 
 <script>
-import {required, maxLength, minLength, email} from 'vuelidate/lib/validators'
+import {required, maxLength, minLength, email, sameAs} from 'vuelidate/lib/validators'
 
 export default {
   name: 'LogIn',
@@ -144,18 +150,42 @@ export default {
     return {
       show1: false,
       show2: false,
-      email:'',
+      email: '',
       password: '',
+      confirmPassword: '',
       user: '',
       name: '',
       lastName: ''
     }
   },
-  validations:{
-    email:{
+  validations: {
+    email: {
       email,
       required
+    },
+    user: {
+      minLength: minLength(5),
+      maxLength: maxLength(15),
+      required
+    },
+    name: {
+      minLength: minLength(2),
+      maxLength: maxLength(15),
+      required
+    },
+    lastName: {
+      minLength: minLength(2),
+      maxLength: maxLength(15),
+      required
+    },
+    password: {
+      required,
+      minLength: minLength(8)
+    },
+    confirmPassword: {
+      sameAs: sameAs('password')
     }
+
   }
 }
 </script>

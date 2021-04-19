@@ -66,9 +66,10 @@
                       dense
                       outlined
                       @click:append="show=!show"
+                      @blur="$v.password.$touch()"
+                      v-model="password"
                   ></v-text-field>
                   <v-col class="d-flex justify-center align-center">
-
                     <v-btn
                         color="#4DFF00"
                         elevation="3"
@@ -90,7 +91,7 @@
 
 <script>
 import Footer from "../components/Footer";
-import {required, email} from 'vuelidate/lib/validators'
+import {required, email,minLength} from 'vuelidate/lib/validators'
 
 export default {
   name: 'SignIn',
@@ -106,6 +107,10 @@ export default {
     email: {
       email,
       required
+    },
+    password: {
+      required,
+      minLength: minLength(8)
     }
   }
 }
