@@ -12,7 +12,7 @@
     </v-flex>
     <v-flex xs10 sm9 md8 lg5>
       <template>
-        <v-tabs append background-color="rgb(0,0,0,0)" dark color="green">
+        <v-tabs append background-color="rgb(0,0,0,0)" dark color="#4DFF00">
           <v-tab to="/home" exact>Inicio</v-tab>
           <v-tab to="/home/exploreRoutines">Explorar rutinas</v-tab>
           <v-tab to="/home/myRoutines">Mis rutinas</v-tab>
