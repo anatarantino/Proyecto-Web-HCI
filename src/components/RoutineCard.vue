@@ -21,7 +21,7 @@
                 <h4 class="text-caption text-start">Enfriamiento: {{ routine.enfriamiento }} min</h4>
               </v-col>
               <v-col cols="4" class="d-flex justify-start align-center pa-0">
-                <v-icon color="orange" v-for="dificultad in routine.dificultad" :key="dificultad">mdi-fire</v-icon>
+                <v-icon color="amber darken-4" v-for="dificultad in routine.dificultad" :key="dificultad">mdi-fire</v-icon>
               </v-col>
             </v-row>
           </v-container>
@@ -38,7 +38,7 @@
                 ></v-img>
               </v-col>
               <v-col cols="12" class="d-flex justify-end align-center pa-0">
-                <v-icon color="rgb(255,254,0)" v-for="rating in routine.rating" :key="rating">mdi-star</v-icon>
+                <v-icon color="yellow accent-3" v-for="rating in routine.rating" :key="rating">mdi-star</v-icon>
               </v-col>
             </v-row>
           </v-container>
