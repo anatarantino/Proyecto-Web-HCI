@@ -33,7 +33,7 @@
                   class="ma-5 mt-10"
                 ></v-text-field>
                 <v-btn
-                  color="#0C773A"
+                  color="#4DFF00"
                   elevation="2"
                   rounded
                   class="text-capitalize white--text ma-5 mt-10"
