@@ -9,7 +9,7 @@
 
 <script>
 
-import exerciseComp from "@/components/exerciseComp";
+import exerciseComp from "@/components/ExerciseComp";
 
 export default {
   name: "CreateExercise",

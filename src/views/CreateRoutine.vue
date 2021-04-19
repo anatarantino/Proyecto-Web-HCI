@@ -12,7 +12,7 @@
 
 <script>
 
-import routineComp from "@/components/routineComp";
+import routineComp from "@/components/RoutineComp";
 
 export default {
   name: "CreateRoutine",

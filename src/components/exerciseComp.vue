@@ -85,7 +85,7 @@
 
 <script>
 export default {
-  name: "exerciseComp",
+  name: "ExerciseComp",
   props:["exercise"]
 }
 </script>
