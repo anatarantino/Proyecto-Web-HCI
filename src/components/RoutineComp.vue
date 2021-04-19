@@ -146,7 +146,7 @@
 
 <script>
 
-import bloque from "@/components/bloque";
+import bloque from "@/components/Bloque";
 
 export default {
   name: "routineComp",
