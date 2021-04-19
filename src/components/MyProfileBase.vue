@@ -15,7 +15,7 @@
     <v-row justify="center">
       <v-btn
           @click="activeEx = !activeEx"
-          :color="activeEx ? '#00B14A' : '#757575'"
+          :color="activeEx ? '#4DFF00' : '#757575'"
           class="ma-2 pt-6 pb-6"
       >
         <h2 class="custom-transform-class text-none white--text">
@@ -26,7 +26,7 @@
     <v-row justify="center">
       <v-btn
           @click="activeTr = !activeTr"
-          :color="activeTr ? '#00B14A' : '#757575'"
+          :color="activeTr ? '#4DFF00' : '#757575'"
           class="ma-2 pt-6 pb-6"
           width="180"
       >
@@ -38,7 +38,7 @@
     <v-row justify="center">
       <v-btn
           @click="activeEd = !activeEd"
-          :color="activeEd ? '#00B14A' : '#757575'"
+          :color="activeEd ? '#4DFF00' : '#757575'"
           class="ma-2 pt-6 pb-6"
           width="180"
       >
@@ -51,7 +51,7 @@
       <v-btn
           class="ma-2 pt-6 pb-6"
           @click="activeCo = !activeCo"
-          :color="activeCo ? '#00B14A' : '#757575'"
+          :color="activeCo ? '#4DFF00' : '#757575'"
       >
         <h2 class="custom-transform-class text-none white--text">
           Configuración
