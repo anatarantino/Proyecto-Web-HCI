@@ -112,7 +112,7 @@
 
 <script>
 export default {
-  name: "bloque",
+  name: "Bloque",
   props: ["bloque"],
   data() {
     return {
