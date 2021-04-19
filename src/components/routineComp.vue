@@ -112,6 +112,7 @@
         <v-row>
           <v-col cols="12" class="d-flex mx-auto" sm="4">
             <v-textarea
+                dark
                 prepend-inner-icon="mdi-comment"
                 class="mx-2"
                 label="¿Desea agregar un comentario?"
@@ -146,7 +147,7 @@
 
 <script>
 
-import bloque from "@/components/bloque";
+import bloque from "@/components/Bloque";
 
 export default {
   name: "routineComp",
