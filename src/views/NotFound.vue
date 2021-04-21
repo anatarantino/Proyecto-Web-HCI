@@ -6,7 +6,7 @@
           <v-img src="../assets/images/logo.png"
                  :max-height="this.$vuetify.breakpoint.smAndDown ? '120':'180'" contain/>
           <h1 class="text-center text-h5 text-md-h3 font-weight-bold mb-5">Error 404</h1>
-          <h2 class="text-center text-h6 text-md-h4 font-weight-medium my-5">The requested url, was not found on this server.</h2>
+          <h2 class="text-center text-h6 text-md-h4 font-weight-medium my-5">Invalid url path.</h2>
         </v-card>
       </v-col>
     </v-row>
