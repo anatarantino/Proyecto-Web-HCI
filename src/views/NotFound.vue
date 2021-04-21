@@ -14,10 +14,8 @@
 </template>
 
 <script>
-import AppBar from "@/components/AppBar";
 export default {
   name: "NotFound",
-  components: {AppBar}
 }
 </script>
 
