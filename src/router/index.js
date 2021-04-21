@@ -118,7 +118,7 @@ const routes = [
     },
     {
         path: '*',
-        redirect: '/404',
+        redirect: '/Error404',
         component: () => import('../layouts/LandingPageLayout'),
         children: [
             {
