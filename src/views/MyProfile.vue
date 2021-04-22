@@ -33,11 +33,12 @@
                   class="ma-5 mt-10"
                 ></v-text-field>
                 <v-btn
-                  color="#4DFF00"
+                  color="#00B14A"
                   elevation="2"
                   rounded
                   class="text-capitalize white--text ma-5 mt-10"
                   width="150"
+                  to="/"
                 >
                   Cerrar sesión
                 </v-btn>

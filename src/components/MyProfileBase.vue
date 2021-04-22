@@ -15,8 +15,9 @@
     <v-row justify="center">
       <v-btn
           @click="activeEx = !activeEx"
-          :color="activeEx ? '#4DFF00' : '#757575'"
+          :color="activeEx ? '#00B14A' : '#757575'"
           class="ma-2 pt-6 pb-6"
+          to="/home/myprofileejs"
       >
         <h2 class="custom-transform-class text-none white--text">
           Mis ejercicios
@@ -26,9 +27,10 @@
     <v-row justify="center">
       <v-btn
           @click="activeTr = !activeTr"
-          :color="activeTr ? '#4DFF00' : '#757575'"
+          :color="activeTr ? '#00B14A' : '#757575'"
           class="ma-2 pt-6 pb-6"
           width="180"
+          to="/home/myprofiletrophies"
       >
         <h2 class="custom-transform-class text-none white--text">
           Mis logros
@@ -38,9 +40,10 @@
     <v-row justify="center">
       <v-btn
           @click="activeEd = !activeEd"
-          :color="activeEd ? '#4DFF00' : '#757575'"
+          :color="activeEd ? '#00B14A' : '#757575'"
           class="ma-2 pt-6 pb-6"
           width="180"
+          to="/home/myprofileedit"
       >
         <h2 class="custom-transform-class text-none white--text">
           Editar Perfil
@@ -51,7 +54,8 @@
       <v-btn
           class="ma-2 pt-6 pb-6"
           @click="activeCo = !activeCo"
-          :color="activeCo ? '#4DFF00' : '#757575'"
+          :color="activeCo ? '#00B14A' : '#757575'"
+          to="/home/myprofileconfig"
       >
         <h2 class="custom-transform-class text-none white--text">
           Configuración

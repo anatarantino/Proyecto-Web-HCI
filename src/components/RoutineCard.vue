@@ -4,7 +4,7 @@
       <v-row>
         <v-col class="grey d-flex justify-space-between align-center" cols="12">
           <h3 class="text-start"> {{ routine.name }}  </h3>
-          <v-btn icon>
+          <v-btn icon to="/home/info">
             <v-icon color="white">mdi-plus</v-icon>
           </v-btn>
         </v-col>

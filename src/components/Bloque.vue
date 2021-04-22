@@ -103,7 +103,7 @@
         </template>
       </v-list-item-group>
       <v-col class="d-flex align-center justify-center">
-      <v-btn text outlined>Crear nuevo ejercico</v-btn>
+      <v-btn text outlined to="/home/createexercise">Crear nuevo ejercicio</v-btn>
       </v-col>
     </v-list>
   </v-card>

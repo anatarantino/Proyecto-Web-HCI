@@ -18,9 +18,14 @@
                     <ExerciseCard></ExerciseCard>
                   </v-col>
                   <v-col cols="1">
-                    <v-icon>
-                      mdi-pencil
-                    </v-icon>
+                    <v-btn 
+                      icon
+                      to="/home/editexercise"  
+                    >
+                      <v-icon>
+                        mdi-pencil
+                      </v-icon>
+                    </v-btn>
                   </v-col>
                 </v-row>  
               </v-col>
@@ -31,6 +36,7 @@
                   class="mx-2"
                   fab
                   dark
+                  to="/home/createexercise"
                 >
                   <v-icon dark>
                     mdi-plus

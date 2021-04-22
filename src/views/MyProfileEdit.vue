@@ -54,7 +54,8 @@
                       elevation="2"
                       rounded
                       class="text-capitalize white--text ml-5 mt-10"
-                      width="150"
+                      width="100"
+                      to="/home/myprofile"
                     >
                       Guardar
                     </v-btn>
@@ -65,7 +66,8 @@
                       elevation="2"
                       rounded
                       class="text-capitalize white--text mt-10"
-                      width="150"
+                      width="100"
+                      to="/home/myprofile"
                     >
                       Cancelar
                     </v-btn>

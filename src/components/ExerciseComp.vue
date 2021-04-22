@@ -69,6 +69,7 @@
             rounded
             color="red"
             class="text-capitalize ma-1 pt-1 pb-1"
+            to="/home/createroutine"
         >Cancelar
         </v-btn>
         <v-btn
@@ -76,6 +77,7 @@
             rounded
             color="#4DFF00"
             class="text-capitalize ma-1 pt-1 pb-1"
+            to="/home/createroutine"
         >Terminar
         </v-btn>
       </v-col>

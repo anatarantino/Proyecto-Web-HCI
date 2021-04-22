@@ -50,6 +50,7 @@
           rounded
           class="text-capitalize"
           width="150"
+          to="/home/createroutine"
       >Crear rutinas
       </v-btn>
     </v-row>

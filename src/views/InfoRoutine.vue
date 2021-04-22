@@ -1,11 +1,11 @@
 <template>
   <v-container fluid  class="ml-10 mt-8">
     <v-row align="center">
-        <h1 class="font-weight-light font-italic"> Fuerza de Martin Quito </h1>
-        <v-icon color="black" class="ma-4">
+        <h1 class="font-weight-light font-italic white--text"> Fuerza de Martin Quito </h1>
+        <v-icon color="white" class="ma-4">
           mdi-share-variant
         </v-icon>
-        <v-icon color="black">
+        <v-icon color="white">
           mdi-heart-outline
         </v-icon>
     </v-row>

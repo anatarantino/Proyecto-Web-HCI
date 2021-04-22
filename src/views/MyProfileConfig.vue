@@ -14,7 +14,7 @@
             <div>
               <h3> Notificaciones </h3>
               <v-row align="center">
-                <v-col cols="3">
+                <v-col cols="5">
                   <v-text> Logros y progreso semanal </v-text>
                 </v-col>
                 <v-col cols="1">
@@ -25,7 +25,7 @@
                 </v-col>
               </v-row>
               <v-row align="center">
-                <v-col cols="3">
+                <v-col cols="5">
                   <v-text> Novedades y nuevas rutinas </v-text>
                 </v-col>
                 <v-col cols="1">
@@ -36,7 +36,7 @@
                 </v-col>
               </v-row>
               <v-row align="center">
-                <v-col cols="3">
+                <v-col cols="5">
                   <v-text> Recordatorios para entrenar </v-text>
                 </v-col>
                 <v-col cols="1">
@@ -53,11 +53,12 @@
                 <v-col
                   class="d-flex ml-4 mt-4"
                   cols="12"
-                  sm="3"
+                  sm="4"
                 >
                   <v-select
                     :items="items"
-                    label="Outlined style"
+                    label="Seleccionar idioma"
+                    v-model="lang"
                     outlined
                     class="pa-0"
                   ></v-select>
@@ -68,7 +69,7 @@
               <v-col>
                 <div>
                   <v-row align="center">
-                    <v-col cols="2">
+                    <v-col cols="3">
                       <h3> Ayuda </h3>
                     </v-col>
                     <v-col cols="1">
@@ -84,6 +85,7 @@
                   rounded
                   class="text-capitalize white--text mt-10"
                   width="150"
+                  to="/"
                 >
                   Cerrar sesión
                 </v-btn>
@@ -91,7 +93,7 @@
               <v-col>
                 <div>
                   <v-row align="center">
-                    <v-col cols="3">
+                    <v-col cols="4">
                       <h3> Acerca de </h3>
                     </v-col>
                     <v-col cols="1">
@@ -107,6 +109,7 @@
                   rounded
                   class="text-capitalize white--text mt-10"
                   width="150"
+                  to="/"
                 >
                   Eliminar cuenta
                 </v-btn>
@@ -128,6 +131,7 @@ export default {
       offset1: true,
       offset2: false,
       offset3: true,
+      lang:'Español',
       items: ['Español', 'English', 'Français', 'Italiano', 'Deutsche'],
     }),
 }
