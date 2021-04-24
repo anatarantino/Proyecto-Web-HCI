@@ -20,9 +20,9 @@ export default {
   data(){
     return{
       types: [
-      {
-        title: "Creá tu rutina"
-      }
+        {
+          title: "Creá tu rutina"
+        }
       ]
     }
   }

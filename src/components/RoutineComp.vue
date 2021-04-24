@@ -2,6 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
+        <h1 class="font-weight-light font-italic text-start white--text" >{{routine.title}}</h1>
         <v-col cols="12" class="d-flex mx-auto" sm="4">
           <v-text-field
               label="Ingresa un nombre para tu rutina"
@@ -12,8 +13,8 @@
           </v-text-field>
         </v-col>
         <v-row>
-          <v-col cols="6" class="d-flex align-center justify-center">
-            <bloque></bloque> <!--aca hay que hacer un for por cada bloque-->
+          <v-col cols="6" class="d-flex align-center justify-center" v-for="b in bloques" :key="b">
+            <bloque :bloque="b"></bloque> <!--aca hay que hacer un for por cada bloque-->
           </v-col>
           <v-col cols="6" class="d-flex align-center justify-center">
             <bloque></bloque>
@@ -34,10 +35,6 @@
                 <v-col cols="12" class="d-flex justify-center align-center pa-0 ma-0">
                   <v-card-title>Elija el enfoque de su rutina</v-card-title>
                 </v-col>
-
-
-
-                <!--Aca hay que hacer un for con las categorias-->
                 <div class="pl-2 pr-2 pb-1">
                   <v-chip-group
                       v-model="selection"
@@ -110,7 +107,7 @@
 
               </v-row>
             </v-container>
-            <h3 class="my-color font-weight-light" >Agrega una imagen para tu rutina</h3>
+            <h3 class="my-color font-weight-light white--text" >Agrega una imagen para tu rutina</h3>
           </v-card>
         </v-col>
 
@@ -167,12 +164,12 @@ export default {
   components: {bloque},
   data(){
     return{
-      items:[
-        {title:"titulo",
-          subtitle: "subtitulo",
+      bloques:[       //esto vamos a tener que sacarlo de la api
+        {title:"bloque 1",
+          subtitle: "subtitiulo 1",
 
         },
-        {title:"titulo 2",
+        {title:"bloque 2",
           subtitle: "subtitulo 2",
         }
       ],
@@ -190,7 +187,5 @@ export default {
 </script>
 
 <style scoped>
-.my-color{
-  color: white;
-}
+
 </style>

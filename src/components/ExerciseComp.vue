@@ -50,7 +50,7 @@
                   >mdi-image-plus
                   </v-icon>
                 </v-btn>
-             </v-col>
+              </v-col>
               <v-col cols="12" class="d-flex justify-center">
                 <v-btn class="text-capitalize ma-2 pt-6 pb-6" >
                   Agregar video

@@ -6,35 +6,29 @@
         color="grey"
         dark
     >
+      <v-text-field
+          label="Ingresa un nombre"
+          outlined
+          clearable
+          hide-details
+      >
 
-          <v-text-field
-              label="Ingresa un nombre"
-              outlined
-              clearable
-              hide-details
+      </v-text-field>
 
+      <v-spacer></v-spacer>
 
-          >
+      <v-text-field
+          label="Repeticiones"
+          class="mt-0 pt-0 ml-6"
+          hide-details
+          single-line
+          type="number"
+          min="1"
 
-          </v-text-field>
-
-          <v-spacer></v-spacer>
-
-          <v-text-field
-              label="Repeticiones"
-              class="mt-0 pt-0 ml-6"
-              hide-details
-              single-line
-              type="number"
-              min="1"
-
-          ></v-text-field>
-          <v-btn icon>
-            <v-icon>mdi-magnify</v-icon>
-          </v-btn>
-
-
-
+      ></v-text-field>
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
 
     </v-toolbar>
 
@@ -103,7 +97,7 @@
         </template>
       </v-list-item-group>
       <v-col class="d-flex align-center justify-center">
-      <v-btn text outlined to="/home/createexercise">Crear nuevo ejercicio</v-btn>
+        <v-btn text outlined to="/home/createexercise">Crear nuevo ejercicio</v-btn>
       </v-col>
     </v-list>
   </v-card>
@@ -116,17 +110,7 @@ export default {
   props: ["bloque"],
   data() {
     return {
-      items: [
-        {
-          title: "ejercicio 1",
-          subtitle: "subtitulo",
-
-        },
-        {
-          title: "ejercicio 2",
-          subtitle: "subtitulo 2",
-        }
-      ]
+      //Aca va la lista de ejercicios que sacamos de la api
     }
   }}
 
