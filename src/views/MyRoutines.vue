@@ -21,7 +21,7 @@
                 :key="item"
                 link
             >
-              <v-list-item-title><v-icon color="amber darken-4" v-for="dificultad in item.it" :key="dificultad">mdi-fire</v-icon></v-list-item-title>
+              <v-list-item-title><v-icon color="#4DFF00" v-for="dificultad in item.it" :key="dificultad">mdi-fire</v-icon></v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>

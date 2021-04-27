@@ -4,8 +4,8 @@
       <v-btn text color="transparent" to="/home">
         <v-img
             position="top"
-            max-height="48"
-            max-width="163"
+            max-height="80"
+            max-width="250"
             src="../assets/images/logo.png"
         ></v-img>
       </v-btn>

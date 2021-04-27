@@ -5,8 +5,8 @@
         <v-btn text to="/">
           <v-img
               position="top"
-              max-height="48"
-              max-width="163"
+              max-height="80"
+              max-width="250"
               src="../assets/images/logo.png"
           ></v-img>
         </v-btn>
@@ -47,11 +47,8 @@
                   <v-text-field
                       label="Mail"
                       filled
-                      rounded
-                      dense
-                      solo
-                      outlined
-                      append-icon="mdi-email"
+                      clearable
+                      dark
                       v-model="email"
                       @blur="$v.email.$touch()"
                   ></v-text-field>
@@ -60,11 +57,9 @@
                       label="Contraseña"
                       :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                       :type="show ? 'text' : 'password'"
-                      solo
                       filled
-                      rounded
-                      dense
-                      outlined
+                      clearable
+                      dark
                       @click:append="show=!show"
                       @blur="$v.password.$touch()"
                       v-model="password"
@@ -91,7 +86,7 @@
 
 <script>
 import Footer from "../components/Footer";
-import {required, email,minLength} from 'vuelidate/lib/validators'
+import {required, email, minLength} from 'vuelidate/lib/validators'
 
 export default {
   name: 'SignIn',

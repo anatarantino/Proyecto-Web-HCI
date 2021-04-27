@@ -32,7 +32,7 @@
                   :key="item"
                   link
               >
-                <v-list-item-title><v-icon color="yellow accent-3" v-for="rating in item.it" :key="rating">mdi-star</v-icon></v-list-item-title>
+                <v-list-item-title><v-icon color="black" v-for="rating in item.it" :key="rating">mdi-star</v-icon></v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>

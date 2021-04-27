@@ -5,8 +5,8 @@
         <v-btn text to="/">
           <v-img
               position="top"
-              max-height="48"
-              max-width="163"
+              max-height="80"
+              max-width="250"
               src="../assets/images/logo.png"
           ></v-img>
         </v-btn>
@@ -47,60 +47,37 @@
                   <v-text-field
                       label="Nombre"
                       filled
-                      rounded
-                      dense
-                      outlined
-                      solo
-                      append-icon="mdi-pencil"
+                      clearable
+                      dark
                       @blur="$v.name.$touch()"
                       v-model="name"
                   ></v-text-field>
                   <v-text-field
                       label="Apellido"
                       filled
-                      rounded
-                      dense
-                      outlined
-                      solo
-                      append-icon="mdi-pencil"
+                      clearable
+                      dark
                       @blur="$v.lastName.$touch()"
                       v-model="lastName"
                   ></v-text-field>
                   <v-text-field
                       label="Mail"
                       filled
-                      rounded
-                      dense
-                      outlined
-                      solo
-                      append-icon="mdi-email"
+                      clearable
+                      dark
                       @blur="$v.email.$touch()"
                       v-model="email"
                   ></v-text-field>
                   <!--                  <p v-if="$v.email.$error">Por favor ingrese un mail correcto.</p>-->
-                  <v-text-field
-                      label="Usuario"
-                      filled
-                      rounded
-                      dense
-                      outlined
-                      solo
-                      append-icon="mdi-account"
-                      @blur="$v.user.$touch()"
-                      v-model="user"
-                  ></v-text-field>
                   <v-text-field
                       type="password"
                       label="Contraseña"
                       hint="Mínimo 8 caracteres"
                       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                       :type="show1 ? 'text' : 'password'"
-                      solo
                       filled
-                      outlined
-                      rounded
-                      dense
-                      counter
+                      clearable
+                      dark
                       @click:append="show1=!show1"
                       @blur="$v.password.$touch()"
                       v-model="password"
@@ -110,12 +87,9 @@
                       label="Repite la contraseña"
                       :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
                       :type="show2 ? 'text' : 'password'"
-                      solo
                       filled
-                      outlined
-                      rounded
-                      dense
-                      counter
+                      clearable
+                      dark
                       @blur="$v.confirmPassword.$touch()"
                       v-model="confirmPassword"
                       @click:append="show2=!show2"

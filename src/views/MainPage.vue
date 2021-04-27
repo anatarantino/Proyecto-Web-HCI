@@ -5,8 +5,8 @@
        <v-btn text color="transparent" to="/">
         <v-img
             position="top"
-            max-height="48"
-            max-width="163"
+            max-height="80"
+            max-width="250"
             src="../assets/images/logo.png"
         ></v-img>
         </v-btn>
@@ -31,10 +31,12 @@
         >Ingresar</v-btn>
       </v-flex>
     </v-app-bar>
-    <v-col cols="12" class="d-flex justify-center align-self-center">
-      <h1 class="title text-center text-h5 text-sm-h3 text-md-h1 font-italic whiteCS--text shadow">Encuentra tu
-        balance</h1>
-    </v-col>
+<!--    <v-row align="center">-->
+      <v-col cols="12" class="d-flex justify-center align-self-center">
+        <h1 class="title text-center text-h5 text-sm-h3 text-md-h1 font-italic whiteCS--text shadow">Encuentra tu
+          balance</h1>
+      </v-col>
+<!--    </v-row>-->
   </v-container>
 </template>
 
