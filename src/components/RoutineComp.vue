@@ -66,7 +66,7 @@
 
 
                 <v-rating
-                    color="amber darken-4"
+                    color="#4DFF00"
                     empty-icon="mdi-fire"
                     full-icon="mdi-fire"
                     hover
