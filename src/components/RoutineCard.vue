@@ -5,7 +5,7 @@
         <v-col class="grey darken-3 d-flex justify-space-between align-center rounded-t-xl" cols="12">
           <h3 class="white--text text-start"> {{ routine.name }}  </h3>
           <v-btn icon to="/home/info">
-            <v-icon color="white">mdi-plus</v-icon>
+            <v-icon color="white">mdi-information-outline</v-icon>
           </v-btn>
         </v-col>
         <v-col cols="7">

@@ -38,7 +38,7 @@
           <v-card color="rgb(0, 0, 0, 0)" elevation="0">
             <v-card-title primary-title class="justify-center">
               <div>
-                <h3 class="let headline mb-0">Crea tu usuario</h3>
+                <h3 class="let headline mb-0">Crea tu cuenta</h3>
               </div>
             </v-card-title>
             <v-card-text>
