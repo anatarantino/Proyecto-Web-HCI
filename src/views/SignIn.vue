@@ -66,10 +66,10 @@
                   ></v-text-field>
                   <v-col class="d-flex justify-center align-center">
                     <v-btn
-                        color="#4DFF00"
+                        color="black"
                         elevation="3"
                         rounded
-                        class="text-capitalize"
+                        class="white--text text-capitalize"
                         width="150"
                     >Ingresar
                     </v-btn>

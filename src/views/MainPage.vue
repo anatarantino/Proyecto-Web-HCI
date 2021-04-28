@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fill-height>
     <v-app-bar app color="rgb(0,0,0,0)" elevation="0">
       <v-flex text-xs-left>
        <v-btn text color="transparent" to="/">
@@ -22,21 +22,20 @@
         >Registrarme</v-btn>
         <v-btn
             @click="loginButt=true"
-            color="#FFFFFF"
-            text
+            color="black"
             rounded
-            class="text-capitalize"
+            class="text-capitalize white--text"
             width="150"
             to="/signin"
         >Ingresar</v-btn>
       </v-flex>
     </v-app-bar>
-<!--    <v-row align="center">-->
+    <v-row align="center" justify="center">
       <v-col cols="12" class="d-flex justify-center align-self-center">
         <h1 class="title text-center text-h5 text-sm-h3 text-md-h1 font-italic whiteCS--text shadow">Encuentra tu
           balance</h1>
       </v-col>
-<!--    </v-row>-->
+    </v-row>
   </v-container>
 </template>
 
@@ -63,7 +62,7 @@ export default {
 }
 
 .title {
-  color: rgb(174, 181, 158);
+  color: rgb(227, 245, 188);
 }
 
 

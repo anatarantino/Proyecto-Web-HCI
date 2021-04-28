@@ -3,13 +3,13 @@
     <v-row class="d-flex ma-0 pa-0 justify-center">
       <v-row>
         <v-col class="d-flex justify-space-between align-center" cols="12">
-          <v-col cols="2">
+          <v-col cols="3">
             <v-text-field
                 label="Buscar"
                 prepend-inner-icon="mdi-magnify"
                 filled
-                dense
-                solo
+                clearable
+                dark
                 hide-details
             ></v-text-field>
           </v-col>
@@ -32,7 +32,9 @@
                   :key="item"
                   link
               >
-                <v-list-item-title><v-icon color="black" v-for="rating in item.it" :key="rating">mdi-star</v-icon></v-list-item-title>
+                <v-list-item-title>
+                  <v-icon color="black" v-for="rating in item.it" :key="rating">mdi-star</v-icon>
+                </v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>

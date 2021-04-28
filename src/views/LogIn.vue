@@ -20,11 +20,11 @@
           </v-col>
           <v-col cols="5" class="d-flex justify-center align-center">
             <v-btn
-                color="#4DFF00"
+                color="black"
                 elevation="3"
                 rounded
                 width="150"
-                class="text-capitalize"
+                class="white--text text-capitalize"
                 to="/signin"
             >Ingresar
             </v-btn>
