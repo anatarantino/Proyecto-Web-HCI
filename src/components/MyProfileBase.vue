@@ -18,6 +18,7 @@
           :color="activeEx ? '#00B14A' : '#757575'"
           class="ma-2 pt-6 pb-6"
           to="/home/myprofileejs"
+          rounded
       >
         <h2 class="custom-transform-class text-none white--text">
           Mis ejercicios
@@ -28,6 +29,7 @@
       <v-btn
           @click="activeTr = !activeTr"
           :color="activeTr ? '#00B14A' : '#757575'"
+          rounded
           class="ma-2 pt-6 pb-6"
           width="180"
           to="/home/myprofiletrophies"
@@ -39,26 +41,27 @@
     </v-row>
     <v-row justify="center">
       <v-btn
-          @click="activeEd = !activeEd"
-          :color="activeEd ? '#00B14A' : '#757575'"
           class="ma-2 pt-6 pb-6"
-          width="180"
-          to="/home/myprofileedit"
+          @click="activeCo = !activeCo"
+          :color="activeCo ? '#00B14A' : '#757575'"
+          rounded
+          to="/home/myprofileconfig"
       >
         <h2 class="custom-transform-class text-none white--text">
-          Editar Perfil
+          Configuración
         </h2>
       </v-btn>
     </v-row>
     <v-row justify="center">
       <v-btn
+          color="#4DFF00"
+          rounded
           class="ma-2 pt-6 pb-6"
-          @click="activeCo = !activeCo"
-          :color="activeCo ? '#00B14A' : '#757575'"
-          to="/home/myprofileconfig"
+          width="180"
+          to="/"
       >
-        <h2 class="custom-transform-class text-none white--text">
-          Configuración
+        <h2 class="custom-transform-class text-none">
+          Cerrar Sesión
         </h2>
       </v-btn>
     </v-row>
@@ -70,7 +73,6 @@ export default {
   name: "MyProfileBase",
   data: () => ({
     activeCo: false,
-    activeEd: false,
     activeEx: false,
     activeTr: false,
   }),

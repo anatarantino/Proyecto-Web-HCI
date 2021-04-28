@@ -14,37 +14,29 @@
             <v-row justify="center">
               <v-col cols="12" sm="5">
                 <v-text-field
+                  append-icon=mdi-pencil
                   value="Natalia"
                   label="Nombre"
                   readonly
                   class="ma-5"
                 ></v-text-field>
                 <v-text-field
-                  readonly
+                  append-icon=mdi-pencil
                   value="NatiNat"
                   label="Usuario"
                   class="ma-5 mt-10"
                 ></v-text-field>
                 <v-text-field
                   value="abcdefghijklmno"
-                  type="password"
-                  readonly
                   label="Contraseña"
+                  :type="show1 ? 'text' : 'password'"
                   class="ma-5 mt-10"
+                  @click="show1 = !show1"
                 ></v-text-field>
-                <v-btn
-                  color="#00B14A"
-                  elevation="2"
-                  rounded
-                  class="text-capitalize white--text ma-5 mt-10"
-                  width="150"
-                  to="/"
-                >
-                  Cerrar sesión
-                </v-btn>
               </v-col>
               <v-col cols="12" sm="5">
                 <v-text-field
+                  append-icon=mdi-pencil
                   value="Natalia"
                   label="Apellido"
                   readonly
@@ -56,20 +48,51 @@
                   readonly
                   class="ma-5  mt-10"
                 ></v-text-field>
+                <v-row>
+                  <v-col>
+                    <v-btn
+                      color="#4DFF00"
+                      elevation="2"
+                      rounded
+                      class="text-capitalize ml-5 mt-10"
+                      width="100"
+                      to="/home/myprofile"
+                    >
+                      Guardar
+                    </v-btn>
+                  </v-col>
+                  <v-col>
+                    <v-btn
+                      color="#000000"
+                      elevation="2"
+                      rounded
+                      class="text-capitalize white--text mt-10"
+                      width="100"
+                      to="/home/myprofile"
+                    >
+                      Cancelar
+                    </v-btn>
+                  </v-col>
+                </v-row>
               </v-col>
             </v-row>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </v-container> 
 </template>
 
 <script>
   import MyProfileBase from "../components/MyProfileBase";
   export default {
     name: "MyProfile",
-    components: {MyProfileBase}
+    components: {MyProfileBase},
+    data () {
+      return {
+        show1: false,
+      }
+  }
   }
 </script>
 

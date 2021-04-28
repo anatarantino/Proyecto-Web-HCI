@@ -31,14 +31,13 @@
               </v-col>
               <v-col>
                 <v-btn
-                  color="#00B14A"
+                  color="#4DFF00"
                   elevation="2"
                   class="mx-2"
                   fab
-                  dark
                   to="/home/createexercise"
                 >
-                  <v-icon dark>
+                  <v-icon>
                     mdi-plus
                   </v-icon>
                 </v-btn>

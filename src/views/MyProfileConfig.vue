@@ -79,16 +79,6 @@
                     </v-col>
                   </v-row>
                 </div>
-                <v-btn
-                  color="#0C773A"
-                  elevation="2"
-                  rounded
-                  class="text-capitalize white--text mt-10"
-                  width="150"
-                  to="/"
-                >
-                  Cerrar sesión
-                </v-btn>
               </v-col>
               <v-col>
                 <div>
@@ -103,16 +93,6 @@
                     </v-col>
                   </v-row>
                 </div>
-                <v-btn
-                  color="#E22828"
-                  elevation="2"
-                  rounded
-                  class="text-capitalize white--text mt-10"
-                  width="150"
-                  to="/"
-                >
-                  Eliminar cuenta
-                </v-btn>
               </v-col>
             </v-row>
           </v-container>
