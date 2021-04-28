@@ -1,9 +1,9 @@
 <template>
-  <v-card
+  <v-card class="rounded-xl"
 
   >
     <v-toolbar
-        color="grey"
+        color="grey darken-3"
         dark
     >
       <v-text-field
@@ -32,7 +32,7 @@
 
     </v-toolbar>
 
-    <v-list two-line>
+    <v-list two-line light>
       <v-list-item-group
           v-model="selected"
           multiple
@@ -97,7 +97,17 @@
         </template>
       </v-list-item-group>
       <v-col class="d-flex align-center justify-center">
-        <v-btn text outlined to="/home/createexercise">Crear nuevo ejercicio</v-btn>
+        <v-btn to="/home/createexercise"
+               fab
+               class="mx-2"
+               color="grey darken-3"
+
+        >
+          <v-icon color="white">
+            mdi-plus
+          </v-icon>
+        </v-btn>
+
       </v-col>
     </v-list>
   </v-card>

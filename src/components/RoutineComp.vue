@@ -22,7 +22,15 @@
         </v-row>
       </v-col>
       <v-col cols="12" class="d-flex align-center justify-center">
-        <v-btn rounded>Crear nuevo bloque</v-btn>
+        <v-btn class="mx-2"
+               fab
+               color="#4DFF00"
+        >
+          <v-icon>
+            mdi-plus
+          </v-icon>
+
+        </v-btn>
       </v-col>
 
       <v-row class="pt-4">
@@ -92,7 +100,6 @@
                       width="200"
                       elevation="2"
                       dark
-
                   >
                     <v-icon
                         size="60"
@@ -130,18 +137,22 @@
 
         <v-col cols="12" class="d-flex justify-center">
           <v-btn
-              x-large
+              large
+              dark
+              depressed
               rounded
-              color="red"
+              width="150"
               class="text-capitalize ma-1 pt-1 pb-1"
               to="/home/myroutines"
           >Cancelar
           </v-btn>
           <v-btn
-              x-large
-              rounded
+              large
               color="#4DFF00"
               class="text-capitalize ma-1 pt-1 pb-1"
+              depressed
+              rounded
+              width="150"
               to="/home/myroutines"
           >Publicar rutina
           </v-btn>
