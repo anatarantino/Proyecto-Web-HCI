@@ -9,8 +9,8 @@
           </v-btn>
         </v-col>
         <v-col cols="7">
-          <v-container fluid>
-            <v-row>
+          <v-container fill-height>
+            <v-row align="center">
               <v-col cols="12" class="d-flex justify-start align-center pa-0">
                 <h4 class="font-weight-light text-start">Calentamiento: {{ routine.entradaEnCalor }} min</h4>
               </v-col>
