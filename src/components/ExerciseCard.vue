@@ -15,11 +15,12 @@
                 <v-text class="d-flex">Puente con la pierna estirada</v-text>
               </v-col>
               <v-col cols="12" class="d-flex align-center pa-0">
-                <div
-                  class="align-center rounded-xl pl-2 pr-2 white--text"
+                <v-card
+                  class="align-center rounded-xl pl-2 pr-2 mt-3"
+                  color="#4DFF00"
                 >
                   Cardio
-                </div>
+                </v-card>
               </v-col>
             </v-row>
           </v-container>
@@ -57,7 +58,7 @@ export default {
 </script>
 
 <style scoped>
-  .gcolor{
-    background-color:"#4DFF00";
+  .gcolor {
+    background-color: "#4DFF00";
   }
 </style>
