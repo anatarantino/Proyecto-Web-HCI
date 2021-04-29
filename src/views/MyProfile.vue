@@ -1,7 +1,7 @@
 <template>
   <v-container fluid mt-8>
     <v-row align="center" justify="space-around">
-      <MyProfileBase></MyProfileBase>
+      <MyProfileBase :username=name></MyProfileBase>
       <v-col md="8">
         <v-card
           class="pa-2 rounded-xl "
@@ -15,20 +15,20 @@
               <v-col cols="12" sm="5">
                 <v-text-field
                   append-icon=mdi-pencil
-                  value="Natalia"
+                  :value=name
                   label="Nombre"
                   readonly
                   class="ma-5"
                 ></v-text-field>
                 <v-text-field
                   append-icon=mdi-pencil
-                  value="Natalia"
+                  :value=lastName
                   label="Apellido"
                   readonly
                   class="ma-5"
                 ></v-text-field>
                 <v-text-field
-                  value="natalian@gmail.com"
+                  :value=email
                   label="Mail"
                   readonly
                   class="ma-5  mt-10"
@@ -39,7 +39,7 @@
                       color="#4DFF00"
                       elevation="2"
                       rounded
-                      class="text-capitalize ml-5 mt-10"
+                      class="text-capitalize mr-5 mt-10"
                       width="130"
                       to="/home/myprofile"
                     >
@@ -75,7 +75,9 @@
     components: {MyProfileBase},
     data () {
       return {
-        show1: false,
+        name: "Natalia",
+        lastName: "Natalia",
+        email: "natalian@gmail.com",
       }
   }
   }

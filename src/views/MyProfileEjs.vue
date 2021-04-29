@@ -1,7 +1,7 @@
 <template>
   <v-container fluid mt-8>
     <v-row align="center" justify="space-around">
-      <MyProfileBase></MyProfileBase>
+      <MyProfileBase :username=name></MyProfileBase>
       <v-col md="8">
         <v-card
           class="pa-2 rounded-xl "
@@ -12,8 +12,8 @@
         >
           <v-container fluid ma-5>
             <v-row align="center" class="d-flex ma-0 pa-0">
-              <v-col cols="6">
-                <ExerciseCard></ExerciseCard>
+              <v-col cols="6" v-for="card in cards">
+                <ExerciseCard :excard="card"></ExerciseCard>
               </v-col>
               <v-col>
                 <v-btn
@@ -41,7 +41,20 @@ import MyProfileBase from "../components/MyProfileBase";
 import ExerciseCard from "../components/ExerciseCard";
 export default {
   name: "MyProfileEjs",
-  components: {MyProfileBase, ExerciseCard}
+  components: {MyProfileBase, ExerciseCard},
+  data(){
+    return{
+      name: "Natalia",
+      cards: [
+        {
+          cTitle: "Puente de la mujer versión Nat",
+          cText: "Puente con la pierna estirada",
+          cType: "Cardio",
+          cImage: require('../assets/images/crear\ ejercicio.jpg')
+        }
+      ]
+    }
+  }
 }
 </script>
 

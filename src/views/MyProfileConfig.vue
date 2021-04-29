@@ -1,7 +1,7 @@
 <template>
   <v-container fluid mt-8>
     <v-row align="center" justify="space-around">
-      <MyProfileBase></MyProfileBase>
+      <MyProfileBase :username=name></MyProfileBase>
       <v-col md="8">
         <v-card
           class="pa-2 rounded-xl"
@@ -89,13 +89,14 @@ import MyProfileBase from "../components/MyProfileBase";
 export default {
   name: "MyProfileConfig",
   components: {MyProfileBase},
-  data: () => ({
+  data() {
+    return {
+      name: "Natalia",
       offset1: true,
       offset2: false,
       offset3: true,
-      lang:'Español',
-      items: ['Español', 'English', 'Français', 'Italiano', 'Deutsche'],
-    }),
+    }
+  }
 }
 </script>
 

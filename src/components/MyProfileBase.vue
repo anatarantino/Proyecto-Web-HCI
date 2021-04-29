@@ -9,7 +9,7 @@
     </v-row>
     <v-row justify="center">
       <h2 class="white--text ma-2">
-        NatiNat
+        {{username}}
       </h2>
     </v-row>
     <v-row justify="center">
@@ -71,6 +71,7 @@
 <script>
 export default {
   name: "MyProfileBase",
+  props:["username"],
   data: () => ({
     activeCo: false,
     activeEx: false,

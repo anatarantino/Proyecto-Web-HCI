@@ -1,7 +1,7 @@
 <template>
   <v-container fluid mt-8>
     <v-row align="center" justify="space-around">
-      <MyProfileBase></MyProfileBase>
+      <MyProfileBase :username=name></MyProfileBase>
       <v-col md="8">
         <v-card
           class="pa-2 rounded-xl "
@@ -12,39 +12,22 @@
         >
           <v-container mt-3>
             <v-row>
-              <v-col align="center">
+              <v-col cols="4" align="center" v-for="trophie in trophies">
                 <v-card
                   class="pa-2 rounded-xl "
                   outlined
                   elevation="2"
                   max-width="200"
                 >
-                  <img src="../assets/images/Deracha.png"> </v-img>
+                  <img :src=trophie.tImage> </v-img>
                   <div>
-                    <h3> De racha </h3>
+                    <h3> {{trophie.tTitle}} </h3>
                   </div>
                   <div>
-                    Completaste 3 rutinas en una semana
-                  </div>
-                </v-card>
-              </v-col>
-              <v-col align="center">
-                <v-card
-                  class="pa-2 rounded-xl "
-                  outlined
-                  elevation="2"
-                  max-width="200"
-                >
-                  <img src="../assets/images/Enllamas.png"> </v-img>
-                  <div>
-                    <h3> En llamas </h3>
-                  </div>
-                  <div>
-                    Entrenaste por 6 días seguidos
+                    {{trophie.tText}}
                   </div>
                 </v-card>
               </v-col>
-              <v-spacer></v-spacer>
             </v-row>
           </v-container>
         </v-card>
@@ -57,7 +40,24 @@
 import MyProfileBase from "../components/MyProfileBase";
 export default {
   name: "MyProfileTrophies",
-  components: {MyProfileBase}
+  components: {MyProfileBase},
+  data(){
+    return{
+      name: "Natalia",
+      trophies: [
+        {
+          tImage: require('../assets/images/Deracha.png'),
+          tTitle: "De racha",
+          tText: "Completaste 3 rutinas en una semana"
+        },
+        {
+          tImage: require('../assets/images/Enllamas.png'),
+          tTitle: "En llamas",
+          tText: "Entrenaste por 6 días seguidos"
+        }
+      ]
+    }
+  }
 }
 </script>
 
