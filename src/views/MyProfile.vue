@@ -12,7 +12,7 @@
         >
           <v-card-text class="mt-5">
             <v-row justify="center">
-              <v-col cols="12" sm="5">
+              <v-col cols="12" sm="6">
                 <v-text-field
                   append-icon=mdi-pencil
                   :value=name
@@ -31,7 +31,7 @@
                   :value=email
                   label="Mail"
                   readonly
-                  class="ma-5  mt-10"
+                  class="ma-5"
                 ></v-text-field>
                 <v-row class="mt-10">
                   <v-col cols="6">
@@ -46,7 +46,7 @@
                       Guardar
                     </v-btn>
                   </v-col>
-                  <v-col cols="6">
+                  <v-col mt-10 cols="6">
                     <v-btn
                       color="#000000"
                       elevation="2"
