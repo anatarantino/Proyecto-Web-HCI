@@ -22,7 +22,7 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>Filtros</v-list-item-title>
+          <v-list-item-title><h4>Filtros</h4></v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-divider></v-divider>
