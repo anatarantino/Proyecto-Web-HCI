@@ -1,10 +1,9 @@
 <template>
   <v-container>
-    <Filter></Filter>
     <v-row class="d-flex ma-0 pa-0 justify-center">
       <v-row>
         <v-col class="d-flex justify-space-between align-center" cols="12">
-          <v-col cols="3">
+          <v-col cols="3" class="d-flex justify-start align-self-start ml-3 pl-3">
             <v-text-field
                 label="Buscar"
                 prepend-inner-icon="mdi-magnify"
@@ -14,31 +13,9 @@
                 hide-details
             ></v-text-field>
           </v-col>
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn
-                  color="white"
-                  depressed
-                  v-bind="attrs"
-                  v-on="on"
-                  class="text-capitalize"
-              >
-                <v-icon>mdi-chevron-down</v-icon>
-                Puntuación
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item
-                  v-for="item in items"
-                  :key="item"
-                  link
-              >
-                <v-list-item-title>
-                  <v-icon color="black" v-for="rating in item.it" :key="rating">mdi-star</v-icon>
-                </v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
+          <v-col class="d-flex justify-start">
+            <FilterRout></FilterRout>
+          </v-col>
         </v-col>
       </v-row>
       <v-col cols="12" class="d-flex ma-0 pa-0">
@@ -75,11 +52,11 @@
 <script>
 
 import RoutineCard from "@/components/RoutineCard";
-import Filter from "@/components/Filter";
+import FilterRout from "@/components/Filter";
 
 export default {
   name: 'Home',
-  components: {RoutineCard,Filter},
+  components: {FilterRout, RoutineCard},
   data() {
     return {
       categoryOptions: [
