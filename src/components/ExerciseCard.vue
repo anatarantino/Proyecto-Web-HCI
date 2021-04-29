@@ -2,7 +2,7 @@
   <v-card class="rounded-xl">
     <v-container fluid>
       <v-row>
-        <v-col class="grey d-flex justify-space-between align-center rounded-t-xl" cols="12">
+        <v-col class="grey darken-3 d-flex justify-space-between align-center rounded-t-xl" cols="12">
           <h3 class="text-start white--text"> Puente de la mujer versión Nat  </h3>
         </v-col>
         <v-col cols="8">

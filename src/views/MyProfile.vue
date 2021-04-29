@@ -49,25 +49,25 @@
                   class="ma-5  mt-10"
                 ></v-text-field>
                 <v-row>
-                  <v-col>
+                  <v-col cols="6">
                     <v-btn
                       color="#4DFF00"
                       elevation="2"
                       rounded
                       class="text-capitalize ml-5 mt-10"
-                      width="100"
+                      width="130"
                       to="/home/myprofile"
                     >
                       Guardar
                     </v-btn>
                   </v-col>
-                  <v-col>
+                  <v-col cols="6">
                     <v-btn
                       color="#000000"
                       elevation="2"
                       rounded
                       class="text-capitalize white--text mt-10"
-                      width="100"
+                      width="130"
                       to="/home/myprofile"
                     >
                       Cancelar
