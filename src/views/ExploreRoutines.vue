@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <Filter></Filter>
     <v-row class="d-flex ma-0 pa-0 justify-center">
       <v-row>
         <v-col class="d-flex justify-space-between align-center" cols="12">
@@ -74,10 +75,11 @@
 <script>
 
 import RoutineCard from "@/components/RoutineCard";
+import Filter from "@/components/Filter";
 
 export default {
   name: 'Home',
-  components: {RoutineCard},
+  components: {RoutineCard,Filter},
   data() {
     return {
       categoryOptions: [

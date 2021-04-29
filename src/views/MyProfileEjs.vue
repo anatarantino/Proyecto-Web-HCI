@@ -12,7 +12,7 @@
         >
           <v-container fluid ma-5>
             <v-row align="center" class="d-flex ma-0 pa-0">
-              <v-col cols="6" v-for="card in cards">
+              <v-col cols="6" v-for="card in cards" :key="card">
                 <ExerciseCard :excard="card"></ExerciseCard>
               </v-col>
               <v-col>

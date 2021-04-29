@@ -1,5 +1,6 @@
 <template>
   <v-container>
+      <Filter></Filter>
     <v-row class="d-flex ma-0 pa-0 justify-center">
       <v-col class="d-flex justify-start align-center" cols="12">
         <!--        <v-menu offset-y>-->
@@ -63,12 +64,15 @@
 <script>
 
 import RoutineCard from "@/components/RoutineCard";
+import Filter from "@/components/Filter";
 
 export default {
   name: 'Home',
-  components: {RoutineCard},
+  components: {RoutineCard,Filter},
   data() {
     return {
+      drawer: false,
+      group: null,
       hidden: false,
       categoryOptions: [
         {option: "Cardio", value: 1},
@@ -186,8 +190,13 @@ export default {
           it: 5
         }
       ]
-    }
   }
+    },
+         watch: {
+      group () {
+        this.drawer = false
+      },
+    },
 }
 </script>
 

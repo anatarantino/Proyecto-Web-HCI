@@ -127,7 +127,6 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
-      user: '',
       name: '',
       lastName: ''
     }
@@ -135,11 +134,6 @@ export default {
   validations: {
     email: {
       email,
-      required
-    },
-    user: {
-      minLength: minLength(5),
-      maxLength: maxLength(15),
       required
     },
     name: {
