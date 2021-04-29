@@ -22,21 +22,6 @@
                 ></v-text-field>
                 <v-text-field
                   append-icon=mdi-pencil
-                  value="NatiNat"
-                  label="Usuario"
-                  class="ma-5 mt-10"
-                ></v-text-field>
-                <v-text-field
-                  value="abcdefghijklmno"
-                  label="Contraseña"
-                  :type="show1 ? 'text' : 'password'"
-                  class="ma-5 mt-10"
-                  @click="show1 = !show1"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="5">
-                <v-text-field
-                  append-icon=mdi-pencil
                   value="Natalia"
                   label="Apellido"
                   readonly
@@ -48,7 +33,7 @@
                   readonly
                   class="ma-5  mt-10"
                 ></v-text-field>
-                <v-row>
+                <v-row class="mt-10">
                   <v-col cols="6">
                     <v-btn
                       color="#4DFF00"

@@ -12,6 +12,11 @@
           mdi-heart-outline
         </v-icon>
       </v-btn>
+      <v-btn color="transparent" x-small to="/home/editroutine">
+        <v-icon color="white">
+          mdi-pencil
+        </v-icon>
+      </v-btn>
       <v-btn color="transparent" x-small>
         <v-icon color="white">
           mdi-delete-outline

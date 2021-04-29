@@ -47,25 +47,7 @@
                 </v-col>
               </v-row>
             </div>
-            <div>
-              <h3> Idioma </h3>
-              <v-row>
-                <v-col
-                  class="d-flex ml-4 mt-4"
-                  cols="12"
-                  sm="4"
-                >
-                  <v-select
-                    :items="items"
-                    label="Seleccionar idioma"
-                    v-model="lang"
-                    outlined
-                    class="pa-0"
-                  ></v-select>
-                </v-col>
-              </v-row>
-            </div>
-            <v-row>
+            <v-row class="mt-5">
               <v-col>
                 <div>
                   <v-row align="center">

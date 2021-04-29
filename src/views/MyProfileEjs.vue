@@ -10,24 +10,10 @@
           height="600"
           elevation="2"
         >
-          <v-container ma-5>
-            <v-row align="center">
+          <v-container fluid ma-5>
+            <v-row align="center" class="d-flex ma-0 pa-0">
               <v-col cols="6">
-                <v-row>
-                  <v-col cols="11">
-                    <ExerciseCard></ExerciseCard>
-                  </v-col>
-                  <v-col cols="1">
-                    <v-btn 
-                      icon
-                      to="/home/editexercise"  
-                    >
-                      <v-icon>
-                        mdi-pencil
-                      </v-icon>
-                    </v-btn>
-                  </v-col>
-                </v-row>  
+                <ExerciseCard></ExerciseCard>
               </v-col>
               <v-col>
                 <v-btn
