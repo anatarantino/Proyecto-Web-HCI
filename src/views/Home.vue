@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="d-flex ma-0 pa-0">
-      <v-col cols="12" class="d-flex ma-0 pa-0">
+      <v-col cols="12" class="d-flex justify-start align-center">
         <h1 class="let">¡Bienvenido!</h1>
       </v-col>
       <v-col cols="12" class="d-flex ma-0 pa-0">
