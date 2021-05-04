@@ -1,85 +1,83 @@
 <template>
   <v-container fluid mt-8>
     <v-row align="center" justify="space-around">
-      <MyProfileBase :username=name></MyProfileBase>
+      <v-col md="4">
+    <v-row justify="center">
+      <v-avatar color="#D6F2D8" size="150">
+        <v-icon color="black" size="80">
+          mdi-account
+        </v-icon>
+      </v-avatar>
+    </v-row>
+    <v-row justify="center">
+      <h2 class="white--text ma-2">
+        {{name}}
+      </h2>
+    </v-row>
+    <v-row justify="center" v-for="tab in tabs" v-bind:key="tab">
+      <v-btn
+        class="ma-2 pt-6 pb-6 { active: currentTab === tab.section }"
+        v-bind:class="[{ active: currentTab === tab.section }]"
+        @click="[currentTab = tab.section, currentComponent = tab.comp]"
+        :color="(currentTab == tab.section) ? '#00B14A' : '#757575'"
+        rounded
+        width="180"
+      >
+        <h2 class="custom-transform-class text-none white--text"> 
+          {{tab.section}} 
+        </h2>
+      </v-btn>
+    </v-row>
+    <v-row justify="center">
+      <v-btn
+          color="#4DFF00"
+          rounded
+          class="ma-2 pt-6 pb-6"
+          width="180"
+          to="/"
+      >
+        <h2 class="custom-transform-class text-none">
+          Cerrar Sesión
+        </h2>
+      </v-btn>
+    </v-row>
+  </v-col> 
       <v-col md="8">
-        <v-card
-          class="pa-2 rounded-xl "
-          outlined
-          max-width="80%"
-          height="600"
-          elevation="2"
-        >
-          <v-card-text class="mt-5">
-            <v-row justify="center">
-              <v-col cols="12" sm="6">
-                <v-text-field
-                  append-icon=mdi-pencil
-                  :value=name
-                  label="Nombre"
-                  readonly
-                  class="ma-5"
-                ></v-text-field>
-                <v-text-field
-                  append-icon=mdi-pencil
-                  :value=lastName
-                  label="Apellido"
-                  readonly
-                  class="ma-5"
-                ></v-text-field>
-                <v-text-field
-                  :value=email
-                  label="Mail"
-                  readonly
-                  class="ma-5"
-                ></v-text-field>
-                <v-row class="mt-10">
-                  <v-col cols="6">
-                    <v-btn
-                      color="#4DFF00"
-                      elevation="2"
-                      rounded
-                      class="text-capitalize mr-5 mt-10"
-                      width="130"
-                      to="/home/myprofile"
-                    >
-                      Guardar
-                    </v-btn>
-                  </v-col>
-                  <v-col mt-10 cols="6">
-                    <v-btn
-                      color="#000000"
-                      elevation="2"
-                      rounded
-                      class="text-capitalize white--text mt-10"
-                      width="130"
-                      to="/home/myprofile"
-                    >
-                      Cancelar
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
+        <component v-bind:is="currentComponent"></component>
       </v-col>
     </v-row>
   </v-container> 
 </template>
 
 <script>
-  import MyProfileBase from "../components/MyProfileBase";
+  import ProfileMain from "../components/ProfileMain";
+  import ProfileEjs from "../components/ProfileEjs";
+  import ProfileConfig from "../components/ProfileConfig";
+  import ProfileTrophies from "../components/ProfileTrophies";
   export default {
     name: "MyProfile",
-    components: {MyProfileBase},
-    data () {
+    components: {ProfileMain,ProfileEjs,ProfileConfig,ProfileTrophies},
+    data() {
       return {
         name: "Natalia",
-        lastName: "Natalia",
-        email: "natalian@gmail.com",
+        currentComponent: ProfileMain,
+        currentTab: "Profile",
+        tabs: [
+          {
+            section: "Mis ejercicios",
+            comp: ProfileEjs
+          },
+          {
+            section: "Mis logros",
+            comp: ProfileTrophies
+          },
+          {
+            section: "Configuración",
+            comp: ProfileConfig
+          }
+        ]
       }
-  }
+    }
   }
 </script>
 

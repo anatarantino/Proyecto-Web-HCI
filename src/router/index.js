@@ -7,9 +7,6 @@ import SignIn from "../views/SignIn";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import MainPage from "@/views/MainPage";
 import InfoRoutine from "@/views/InfoRoutine";
-import MyProfileConfig from "@/views/MyProfileConfig";
-import MyProfileEjs from "@/views/MyProfileEjs";
-import MyProfileTrophies from "@/views/MyProfileTrophies";
 import MyProfile from "../views/MyProfile";
 import CreateExercise from "@/views/CreateExercise";
 import CreateRoutine from "@/views/CreateRoutine";
@@ -71,21 +68,6 @@ const routes = [
                 path: 'myprofile',
                 name: 'MyProfile',
                 component: MyProfile
-            },
-            {
-                path: 'myprofileconfig',
-                name: 'MyProfileConfig',
-                component: MyProfileConfig
-            },
-            {
-                path: 'myprofileejs',
-                name: 'MyProfileEjs',
-                component: MyProfileEjs
-            },
-            {
-                path: 'myprofiletrophies',
-                name: 'MyProfileTrophies',
-                component: MyProfileTrophies
             },
             {
                 path: 'createroutine',

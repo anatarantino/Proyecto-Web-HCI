@@ -1,9 +1,5 @@
 <template>
-  <v-container fluid mt-8>
-    <v-row align="center" justify="space-around">
-      <MyProfileBase :username=name></MyProfileBase>
-      <v-col md="8">
-        <v-card
+  <v-card
           class="pa-2 rounded-xl"
           outlined
           max-width="80%"
@@ -20,7 +16,7 @@
                 <v-col cols="1">
                   <v-switch
                     v-model="offset1"
-                    color="primary"
+                    color="#4DFF00"
                   ></v-switch>
                 </v-col>
               </v-row>
@@ -31,7 +27,7 @@
                 <v-col cols="1">
                   <v-switch
                     v-model="offset2"
-                    color="primary"
+                    color="#4DFF00"
                   ></v-switch>
                 </v-col>
               </v-row>
@@ -42,7 +38,7 @@
                 <v-col cols="1">
                   <v-switch
                     v-model="offset3"
-                    color="primary"
+                    color="#4DFF00"
                   ></v-switch>
                 </v-col>
               </v-row>
@@ -79,16 +75,11 @@
             </v-row>
           </v-container>
         </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
 </template>
 
 <script>
-import MyProfileBase from "../components/MyProfileBase";
 export default {
-  name: "MyProfileConfig",
-  components: {MyProfileBase},
+  name: "ProfileConfig",
   data() {
     return {
       name: "Natalia",
@@ -101,5 +92,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

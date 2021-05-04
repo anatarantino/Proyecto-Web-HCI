@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="ml-10 mt-8">
     <v-row align="center">
-      <h1 class="font-weight-light font-italic white--text"> Fuerza de Martin Quito </h1>
+      <h1 class="font-weight-light font-italic white--text"> {{routName}} </h1>
       <v-btn color="transparent" x-small>
         <v-icon color="white">
           mdi-share-variant
@@ -37,70 +37,9 @@
             </div>
           </v-col>
         </v-row>
-        <v-row class="align-center  justify-center  mb-2">
-          <v-col cols="6">
-            <v-row class="align-center justify-center">
-              <v-col cols="3" class=" grey lighten-1 pa-0">
-                <p class="text-center mt-4">
-                  30"
-                </p>
-              </v-col>
-              <v-col cols="8" class="grey lighten-1 pa-0 ml-1">
-                <p class="text-center  mt-4">
-                  Skipping en el lugar
-                </p>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-        <v-row class="align-center  justify-center  mb-2">
-          <v-col cols="6">
-            <v-row class="align-center justify-center">
-              <v-col cols="3" class=" grey lighten-1 pa-0">
-                <p class="text-center mt-4">
-                  30"
-                </p>
-              </v-col>
-              <v-col cols="8" class="grey lighten-1 pa-0 ml-1">
-                <p class="text-center  mt-4">
-                  Zancadas con salto
-                </p>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-        <v-row class="align-center  justify-center  mb-2">
-          <v-col cols="6">
-            <v-row class="align-center justify-center">
-              <v-col cols="3" class=" grey lighten-1 pa-0">
-                <p class="text-center mt-4">
-                  60"
-                </p>
-              </v-col>
-              <v-col cols="8" class="grey lighten-1 pa-0 ml-1">
-                <p class="text-center  mt-4">
-                  Jumping jacks
-                </p>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-        <v-row class="align-center  justify-center">
-          <v-col cols="6">
-            <v-row class="align-center justify-center mb-2">
-              <v-col cols="3" class=" grey lighten-1 pa-0">
-                <p class="text-center mt-4">
-                  60"
-                </p>
-              </v-col>
-              <v-col cols="8" class="grey lighten-1 pa-0 ml-1">
-                <p class="text-center  mt-4">
-                  Salto con soga
-                </p>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
+        <v-col  v-for="line in lines" :key="line">
+          <ExerciseLine :exline="line"> </ExerciseLine> 
+        </v-col>
         <v-row class="align-center  justify-center">
           <v-col cols="6">
             <div
@@ -113,54 +52,9 @@
             </div>
           </v-col>
         </v-row>
-        <v-row class="align-center  justify-center  mb-2">
-          <v-col cols="6">
-            <v-row class="align-center justify-center">
-              <v-col cols="3" class=" grey lighten-1 pa-0">
-                <p class="text-center mt-4">
-                  40 reps
-                </p>
-              </v-col>
-              <v-col cols="8" class="grey lighten-1 pa-0 ml-1">
-                <p class="text-center  mt-4">
-                  Olas con soga
-                </p>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-        <v-row class="align-center  justify-center  mb-2">
-          <v-col cols="6">
-            <v-row class="align-center justify-center">
-              <v-col cols="3" class=" grey lighten-1 pa-0">
-                <p class="text-center mt-4">
-                  40 reps
-                </p>
-              </v-col>
-              <v-col cols="8" class="grey lighten-1 pa-0 ml-1">
-                <p class="text-center  mt-4">
-                  Látigo con soga
-                </p>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-        <v-row class="align-center  justify-center  mb-2">
-          <v-col cols="6">
-            <v-row class="align-center justify-center">
-              <v-col cols="3" class=" grey lighten-1 pa-0">
-                <p class="text-center mt-4">
-                  40"
-                </p>
-              </v-col>
-              <v-col cols="8" class="grey lighten-1 pa-0 ml-1">
-                <p class="text-center  mt-4">
-                  Plancha
-                </p>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
+        <v-col  v-for="block in block1" :key="block">
+          <ExerciseLine :exline="block"> </ExerciseLine> 
+        </v-col>
       </v-col>
       <v-col cols="6" class="justify-center">
         <v-row class="align-center">
@@ -196,7 +90,7 @@
             </v-row>
           </v-col>
           <v-col cols="4">
-            <v-row align="center" class="white pa-0  rounded-r">
+            <v-row align="center" class="white pa-0 rounded-r">
               <h2> Puntaje </h2>
               <v-list>
                 <v-list-item>
@@ -215,7 +109,7 @@
             <v-avatar size="150" class="ml-n8">
               <img
                   src="../assets/images/Martin.png"
-                  alt="John"
+                  alt="Martin"
               >
             </v-avatar>
           </v-col>
@@ -240,10 +134,45 @@
 </template>
 
 <script>
+import ExerciseLine from "../components/ExerciseLine";
 export default {
   name: "InfoRoutine",
+  components:{ExerciseLine},
   data() {
     return {
+      routName: "Fuerza de Martin Quito",
+      lines: [
+        {
+          exvalue: "30''",
+          exname: "Skipping en el lugar"
+        },
+        {
+          exvalue: "30''",
+          exname: "Zancadas con salto"
+        },
+        {
+          exvalue: "60''",
+          exname: "Jumping Jacks"
+        },
+        {
+          exvalue: "60''",
+          exname: "Salto con soga"
+        },
+      ],
+      block1: [
+        {
+          exvalue: "40 reps",
+          exname: "Olas en el lugar"
+        },
+        {
+          exvalue: "40 reps",
+          exname: "Látigo con soga"
+        },
+        {
+          exvalue: "40''",
+          exname: "Plancha"
+        },
+      ],
       pics: [
         {
           src: require('../assets/images/ejercicioSoga.png'),
