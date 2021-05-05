@@ -96,6 +96,50 @@ export default {
       show: false,
       email: '',
       password: '',
+      loading: false,
+      message: "",
+      error: false,
+      verified: false
+    }
+  },
+  methods: {
+    async processData(){
+      if(this.$v.$invalid){
+        this.$v.$touch();
+        console.log("Por favor complete todos los datos");
+        return;
+      }
+      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+      try{
+        this.loading = true;
+        await sleep(1000);
+        await this.$store.dispatch('signIn',{
+          email: this.email,
+          password: this.password
+        })
+        await sleep(1000);
+        this.loading = false;
+        //await this.$router.replace('/home');
+      } catch(e){
+        if (e.message === "verificado") {
+          this.verified = true;
+          this.message = e;
+        } else {
+          this.error = true;
+          this.message = e;
+          await setTimeout(() => {
+            this.message = "";
+            this.loading = false;
+            this.error = false;
+            this.resetForm();
+          }, 4000);
+        }
+      }
+    },
+    resetForm() {
+      this.$v.$reset();
+      this.email = "";
+      this.password = "";
     }
   },
   validations: {
@@ -107,6 +151,9 @@ export default {
       required,
       minLength: minLength(8)
     }
+  },
+  computed: {
+
   }
 }
 </script>

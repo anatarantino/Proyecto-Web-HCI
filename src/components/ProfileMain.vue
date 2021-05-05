@@ -11,24 +11,25 @@
                 <v-col cols="12" sm="6">
                     <v-text-field
                         append-icon=mdi-pencil
-                        :value=name
                         label="Nombre"
-                        readonly
                         class="ma-5"
-                    ></v-text-field>
+                    >
+                      {{ name }}
+                    </v-text-field>
                     <v-text-field
                         append-icon=mdi-pencil
-                        :value=lastName
                         label="Apellido"
-                        readonly
                         class="ma-5"
-                    ></v-text-field>
+                    >
+                      {{ lastName }}
+                    </v-text-field>
                     <v-text-field
-                        :value=email
                         label="Mail"
                         readonly
                         class="ma-5"
-                    ></v-text-field>
+                    >
+                      {{ email }}
+                    </v-text-field>
                     <v-row class="mt-10">
                         <v-col cols="6">
                             <v-btn
@@ -66,10 +67,19 @@ export default {
   name: "ProfileMain",
   data () {
       return {
-        name: "Natalia",
-        lastName: "Natalia",
-        email: "natalian@gmail.com",
+
       }
+  },
+  computed:{
+    name(){
+      return this.$store.getters["user/name"].toUpperCase();
+    },
+    lastName(){
+      return this.$store.getters["user/lastName"].toUpperCase();
+    },
+    email(){
+      return this.$store.getters["user/email"].toLowerCase();
+    }
   }
 }
 </script>

@@ -19,7 +19,7 @@
         class="ma-2 pt-6 pb-6"
         v-bind:class="[{ active: currentTab === tab.section }]"
         @click="[currentTab = tab.section, currentComponent = tab.comp]"
-        :color="(currentTab == tab.section) ? '#4DFF00' : '#757575'"
+        :color="(currentTab === tab.section) ? '#4DFF00' : '#757575'"
         rounded
         width="180"
       >
