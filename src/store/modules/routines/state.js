@@ -1,5 +1,5 @@
 export default {
-  EntradaEnCalor: [],
-  Ejercitacion: [],
-  Enfriamiento: [],
+    EntradaEnCalor: [],
+    Ejercitacion: [],
+    Enfriamiento: [],
 }

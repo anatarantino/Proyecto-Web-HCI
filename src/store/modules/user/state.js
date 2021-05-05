@@ -1,7 +1,7 @@
 const state = {
     username: "",
-    firstName:"",
-    lastName:"",
+    firstName: "",
+    lastName: "",
     gender: '',
     birthdate: "",
     email: "",

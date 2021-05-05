@@ -4,15 +4,15 @@ import mutations from './mutations'
 import state from './state'
 
 export default {
-    namespaced:true,
+    namespaced: true,
     state,
-    mutations:{
+    mutations: {
         ...mutations
     },
-    actions:{
+    actions: {
         ...actions
     },
-    getters:{
+    getters: {
         ...getters
     }
 }

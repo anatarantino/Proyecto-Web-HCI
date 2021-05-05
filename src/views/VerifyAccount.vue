@@ -163,7 +163,7 @@ export default {
     },
     codeError() {
       const errors = []
-      if (!this.$v.code.$dirty){
+      if (!this.$v.code.$dirty) {
         return errors
       }
       !this.$v.code.required && errors.push('Ingrese el código.')

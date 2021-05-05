@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1 class="font-weight-light font-italic text-start white--text" >{{routine.title}}</h1>
+        <h1 class="font-weight-light font-italic text-start white--text">{{ routine.title }}</h1>
         <v-col cols="12" class="d-flex mx-auto" sm="4">
           <v-text-field
               label="Ingresa un nombre para tu rutina"
@@ -35,9 +35,9 @@
 
       <v-row class="pt-4">
 
-        <v-col cols="6" >
+        <v-col cols="6">
 
-          <v-card dark dense >
+          <v-card dark dense>
             <v-container fluid>
               <v-row>
                 <v-col cols="12" class="d-flex justify-center align-center pa-0 ma-0">
@@ -50,7 +50,7 @@
                       column
                       class="pl-6 pr-2 "
                   >
-                    <v-chip v-for="tag in tags" :key="tag">{{tag}}</v-chip>
+                    <v-chip v-for="tag in tags" :key="tag">{{ tag }}</v-chip>
                   </v-chip-group>
                 </div>
               </v-row>
@@ -90,10 +90,10 @@
 
         <v-col cols="6" class="d-flex align-content-center">
 
-          <v-card elevation="0" class="mx-auto" color="transparent" >
+          <v-card elevation="0" class="mx-auto" color="transparent">
 
-            <v-container fluid  >
-              <v-row >
+            <v-container fluid>
+              <v-row>
                 <v-col cols="12" class="d-flex justify-center">
                   <v-btn
                       height="150"
@@ -114,7 +114,7 @@
 
               </v-row>
             </v-container>
-            <h3 class="my-color font-weight-light white--text" >Agrega una imagen para tu rutina</h3>
+            <h3 class="my-color font-weight-light white--text">Agrega una imagen para tu rutina</h3>
           </v-card>
         </v-col>
 
@@ -124,7 +124,7 @@
       <v-row>
 
 
-        <v-col cols="12" class="d-flex mx-auto" sm="4" >
+        <v-col cols="12" class="d-flex mx-auto" sm="4">
           <v-textarea
               dark
               prepend-inner-icon="mdi-comment"
@@ -173,14 +173,16 @@ export default {
   name: "routineComp",
   props: ["routine"],
   components: {bloque},
-  data(){
-    return{
-      bloques:[       //esto vamos a tener que sacarlo de la api
-        {title:"bloque 1",
+  data() {
+    return {
+      bloques: [       //esto vamos a tener que sacarlo de la api
+        {
+          title: "bloque 1",
           subtitle: "subtitiulo 1",
 
         },
-        {title:"bloque 2",
+        {
+          title: "bloque 2",
           subtitle: "subtitulo 2",
         }
       ],

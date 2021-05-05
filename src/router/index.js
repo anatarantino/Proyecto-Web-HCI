@@ -15,6 +15,7 @@ import EditExercise from "@/views/EditExercise";
 import ExploreRoutines from "@/views/ExploreRoutines";
 import MyRoutines from "@/views/MyRoutines";
 import VerifyAccount from "@/views/VerifyAccount";
+import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -25,21 +26,25 @@ const routes = [
         component: LandingPageLayoutLayout,
         children: [
             {
+                meta: {unauth: true},
                 path: '',
                 name: 'MainPage',
                 component: MainPage
             },
             {
+                meta: {unauth: true},
                 path: '/signup',
                 name: 'SignUp',
                 component: SignUp
             },
             {
+                meta: {unauth: true},
                 path: '/signin',
                 name: 'SignIn',
                 component: SignIn
             },
             {
+                meta: {unauth: true},
                 path: '/verify',
                 name: 'VerifyAccount',
                 component: VerifyAccount
@@ -51,46 +56,55 @@ const routes = [
         component: DefaultLayout,
         children: [
             {
+                meta: {auth: true},
                 path: '',
                 name: 'Home',
                 component: Home
             },
             {
+                meta: {auth: true},
                 path: 'exploreroutines',
                 name: 'ExploreRoutines',
                 component: ExploreRoutines
             },
             {
+                meta: {auth: true},
                 path: 'myroutines',
                 name: 'MyRoutines',
                 component: MyRoutines
             },
             {
+                meta: {auth: true},
                 path: 'info',
                 name: 'infoRoutine',
                 component: InfoRoutine
             },
             {
+                meta: {auth: true},
                 path: 'myprofile',
                 name: 'MyProfile',
                 component: MyProfile
             },
             {
+                meta: {auth: true},
                 path: 'createroutine',
                 name: 'CreateRoutine',
                 component: CreateRoutine
             },
             {
+                meta: {auth: true},
                 path: 'editroutine',
                 name: 'editRoutine',
                 component: EditRoutine
             },
             {
+                meta: {auth: true},
                 path: 'createexercise',
                 name: 'createExercise',
                 component: CreateExercise
             },
             {
+                meta: {auth: true},
                 path: 'editexercise',
                 name: 'editExercise',
                 component: EditExercise
@@ -119,5 +133,19 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 })
+
+store.dispatch('autoLogIn').catch((e) => {
+    console.log(e);
+});
+
+// router.beforeEach(function (to, from, next) {
+//   if (to.meta.auth && !store.getters['isOK']) {
+//     next('/');
+//   } else if (to.meta.unauth && store.getters['isOK']) {
+//     next('/home');
+//   } else {
+//     next();
+//   }
+// });
 
 export default router

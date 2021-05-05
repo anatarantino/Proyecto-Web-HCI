@@ -1,5 +1,5 @@
 export default {
-  userData: state => {
-    return {...state};
-  }
+    userData: state => {
+        return {...state};
+    }
 }

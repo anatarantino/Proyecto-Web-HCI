@@ -5,8 +5,8 @@ export default {
         state.avatarUrl = payload.avatarUrl ? payload.avatarUrl : "";
     },
     resetData(state) {
-        state.user= "";
-        state.email="";
-        state.avatarUrl="";
+        state.user = "";
+        state.email = "";
+        state.avatarUrl = "";
     }
 }

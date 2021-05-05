@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-col cols="12" >
+    <v-col cols="12">
       <exerciseComp :exercise="types[0]"></exerciseComp>
     </v-col>
   </v-container>
@@ -14,8 +14,8 @@ import exerciseComp from "@/components/ExerciseComp";
 export default {
   name: "EditExercise",
   components: {exerciseComp},
-  data(){
-    return{
+  data() {
+    return {
       types: [
         {
           title: "Editá tu ejecicio"

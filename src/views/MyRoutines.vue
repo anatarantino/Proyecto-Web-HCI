@@ -45,7 +45,7 @@ import FilterRout from "@/components/Filter";
 
 export default {
   name: 'Home',
-  components: {RoutineCard,FilterRout},
+  components: {RoutineCard, FilterRout},
   data() {
     return {
       drawer: false,
@@ -167,13 +167,13 @@ export default {
           it: 5
         }
       ]
-  }
+    }
+  },
+  watch: {
+    group() {
+      this.drawer = false
     },
-         watch: {
-      group () {
-        this.drawer = false
-      },
-    },
+  },
 }
 </script>
 

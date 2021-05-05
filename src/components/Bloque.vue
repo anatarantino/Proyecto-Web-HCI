@@ -122,6 +122,7 @@ export default {
     return {
       //Aca va la lista de ejercicios que sacamos de la api
     }
-  }}
+  }
+}
 
 </script>

@@ -1,5 +1,5 @@
-export default{
-    async updateProfile(context,payload){
-        
+export default {
+    async updateProfile(context, payload) {
+
     }
 }

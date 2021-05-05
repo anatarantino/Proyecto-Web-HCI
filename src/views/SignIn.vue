@@ -46,7 +46,7 @@
                 <v-col cols="12" sm="6" md="6" class="justify-center">
                   <v-text-field
                       label="Usuario"
-                      :error-messages=userError
+                      :error-messages=emailError
                       filled
                       clearable
                       dark
@@ -170,7 +170,7 @@ export default {
     },
     passwordError() {
       const errors = []
-      if (!this.$v.password.$dirty){
+      if (!this.$v.password.$dirty) {
         return errors
       }
       !this.$v.password.minLength && errors.push('Mínimo 8 caracteres.')

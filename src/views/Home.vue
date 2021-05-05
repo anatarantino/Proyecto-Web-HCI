@@ -42,10 +42,10 @@ export default {
   components: {RoutineCard},
   data() {
     return {
-      categoryOptions:[
-        {option: "Cardio", value:1},
+      categoryOptions: [
+        {option: "Cardio", value: 1},
         {option: "Fuerza", value: 2},
-        {option: "Abdominales", value:3}
+        {option: "Abdominales", value: 3}
       ],
       routines: [
         {
@@ -55,7 +55,7 @@ export default {
           enfriamiento: 10,
           dificultad: 4,
           rating: 3,
-          category:1
+          category: 1
         },
         {
           name: "Cardio",
@@ -75,7 +75,7 @@ export default {
           enfriamiento: 10,
           dificultad: 2,
           rating: 5,
-          category:2
+          category: 2
         },
         {
           name: "Abdominales",

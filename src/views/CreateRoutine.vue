@@ -8,7 +8,6 @@
 </template>
 
 
-
 <script>
 
 import routineComp from "@/components/RoutineComp";
@@ -16,8 +15,8 @@ import routineComp from "@/components/RoutineComp";
 export default {
   name: "CreateRoutine",
   components: {routineComp},
-  data(){
-    return{
+  data() {
+    return {
       types: [
         {
           title: "Creá tu rutina"

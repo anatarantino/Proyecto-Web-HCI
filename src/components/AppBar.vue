@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="rgb(0,0,0,0)" elevation="0" hide-on-scroll >
+  <v-app-bar app color="rgb(0,0,0,0)" elevation="0" hide-on-scroll>
     <v-flex text-xs-left>
       <v-btn text color="transparent" to="/home">
         <v-img

@@ -13,8 +13,8 @@ import routineComp from "@/components/RoutineComp";
 export default {
   name: "EditRoutine",
   components: {routineComp},
-  data(){
-    return{
+  data() {
+    return {
       types: [
         {
           title: "Editá tu rutina"

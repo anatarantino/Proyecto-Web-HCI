@@ -53,7 +53,7 @@ export default {
             token: responseInfo.token
         }
         context.commit('setUser', usAuthorization);
-        let url = `${context.getters.baseUrl}/user/current`;
+        let url = `${context.getters.baseUrl}/users/current`;
         response = await fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
@@ -67,13 +67,13 @@ export default {
         context.commit('user/setUserData', responseInfo);
     },
     async logout(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/user/logout`, {
+        let response = await fetch(`${context.getters.baseUrl}/users/logout`, {
             method: 'POST',
             headers: {
                 'Authorization': `bearer ${context.getters.token}`
             }
         });
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error(response.statusText);
         }
         localStorage.removeItem('token');
@@ -81,10 +81,58 @@ export default {
             token: null
         }
         context.commit('user/resetData');
-        context.commit('setUser',usAuthorization);
+        context.commit('setUser', usAuthorization);
         context.commit('setAutoLogout');
     },
-    
-
+    async autoLogIn(context, payload) {
+        const token = localStorage.getItem('token');
+        if (token) {
+            context.commit('setUser', {
+                token: token
+            });
+            let url = `${context.getters.baseUrl}/users/current`;
+            let response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `bearer ${context.getters.token}`
+                }
+            });
+            let responseInfo = await response.json();
+            if (!response.ok) {
+                throw new Error("Error al iniciar sesión automáticamente");
+            }
+            context.commit('user/setUserData', responseInfo);
+        }
+    },
+    async verifyAccount(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/users/verify_email`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: payload.email,
+                code: payload.code,
+            })
+        });
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+    },
+    async resendVerification(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/users/resend_verification`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: payload.email,
+            })
+        });
+        await context.commit('user/setUserData', payload);
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+    }
 
 }

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="ml-10 mt-8">
     <v-row align="center">
-      <h1 class="font-weight-light font-italic white--text"> {{routName}} </h1>
+      <h1 class="font-weight-light font-italic white--text"> {{ routName }} </h1>
       <v-btn color="transparent" x-small>
         <v-icon color="white">
           mdi-share-variant
@@ -37,8 +37,8 @@
             </div>
           </v-col>
         </v-row>
-        <v-col  v-for="line in lines" :key="line">
-          <ExerciseLine :exline="line"> </ExerciseLine> 
+        <v-col v-for="line in lines" :key="line">
+          <ExerciseLine :exline="line"></ExerciseLine>
         </v-col>
         <v-row class="align-center  justify-center">
           <v-col cols="6">
@@ -52,8 +52,8 @@
             </div>
           </v-col>
         </v-row>
-        <v-col  v-for="block in block1" :key="block">
-          <ExerciseLine :exline="block"> </ExerciseLine> 
+        <v-col v-for="block in block1" :key="block">
+          <ExerciseLine :exline="block"></ExerciseLine>
         </v-col>
       </v-col>
       <v-col cols="6" class="justify-center">
@@ -135,9 +135,10 @@
 
 <script>
 import ExerciseLine from "../components/ExerciseLine";
+
 export default {
   name: "InfoRoutine",
-  components:{ExerciseLine},
+  components: {ExerciseLine},
   data() {
     return {
       routName: "Fuerza de Martin Quito",

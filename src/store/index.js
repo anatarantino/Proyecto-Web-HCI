@@ -7,12 +7,12 @@ import routines from './modules/routines/index'
 Vue.use(Vuex);
 
 
-const store={
-  modules:{
-    api,routines,user
-  }
+const store = {
+    modules: {
+        api, routines, user
+    }
 }
 
 export default new Vuex.Store({
-  ...store
+    ...store
 })

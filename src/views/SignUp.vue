@@ -62,7 +62,6 @@
                       @blur="$v.email.$touch()"
                       v-model="email"
                   ></v-text-field>
-                  <!--                  <p v-if="$v.email.$error">Por favor ingrese un mail correcto.</p>-->
                   <v-text-field
                       type="password"
                       label="Contraseña"
@@ -145,12 +144,12 @@ export default {
           email: this.email,
           password: this.password,
           user: this.user,
-        })
+        });
         this.message = "Cuenta creada exitosamente";
         await sleep(2000);
         this.loading = false;
         this.message = "";
-        //await this.$router.push('/verifyAccount');
+        await this.$router.push('/verifyAccount');
       } catch (e) {
         this.error = true;
         this.message = e;
@@ -212,7 +211,7 @@ export default {
     },
     passwordError() {
       const errors = []
-      if (!this.$v.password.$dirty){
+      if (!this.$v.password.$dirty) {
         return errors
       }
       !this.$v.password.minLength && errors.push('Mínimo 8 caracteres.')

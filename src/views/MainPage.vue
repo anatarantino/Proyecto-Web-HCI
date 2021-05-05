@@ -2,13 +2,13 @@
   <v-container fill-height>
     <v-app-bar app color="rgb(0,0,0,0)" elevation="0">
       <v-flex text-xs-left>
-       <v-btn text color="transparent" to="/">
-        <v-img
-            position="top"
-            max-height="80"
-            max-width="250"
-            src="../assets/images/logo.png"
-        ></v-img>
+        <v-btn text color="transparent" to="/">
+          <v-img
+              position="top"
+              max-height="80"
+              max-width="250"
+              src="../assets/images/logo.png"
+          ></v-img>
         </v-btn>
       </v-flex>
       <v-flex text-xs-right xs8 sm7 md5 lg3>
@@ -19,7 +19,8 @@
             class="text-capitalize"
             width="150"
             to="/signup"
-        >Registrarme</v-btn>
+        >Registrarme
+        </v-btn>
         <v-btn
             @click="signupButt=true"
             color="black"
@@ -27,7 +28,8 @@
             class="text-capitalize white--text"
             width="150"
             to="/signin"
-        >Ingresar</v-btn>
+        >Ingresar
+        </v-btn>
       </v-flex>
     </v-app-bar>
     <v-row align="center" justify="center">
