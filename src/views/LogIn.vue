@@ -128,7 +128,53 @@ export default {
       password: '',
       confirmPassword: '',
       name: '',
-      lastName: ''
+      lastName: '',
+      loading: false,
+      message: "",
+      error: false
+    }
+  },
+  methods:{
+    async processData(){
+      if(this.$v.$invalid){
+        this.$v.$touch();
+        console.log("Por favor complete todos los datos");
+        return;
+      }
+      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+      try{
+        this.loading = true;
+        await sleep(1000);
+        await this.$store.dispatch('login',{
+          email: this.email,
+          password: this.password,
+          name: this.name,
+          lastName: this.lastName
+        })
+        this.message = "Cuenta creada exitosamente";
+        await sleep(2000);
+        this.loading = false;
+        this.message = "";
+        //await this.$router.push('/verifyAccount');
+      } catch(e){
+        this.error = true;
+        this.message = e;
+        await setTimeout(() => {
+          this.message = "";
+          this.loading = false;
+          this.error = false;
+          this.resetForm();
+        }, 3500);
+      }
+    },
+
+    resetForm(){
+      this.$v.$reset();
+      this.email = "";
+      this.password = "";
+      this.confirmPassword = "";
+      this.name = "";
+      this.lastName = "";
     }
   },
   validations: {
@@ -153,7 +199,24 @@ export default {
     confirmPassword: {
       sameAs: sameAs('password')
     }
+  },
+  computed: {
+    emailError() {
+      const errors = []
+      if(!this.$v.email.$dirty){
+        return errors
+      }
 
+    },
+    nameError() {
+
+    },
+    lastNameError(){
+
+    },
+    passwordError(){
+
+    }
   }
 }
 </script>
