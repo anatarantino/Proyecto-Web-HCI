@@ -1,13 +1,11 @@
 export default {
     setUserData(state, payload) {
-        state.name = payload.name;
-        state.lastName = payload.lastName;
+        state.user = payload.user;
         state.email = payload.email;
         state.avatarUrl = payload.avatarUrl ? payload.avatarUrl : "";
     },
-    resetDate(state) {
-        state.name= "";
-        state.lastName="";
+    resetData(state) {
+        state.user= "";
         state.email="";
         state.avatarUrl="";
     }

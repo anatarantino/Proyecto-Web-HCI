@@ -109,7 +109,7 @@ export default {
     async processData() {
       if (this.$v.$invalid) {
         this.$v.$touch();
-        console.log("Por favor complete todos los datos");
+        console.log("Por favor complete todos los datos.");
         return;
       }
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));

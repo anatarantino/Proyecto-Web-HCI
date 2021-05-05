@@ -82,6 +82,7 @@
                       label="Repite la contraseña"
                       :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
                       :type="show2 ? 'text' : 'password'"
+                      :error-messages=passwordError
                       filled
                       clearable
                       dark

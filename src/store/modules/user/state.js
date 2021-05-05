@@ -1,7 +1,13 @@
 const state = {
-    user: "",
+    username: "",
+    firstName:"",
+    lastName:"",
+    gender: '',
+    birthdate: "",
     email: "",
-    avatarUrl:""
+    phone: '',
+    avatarUrl: "",
+    metadata: null
 };
 
 export default state
