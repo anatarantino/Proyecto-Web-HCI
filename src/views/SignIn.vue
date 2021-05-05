@@ -46,6 +46,7 @@
                 <v-col cols="12" sm="6" md="6" class="justify-center">
                   <v-text-field
                       label="Mail"
+                      :error-messages=emailError
                       filled
                       clearable
                       dark
@@ -55,6 +56,7 @@
                   <v-text-field
                       type="password"
                       label="Contraseña"
+                      :error-messages=passwordError
                       :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                       :type="show ? 'text' : 'password'"
                       filled
@@ -103,24 +105,24 @@ export default {
     }
   },
   methods: {
-    async processData(){
-      if(this.$v.$invalid){
+    async processData() {
+      if (this.$v.$invalid) {
         this.$v.$touch();
         console.log("Por favor complete todos los datos");
         return;
       }
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
-      try{
+      try {
         this.loading = true;
         await sleep(1000);
-        await this.$store.dispatch('signIn',{
+        await this.$store.dispatch('signIn', {
           email: this.email,
           password: this.password
         })
         await sleep(1000);
         this.loading = false;
         //await this.$router.replace('/home');
-      } catch(e){
+      } catch (e) {
         if (e.message === "verificado") {
           this.verified = true;
           this.message = e;
@@ -153,7 +155,24 @@ export default {
     }
   },
   computed: {
-
+    emailError() {
+      const errors = []
+      if (!this.$v.email.$dirty) {
+        return errors
+      }
+      !this.$v.email.email && errors.push('Email inválido.')
+      !this.$v.email.required && errors.push('Ingrese un Email.')
+      return errors
+    },
+    passwordError() {
+      const errors = []
+      if (!this.$v.password.$dirty){
+        return errors
+      }
+      !this.$v.password.minLength && errors.push('Mínimo 8 caracteres.')
+      !this.$v.password.required && errors.push('Ingrese una contraseña.')
+      return errors
+    }
   }
 }
 </script>
