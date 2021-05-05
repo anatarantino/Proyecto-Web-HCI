@@ -71,7 +71,7 @@
                         class="white--text text-capitalize"
                         width="150"
                         @click="processData"
-                    >Ingresar
+                    >Verificar
                     </v-btn>
                   </v-col>
                 </v-col>
