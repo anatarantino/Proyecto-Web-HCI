@@ -38,7 +38,7 @@
           <v-card color="rgb(0, 0, 0, 0)" elevation="0">
             <v-card-title primary-title class="justify-center">
               <div>
-                <h3 class="let headline mb-0">Bienvenido nuevamente!</h3>
+                <h3 class="let headline mb-0">Verifica tu cuenta</h3>
               </div>
             </v-card-title>
             <v-card-text>
@@ -54,18 +54,15 @@
                       @blur="$v.email.$touch()"
                   ></v-text-field>
                   <v-text-field
-                      type="password"
-                      label="Contraseña"
-                      :error-messages=passwordError
-                      :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                      :type="show ? 'text' : 'password'"
+                      label="Código"
+                      :error-messages=codeError
                       filled
                       clearable
                       dark
-                      @click:append="show=!show"
-                      @blur="$v.password.$touch()"
-                      v-model="password"
+                      v-model="code"
+                      @blur="$v.code.$touch()"
                   ></v-text-field>
+
                   <v-col class="d-flex justify-center align-center">
                     <v-btn
                         color="black"
@@ -98,7 +95,7 @@ export default {
     return {
       show: false,
       email: '',
-      password: '',
+      code: '',
       loading: false,
       message: "",
       error: false,
@@ -118,7 +115,7 @@ export default {
         await sleep(1000);
         await this.$store.dispatch('signIn', {
           email: this.email,
-          password: this.password
+          code: this.code
         })
         await sleep(1000);
         this.loading = false;
@@ -142,7 +139,7 @@ export default {
     resetForm() {
       this.$v.$reset();
       this.email = "";
-      this.password = "";
+      this.code = "";
     }
   },
   validations: {
@@ -150,9 +147,8 @@ export default {
       email,
       required
     },
-    password: {
-      required,
-      minLength: minLength(8)
+    code: {
+      required
     }
   },
   computed: {
@@ -165,13 +161,12 @@ export default {
       !this.$v.email.required && errors.push('Ingrese un Mail.')
       return errors
     },
-    passwordError() {
+    codeError() {
       const errors = []
-      if (!this.$v.password.$dirty){
+      if (!this.$v.code.$dirty){
         return errors
       }
-      !this.$v.password.minLength && errors.push('Mínimo 8 caracteres.')
-      !this.$v.password.required && errors.push('Ingrese una contraseña.')
+      !this.$v.code.required && errors.push('Ingrese el código.')
       return errors
     }
   }

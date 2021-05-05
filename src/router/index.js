@@ -14,6 +14,7 @@ import EditRoutine from "../views/EditRoutine"
 import EditExercise from "@/views/EditExercise";
 import ExploreRoutines from "@/views/ExploreRoutines";
 import MyRoutines from "@/views/MyRoutines";
+import VerifyAccount from "@/views/VerifyAccount";
 
 Vue.use(VueRouter)
 
@@ -37,6 +38,11 @@ const routes = [
                 path: '/signin',
                 name: 'SignIn',
                 component: SignIn
+            },
+            {
+                path: '/verify',
+                name: 'VerifyAccount',
+                component: VerifyAccount
             }
         ]
     },
