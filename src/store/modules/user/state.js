@@ -1,6 +1,5 @@
 const state = {
-    name: "",
-    lastName: "",
+    user: "",
     email: "",
     avatarUrl:""
 };

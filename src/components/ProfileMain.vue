@@ -14,14 +14,7 @@
                         label="Nombre"
                         class="ma-5"
                     >
-                      {{ name }}
-                    </v-text-field>
-                    <v-text-field
-                        append-icon=mdi-pencil
-                        label="Apellido"
-                        class="ma-5"
-                    >
-                      {{ lastName }}
+                      {{ user }}
                     </v-text-field>
                     <v-text-field
                         label="Mail"
@@ -72,10 +65,7 @@ export default {
   },
   computed:{
     name(){
-      return this.$store.getters["user/name"].toUpperCase();
-    },
-    lastName(){
-      return this.$store.getters["user/lastName"].toUpperCase();
+      return this.$store.getters["user/user"].toUpperCase();
     },
     email(){
       return this.$store.getters["user/email"].toLowerCase();

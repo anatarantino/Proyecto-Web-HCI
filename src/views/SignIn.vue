@@ -45,13 +45,13 @@
               <v-row justify="center" class="mt-2">
                 <v-col cols="12" sm="6" md="6" class="justify-center">
                   <v-text-field
-                      label="Mail"
-                      :error-messages=emailError
+                      label="Usuario"
+                      :error-messages=userError
                       filled
                       clearable
                       dark
-                      v-model="email"
-                      @blur="$v.email.$touch()"
+                      v-model="user"
+                      @blur="$v.user.$touch()"
                   ></v-text-field>
                   <v-text-field
                       type="password"
@@ -89,7 +89,7 @@
 
 <script>
 import Footer from "../components/Footer";
-import {required, email, minLength} from 'vuelidate/lib/validators'
+import {required, minLength, maxLength} from 'vuelidate/lib/validators'
 
 export default {
   name: 'SignIn',
@@ -97,7 +97,7 @@ export default {
   data() {
     return {
       show: false,
-      email: '',
+      user: '',
       password: '',
       loading: false,
       message: "",
@@ -117,7 +117,7 @@ export default {
         this.loading = true;
         await sleep(1000);
         await this.$store.dispatch('signIn', {
-          email: this.email,
+          user: this.user,
           password: this.password
         })
         await sleep(1000);
@@ -141,28 +141,31 @@ export default {
     },
     resetForm() {
       this.$v.$reset();
-      this.email = "";
+      this.user = "";
       this.password = "";
     }
   },
   validations: {
-    email: {
-      email,
-      required
+    user: {
+      required,
+      minLength: minLength(2),
+      maxLength: maxLength(50)
     },
     password: {
       required,
-      minLength: minLength(8)
+      minLength: minLength(8),
+      maxLength: maxLength(50)
     }
   },
   computed: {
     emailError() {
       const errors = []
-      if (!this.$v.email.$dirty) {
+      if (!this.$v.user.$dirty) {
         return errors
       }
-      !this.$v.email.email && errors.push('Mail inválido.')
-      !this.$v.email.required && errors.push('Ingrese un Mail.')
+      !this.$v.user.required && errors.push('Ingrese un usuario.')
+      !this.$v.user.minLength && errors.push('Mínimo 2 caracteres.')
+      !this.$v.user.maxLength && errors.push('Máximo 50 caracteres.')
       return errors
     },
     passwordError() {
@@ -172,6 +175,7 @@ export default {
       }
       !this.$v.password.minLength && errors.push('Mínimo 8 caracteres.')
       !this.$v.password.required && errors.push('Ingrese una contraseña.')
+      !this.$v.password.maxLength && errors.push('Máximo 50 caracteres.')
       return errors
     }
   }

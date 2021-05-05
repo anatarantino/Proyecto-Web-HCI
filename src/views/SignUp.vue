@@ -45,22 +45,13 @@
               <v-row align="center" justify="center" class="mt-2">
                 <v-col cols="12" sm="6" md="6" class="justify-center">
                   <v-text-field
-                      label="Nombre"
-                      :error-messages=nameError
+                      label="Usuario"
+                      :error-messages=userError
                       filled
                       clearable
                       dark
-                      @blur="$v.name.$touch()"
-                      v-model="name"
-                  ></v-text-field>
-                  <v-text-field
-                      label="Apellido"
-                      :error-messages=lastNameError
-                      filled
-                      clearable
-                      dark
-                      @blur="$v.lastName.$touch()"
-                      v-model="lastName"
+                      @blur="$v.user.$touch()"
+                      v-model="user"
                   ></v-text-field>
                   <v-text-field
                       label="Mail"
@@ -132,8 +123,7 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
-      name: '',
-      lastName: '',
+      user: '',
       loading: false,
       message: "",
       error: false
@@ -153,8 +143,7 @@ export default {
         await this.$store.dispatch('signUp', {
           email: this.email,
           password: this.password,
-          name: this.name,
-          lastName: this.lastName
+          user: this.user,
         })
         this.message = "Cuenta creada exitosamente";
         await sleep(2000);
@@ -178,8 +167,7 @@ export default {
       this.email = "";
       this.password = "";
       this.confirmPassword = "";
-      this.name = "";
-      this.lastName = "";
+      this.user = "";
     }
   },
   validations: {
@@ -187,19 +175,15 @@ export default {
       email,
       required
     },
-    name: {
+    user: {
       minLength: minLength(2),
-      maxLength: maxLength(15),
-      required
-    },
-    lastName: {
-      minLength: minLength(2),
-      maxLength: maxLength(15),
+      maxLength: maxLength(50),
       required
     },
     password: {
       required,
-      minLength: minLength(8)
+      minLength: minLength(8),
+      maxLength: maxLength(50)
     },
     confirmPassword: {
       sameAs: sameAs('password')
@@ -215,24 +199,14 @@ export default {
       !this.$v.email.required && errors.push('Ingrese un Mail.')
       return errors
     },
-    nameError() {
+    userError() {
       const errors = []
-      if (!this.$v.name.$dirty) {
+      if (!this.$v.user.$dirty) {
         return errors
       }
-      !this.$v.name.minLength && errors.push('Mínimo 2 caracteres.')
-      !this.$v.name.maxLength && errors.push('Máximo 15 caracteres.')
-      !this.$v.name.required && errors.push('Ingrese un nombre.')
-      return errors
-    },
-    lastNameError() {
-      const errors = []
-      if (!this.$v.lastName.$dirty) {
-        return errors
-      }
-      !this.$v.lastName.minLength && errors.push('Mínimo 2 caracteres.')
-      !this.$v.lastName.maxLength && errors.push('Máximo 15 caracteres.')
-      !this.$v.lastName.required && errors.push('Ingrese un apellido.')
+      !this.$v.user.minLength && errors.push('Mínimo 2 caracteres.')
+      !this.$v.user.maxLength && errors.push('Máximo 50 caracteres.')
+      !this.$v.user.required && errors.push('Ingrese un usuario.')
       return errors
     },
     passwordError() {
@@ -241,6 +215,7 @@ export default {
         return errors
       }
       !this.$v.password.minLength && errors.push('Mínimo 8 caracteres.')
+      !this.$v.password.maxLength && errors.push('Máximo 50 caracteres.')
       !this.$v.password.required && errors.push('Ingrese una contraseña.')
       return errors
     }
