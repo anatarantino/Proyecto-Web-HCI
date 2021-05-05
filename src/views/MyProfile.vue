@@ -16,10 +16,10 @@
     </v-row>
     <v-row justify="center" v-for="tab in tabs" v-bind:key="tab">
       <v-btn
-        class="ma-2 pt-6 pb-6 { active: currentTab === tab.section }"
+        class="ma-2 pt-6 pb-6"
         v-bind:class="[{ active: currentTab === tab.section }]"
         @click="[currentTab = tab.section, currentComponent = tab.comp]"
-        :color="(currentTab == tab.section) ? '#00B14A' : '#757575'"
+        :color="(currentTab == tab.section) ? '#4DFF00' : '#757575'"
         rounded
         width="180"
       >
@@ -30,7 +30,7 @@
     </v-row>
     <v-row justify="center">
       <v-btn
-          color="#4DFF00"
+          color="white"
           rounded
           class="ma-2 pt-6 pb-6"
           width="180"
@@ -61,8 +61,12 @@
       return {
         name: "Natalia",
         currentComponent: ProfileMain,
-        currentTab: "Profile",
+        currentTab: "Mi perfil",
         tabs: [
+          {
+            section: "Mi perfil",
+            comp: ProfileMain
+          },
           {
             section: "Mis ejercicios",
             comp: ProfileEjs
