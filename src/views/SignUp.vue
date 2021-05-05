@@ -105,6 +105,7 @@
                         rounded
                         class="text-capitalize"
                         width="150"
+                        @click="processData"
                     >Registrarme
                     </v-btn>
                   </v-col>
@@ -123,7 +124,7 @@
 import {required, maxLength, minLength, email, sameAs} from 'vuelidate/lib/validators'
 
 export default {
-  name: 'LogIn',
+  name: 'SignUp',
   data() {
     return {
       show1: false,
@@ -149,7 +150,7 @@ export default {
       try {
         this.loading = true;
         await sleep(1000);
-        await this.$store.dispatch('logIn', {
+        await this.$store.dispatch('signUp', {
           email: this.email,
           password: this.password,
           name: this.name,

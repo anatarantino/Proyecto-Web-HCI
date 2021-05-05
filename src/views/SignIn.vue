@@ -25,7 +25,7 @@
                 rounded
                 width="150"
                 class="text-capitalize"
-                to="/login"
+                to="/signup"
             >Registrarme
             </v-btn>
           </v-col>
@@ -73,6 +73,7 @@
                         rounded
                         class="white--text text-capitalize"
                         width="150"
+                        @click="processData"
                     >Ingresar
                     </v-btn>
                   </v-col>

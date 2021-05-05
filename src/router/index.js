@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import LandingPageLayoutLayout from '../layouts/LandingPageLayout';
-import LogIn from "../views/LogIn.vue";
+import SignUp from "../views/SignUp.vue";
 import SignIn from "../views/SignIn";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import MainPage from "@/views/MainPage";
@@ -29,9 +29,9 @@ const routes = [
                 component: MainPage
             },
             {
-                path: '/login',
-                name: 'LogIn',
-                component: LogIn
+                path: '/signup',
+                name: 'SignUp',
+                component: SignUp
             },
             {
                 path: '/signin',

@@ -18,10 +18,10 @@
             rounded
             class="text-capitalize"
             width="150"
-            to="/login"
+            to="/signup"
         >Registrarme</v-btn>
         <v-btn
-            @click="loginButt=true"
+            @click="signupButt=true"
             color="black"
             rounded
             class="text-capitalize white--text"
@@ -41,12 +41,12 @@
 
 <script>
 
-import loginButt from "./SignIn";
+import signupButt from "./SignIn";
 
 export default {
   name: 'MainPage',
   components: {
-    loginButt,
+    signupButt,
   }
 }
 </script>
