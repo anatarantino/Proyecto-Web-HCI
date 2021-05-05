@@ -46,6 +46,7 @@
                 <v-col cols="12" sm="6" md="6" class="justify-center">
                   <v-text-field
                       label="Nombre"
+                      :error-messages=nameError
                       filled
                       clearable
                       dark
@@ -54,6 +55,7 @@
                   ></v-text-field>
                   <v-text-field
                       label="Apellido"
+                      :error-messages=lastNameError
                       filled
                       clearable
                       dark
@@ -62,6 +64,7 @@
                   ></v-text-field>
                   <v-text-field
                       label="Mail"
+                      :error-messages=emailError
                       filled
                       clearable
                       dark
@@ -75,6 +78,7 @@
                       hint="Mínimo 8 caracteres"
                       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                       :type="show1 ? 'text' : 'password'"
+                      :error-messages=passwordError
                       filled
                       clearable
                       dark
@@ -134,18 +138,18 @@ export default {
       error: false
     }
   },
-  methods:{
-    async processData(){
-      if(this.$v.$invalid){
+  methods: {
+    async processData() {
+      if (this.$v.$invalid) {
         this.$v.$touch();
         console.log("Por favor complete todos los datos");
         return;
       }
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
-      try{
+      try {
         this.loading = true;
         await sleep(1000);
-        await this.$store.dispatch('login',{
+        await this.$store.dispatch('logIn', {
           email: this.email,
           password: this.password,
           name: this.name,
@@ -156,7 +160,7 @@ export default {
         this.loading = false;
         this.message = "";
         //await this.$router.push('/verifyAccount');
-      } catch(e){
+      } catch (e) {
         this.error = true;
         this.message = e;
         await setTimeout(() => {
@@ -168,7 +172,7 @@ export default {
       }
     },
 
-    resetForm(){
+    resetForm() {
       this.$v.$reset();
       this.email = "";
       this.password = "";
@@ -203,19 +207,41 @@ export default {
   computed: {
     emailError() {
       const errors = []
-      if(!this.$v.email.$dirty){
+      if (!this.$v.email.$dirty) {
         return errors
       }
-
+      !this.$v.email.email && errors.push('Email inválido.')
+      !this.$v.email.required && errors.push('Ingrese un Email')
+      return errors
     },
     nameError() {
-
+      const errors = []
+      if (!this.$v.name.$dirty) {
+        return errors
+      }
+      !this.$v.name.minLength && errors.push('Mínimo 2 caracteres.')
+      !this.$v.name.maxLength && errors.push('Máximo 15 caracteres.')
+      !this.$v.name.required && errors.push('Ingrese un nombre.')
+      return errors
     },
-    lastNameError(){
-
+    lastNameError() {
+      const errors = []
+      if (!this.$v.lastName.$dirty) {
+        return errors
+      }
+      !this.$v.lastName.minLength && errors.push('Mínimo 2 caracteres.')
+      !this.$v.lastName.maxLength && errors.push('Máximo 15 caracteres.')
+      !this.$v.lastName.required && errors.push('Ingrese un apellido.')
+      return errors
     },
-    passwordError(){
-
+    passwordError() {
+      const errors = []
+      if (!this.$v.password.$dirty){
+        return errors
+      }
+      !this.$v.password.minLength && errors.push('Mínimo 8 caracteres.')
+      !this.$v.password.required && errors.push('Ingrese una contraseña.')
+      return errors
     }
   }
 }
