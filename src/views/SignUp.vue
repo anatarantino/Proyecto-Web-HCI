@@ -211,8 +211,8 @@ export default {
       if (!this.$v.email.$dirty) {
         return errors
       }
-      !this.$v.email.email && errors.push('Email inválido.')
-      !this.$v.email.required && errors.push('Ingrese un Email.')
+      !this.$v.email.email && errors.push('Mail inválido.')
+      !this.$v.email.required && errors.push('Ingrese un Mail.')
       return errors
     },
     nameError() {
