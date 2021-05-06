@@ -151,7 +151,7 @@ export default {
         await sleep(2000);
         this.loading = false;
         this.message = "";
-        await this.$router.replace('/');
+        await this.$router.replace('/signIn');
       } catch (e) {
         this.error = true;
         this.message = "Oops..hubo un problema, verifica tu código.";

@@ -10,7 +10,7 @@
             <v-col cols="12" class="d-flex ma-0 pa-0">
               <h3 class="subt">Tus últimos entrenamientos</h3>
             </v-col>
-            <v-col cols="4" v-for="rout in routines" :key="rout">
+            <v-col cols="4" v-for="rout in routines" :key="rout.id">
               <RoutineCard :routine="rout"></RoutineCard>
             </v-col>
           </v-row>
@@ -22,7 +22,7 @@
             <v-col cols="12" class="d-flex ma-0 pa-0">
               <h3 class="subt">Tus rutinas favoritas</h3>
             </v-col>
-            <v-col cols="4" v-for="fav in favorites" :key="fav">
+            <v-col cols="4" v-for="fav in favorites" :key="fav.id">
               <RoutineCard :routine="fav"></RoutineCard>
             </v-col>
           </v-row>
@@ -49,6 +49,7 @@ export default {
       ],
       routines: [
         {
+          id: 1,
           name: "Cardio",
           entradaEnCalor: 15,
           ejercitacion: 35,
@@ -58,6 +59,7 @@ export default {
           category: 1
         },
         {
+          id:2,
           name: "Cardio",
           entradaEnCalor: 10,
           ejercitacion: 15,
@@ -69,6 +71,7 @@ export default {
       ],
       favorites: [
         {
+          id:1,
           name: "Fuerza",
           entradaEnCalor: 10,
           ejercitacion: 40,
@@ -78,6 +81,7 @@ export default {
           category: 2
         },
         {
+          id:2,
           name: "Abdominales",
           entradaEnCalor: 15,
           ejercitacion: 30,
@@ -87,6 +91,7 @@ export default {
           category: 3
         },
         {
+          id:3,
           name: "Cardio",
           entradaEnCalor: 15,
           ejercitacion: 35,
