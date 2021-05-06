@@ -11,6 +11,7 @@ export default {
                 lastName: "",
                 gender: "other",
                 birthdate: 0,
+                metadata: null
             })
         })
         context.commit("user/setUserData", payload);

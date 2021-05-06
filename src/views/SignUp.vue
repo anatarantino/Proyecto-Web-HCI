@@ -143,7 +143,7 @@ export default {
         await this.$store.dispatch('signUp', {
           email: this.email,
           password: this.password,
-          user: this.user,
+          username: this.user,
         });
         this.message = "Cuenta creada exitosamente";
         await sleep(2000);

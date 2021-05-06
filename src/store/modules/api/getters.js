@@ -4,5 +4,8 @@ export default {
     },
     AutoLogout(state) {
         return state.AutoLogout;
+    },
+    baseUrl(state) {
+        return state.baseUrl;
     }
 }
