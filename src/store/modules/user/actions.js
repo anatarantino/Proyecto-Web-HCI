@@ -30,7 +30,7 @@ export default {
 
         const responseInfo = await response.json();
         if(!response.ok) {
-            throw new Error("No se pudo ingresar nuevamente"); //esta bien asi el msg?
+            throw new Error("No se volver pudo a ingresar.");
         }
         context.commit("setUserData",responseInfo);
     }

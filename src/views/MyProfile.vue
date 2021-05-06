@@ -34,7 +34,7 @@
               rounded
               class="ma-2 pt-6 pb-6"
               width="180"
-              to="/"
+              @click="logout"
           >
             <h2 class="custom-transform-class text-none">
               Cerrar Sesión
@@ -81,6 +81,15 @@ export default {
           comp: ProfileConfig
         }
       ]
+    }
+  },
+  methods: {
+    async logout() {
+      try {
+        await this.$store.dispatch('logOut');
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 }

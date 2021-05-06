@@ -86,7 +86,7 @@
 
 <script>
 import Footer from "../components/Footer";
-import {required, email, minLength} from 'vuelidate/lib/validators'
+import {required, email} from 'vuelidate/lib/validators'
 
 export default {
   name: 'VerifyAccount',
@@ -102,55 +102,109 @@ export default {
       verified: false
     }
   },
+  async mounted() {
+    const email = this.$route.query.email;
+    const code = this.$route.query.code;
+    const sleep = (delay) => new Promise((resolve => setTimeout(resolve, delay)));
+    if (email && code) {
+      try {
+        this.loading = true;
+        await sleep(1000);
+        await this.$store.dispatch('verifyAccount', {
+          email: email,
+          code: code
+        });
+        this.message = "Your account is now verified, redirecting to home";
+        await sleep(2000);
+        this.loading = false;
+        this.message = "";
+        await this.$router.replace('/');
+      } catch (e) {
+        this.error = true
+        this.message = "Something went wrong validating your account";
+        await setTimeout(() => {
+          this.message = "";
+          this.loading = false;
+          this.error = false;
+        }, 2000);
+      }
+    }
+  }
+  ,
   methods: {
-    async processData() {
-      if (this.$v.$invalid) {
-        this.$v.$touch();
-        console.log("Por favor complete todos los datos");
+    async verifyUser() {
+      if (this.$v.code.$invalid) {
+        this.$v.code.$touch();
+        console.log("invalid");
         return;
       }
       const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
       try {
         this.loading = true;
         await sleep(1000);
-        await this.$store.dispatch('signIn', {
-          email: this.email,
+        const userData = this.$store.getters["user/userData"];
+        await this.$store.dispatch('verifyAccount', {
+          email: userData.email,
           code: this.code
-        })
-        await sleep(1000);
+        });
+        this.message = "Cuenta verificada exitosamente.";
+        await sleep(2000);
         this.loading = false;
-        //await this.$router.replace('/home');
+        this.message = "";
+        await this.$router.replace('/');
       } catch (e) {
-        if (e.message === "verificado") {
-          this.verified = true;
-          this.message = e;
-        } else {
-          this.error = true;
-          this.message = e;
-          await setTimeout(() => {
-            this.message = "";
-            this.loading = false;
-            this.error = false;
-            this.resetForm();
-          }, 4000);
-        }
+        this.error = true;
+        this.message = "Oops..hubo un problema, verifica tu código.";
+        await setTimeout(() => {
+          this.message = "";
+          this.loading = false;
+          this.error = false;
+        }, 2000);
       }
-    },
-    resetForm() {
-      this.$v.$reset();
-      this.email = "";
-      this.code = "";
     }
-  },
+    ,
+    async resendVerification() {
+      this.$v.email.$touch();
+      if (this.$v.email.$invalid) {
+        this.$v.email.$touch();
+        console.log("invalid");
+        return;
+      }
+      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+      try {
+        this.loading = true;
+        await sleep(1000);
+        await this.$store.dispatch('resendVerification', {
+          email: this.email
+        });
+        this.message = "Mail reenviado con éxito.";
+        await sleep(2000);
+        this.loading = false;
+        this.message = "";
+      } catch (e) {
+        this.error = true
+        this.message = "Error al reenviar la verificación.";
+        await setTimeout(() => {
+          this.message = "";
+          this.loading = false;
+          this.error = false;
+        }, 2000);
+        console.log(e);
+      }
+    }
+  }
+  ,
   validations: {
     email: {
       email,
       required
-    },
+    }
+    ,
     code: {
       required
     }
-  },
+  }
+  ,
   computed: {
     emailError() {
       const errors = []
@@ -160,7 +214,8 @@ export default {
       !this.$v.email.email && errors.push('Mail inválido.')
       !this.$v.email.required && errors.push('Ingrese un Mail.')
       return errors
-    },
+    }
+    ,
     codeError() {
       const errors = []
       if (!this.$v.code.$dirty) {

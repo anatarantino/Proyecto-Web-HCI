@@ -46,12 +46,12 @@
                 <v-col cols="12" sm="6" md="6" class="justify-center">
                   <v-text-field
                       label="Usuario"
-                      :error-messages=emailError
+                      :error-messages=usernameError
                       filled
                       clearable
                       dark
-                      v-model="user"
-                      @blur="$v.user.$touch()"
+                      v-model="username"
+                      @blur="$v.username.$touch()"
                   ></v-text-field>
                   <v-text-field
                       type="password"
@@ -97,7 +97,7 @@ export default {
   data() {
     return {
       show: false,
-      user: '',
+      username: '',
       password: '',
       loading: false,
       message: "",
@@ -117,12 +117,12 @@ export default {
         this.loading = true;
         await sleep(1000);
         await this.$store.dispatch('signIn', {
-          user: this.user,
+          username: this.username,
           password: this.password
         })
         await sleep(1000);
         this.loading = false;
-        //await this.$router.replace('/home');
+        await this.$router.replace('/home');
       } catch (e) {
         if (e.message === "verificado") {
           this.verified = true;
@@ -141,12 +141,12 @@ export default {
     },
     resetForm() {
       this.$v.$reset();
-      this.user = "";
+      this.username = "";
       this.password = "";
     }
   },
   validations: {
-    user: {
+    username: {
       required,
       minLength: minLength(2),
       maxLength: maxLength(50)
@@ -158,14 +158,14 @@ export default {
     }
   },
   computed: {
-    emailError() {
+    usernameError() {
       const errors = []
-      if (!this.$v.user.$dirty) {
+      if (!this.$v.username.$dirty) {
         return errors
       }
-      !this.$v.user.required && errors.push('Ingrese un usuario.')
-      !this.$v.user.minLength && errors.push('Mínimo 2 caracteres.')
-      !this.$v.user.maxLength && errors.push('Máximo 50 caracteres.')
+      !this.$v.username.required && errors.push('Ingrese un usuario.')
+      !this.$v.username.minLength && errors.push('Mínimo 2 caracteres.')
+      !this.$v.username.maxLength && errors.push('Máximo 50 caracteres.')
       return errors
     },
     passwordError() {

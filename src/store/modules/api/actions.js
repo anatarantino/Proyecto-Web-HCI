@@ -67,7 +67,7 @@ export default {
         }
         context.commit('user/setUserData', responseInfo);
     },
-    async logout(context, payload) {
+    async logOut(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/users/logout`, {
             method: 'POST',
             headers: {
