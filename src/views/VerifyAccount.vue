@@ -89,7 +89,7 @@ import Footer from "../components/Footer";
 import {required, email, minLength} from 'vuelidate/lib/validators'
 
 export default {
-  name: 'SignIn',
+  name: 'VerifyAccount',
   components: {Footer},
   data() {
     return {

@@ -45,7 +45,7 @@ const routes = [
             },
             {
                 meta: {unauth: true},
-                path: '/verify',
+                path: '/verifyAccount',
                 name: 'VerifyAccount',
                 component: VerifyAccount
             }
@@ -138,14 +138,14 @@ store.dispatch('autoLogIn').catch((e) => {
     console.log(e);
 });
 
-// router.beforeEach(function (to, from, next) {
-//   if (to.meta.auth && !store.getters['isOK']) {
-//     next('/');
-//   } else if (to.meta.unauth && store.getters['isOK']) {
-//     next('/home');
-//   } else {
-//     next();
-//   }
-// });
+router.beforeEach(function (to, from, next) {
+  if (to.meta.auth && !store.getters['isOK']) {
+    next('/');
+  } else if (to.meta.unauth && store.getters['isOK']) {
+    next('/home');
+  } else {
+    next();
+  }
+});
 
 export default router
