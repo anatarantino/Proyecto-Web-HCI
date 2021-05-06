@@ -1,5 +1,5 @@
 export default {
-    userData: state => {
+    userData(state){
         return {...state};
     }
 }

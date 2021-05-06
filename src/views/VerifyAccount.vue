@@ -70,7 +70,7 @@
                         rounded
                         class="white--text text-capitalize"
                         width="150"
-                        @click="processData"
+                        @click="verifyUser"
                     >Verificar
                     </v-btn>
                   </v-col>

@@ -58,7 +58,7 @@ export default {
         response = await fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `bearer ${context.getters.token}`
+                'Authorization': `bearer ${context.getters.getToken}`
             }
         });
         responseInfo = await response.json();
@@ -71,7 +71,8 @@ export default {
         let response = await fetch(`${context.getters.baseUrl}/users/logout`, {
             method: 'POST',
             headers: {
-                'Authorization': `bearer ${context.getters.token}`
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'accept': `application/json`
             }
         });
         if (!response.ok) {
@@ -83,7 +84,6 @@ export default {
         }
         context.commit('user/resetData');
         context.commit('setUser', usAuthorization);
-        context.commit('setAutoLogout');
     },
     async autoLogIn(context, payload) {
         const token = localStorage.getItem('token');
@@ -95,7 +95,7 @@ export default {
             let response = await fetch(url, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `bearer ${context.getters.token}`
+                    'Authorization': `bearer ${context.getters.getToken}`
                 }
             });
             let responseInfo = await response.json();

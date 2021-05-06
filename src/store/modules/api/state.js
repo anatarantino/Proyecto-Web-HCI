@@ -3,5 +3,4 @@ export default {
     hostUrl: "http://localhost:8081/",
     timeOut: 60 * 100,
     token: null,
-    AutoLogout: false
 }

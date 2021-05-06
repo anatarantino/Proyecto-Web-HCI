@@ -54,6 +54,7 @@ import ProfileMain from "../components/ProfileMain";
 import ProfileEjs from "../components/ProfileEjs";
 import ProfileConfig from "../components/ProfileConfig";
 import ProfileTrophies from "../components/ProfileTrophies";
+import router from "@/router";
 
 export default {
   name: "MyProfile",
@@ -87,6 +88,7 @@ export default {
     async logout() {
       try {
         await this.$store.dispatch('logOut');
+        await this.$router.replace('/');
       } catch (e) {
         console.log(e);
       }
