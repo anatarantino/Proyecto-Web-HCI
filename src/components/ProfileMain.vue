@@ -15,7 +15,7 @@
               class="ma-5"
               v-model="username"
           >
-            {{username}}
+            {{ username }}
           </v-text-field>
           <v-text-field
               label="Mail"
@@ -23,7 +23,7 @@
               class="ma-5"
               v-model=email
           >
-            {{email}}
+            {{ email }}
           </v-text-field>
           <v-row class="mt-10">
             <v-col cols="6">
@@ -62,15 +62,15 @@ export default {
   name: "ProfileMain",
   data() {
     return {
-      url:""
+      url: ""
     }
   },
   computed: {
-    username(){
+    username() {
       return this.$store.getters["user/userData"].username;
     },
-    email(){
-      return this.$store.getters["user/userData"].email.toLowerCase();
+    email() {
+      return this.$store.getters["user/userData"].email;
     }
   }
 }

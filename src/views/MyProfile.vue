@@ -14,7 +14,7 @@
             {{ username }}
           </h2>
         </v-row>
-        <v-row justify="center" v-for="tab in tabs" v-bind:key="tab">
+        <v-row justify="center" v-for="tab in tabs" v-bind:key="tab.id">
           <v-btn
               class="ma-2 pt-6 pb-6"
               v-bind:class="[{ active: currentTab === tab.section }]"
@@ -61,27 +61,36 @@ export default {
   components: {ProfileMain, ProfileEjs, ProfileConfig, ProfileTrophies},
   data() {
     return {
-      username: "Natalia",
       currentComponent: ProfileMain,
       currentTab: "Mi perfil",
       tabs: [
         {
+          id: 1,
           section: "Mi perfil",
           comp: ProfileMain
         },
         {
+          id: 2,
           section: "Mis ejercicios",
           comp: ProfileEjs
         },
         {
+          id: 3,
           section: "Mis logros",
           comp: ProfileTrophies
         },
         {
+          id: 4,
           section: "Configuración",
           comp: ProfileConfig
         }
       ]
+    }
+  },
+  computed: {
+    username() {
+      console.log(this.$store.getters["user/userData"].username);
+      return this.$store.getters["user/userData"].username;
     }
   },
   methods: {

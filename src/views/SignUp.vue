@@ -141,8 +141,8 @@ export default {
         this.loading = true;
         await sleep(1000);
         await this.$store.dispatch('signUp', {
-          username: this.username,
-          email: this.email,
+          username: this.username.toLowerCase(),
+          email: this.email.toLowerCase(),
           password: this.password,
         });
         this.message = "Cuenta creada exitosamente";

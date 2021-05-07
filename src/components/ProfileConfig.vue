@@ -43,36 +43,6 @@
           </v-col>
         </v-row>
       </div>
-      <v-row class="mt-5">
-        <v-col>
-          <div>
-            <v-row align="center">
-              <v-col cols="3">
-                <h3> Ayuda </h3>
-              </v-col>
-              <v-col cols="1">
-                <v-icon color="black">
-                  mdi-help-circle-outline
-                </v-icon>
-              </v-col>
-            </v-row>
-          </div>
-        </v-col>
-        <v-col>
-          <div>
-            <v-row align="center">
-              <v-col cols="4">
-                <h3> Acerca de </h3>
-              </v-col>
-              <v-col cols="1">
-                <v-icon color="black">
-                  mdi-information-outline
-                </v-icon>
-              </v-col>
-            </v-row>
-          </div>
-        </v-col>
-      </v-row>
     </v-container>
   </v-card>
 </template>

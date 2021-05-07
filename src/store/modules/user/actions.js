@@ -1,6 +1,6 @@
 export default {
     async updateProfile(context, payload) {
-        let response = await fetch(`${context.rootGetters.baseUrl}/user/current`,{
+        let response = await fetch(`${context.rootGetters.baseUrl}/users/current`,{
             body: JSON.stringify(
                 {
                     ...payload
@@ -20,7 +20,7 @@ export default {
     },
 
     async restoreValues(context) {
-        const url = `${context.rootGetters.baseUrl}/user/current`
+        const url = `${context.rootGetters.baseUrl}/users/current`
         const response = await fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
