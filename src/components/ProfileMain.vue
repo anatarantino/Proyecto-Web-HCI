@@ -1,63 +1,51 @@
 <template>
-  <v-card
-      class="pa-2 rounded-xl "
-      outlined
-      max-width="80%"
-      height="600"
+  <v-container
+      class="pa-2"
+      max-width="90%"
       elevation="2"
   >
-    <v-card-text class="mt-5">
-      <v-row justify="center">
-        <v-col cols="12" sm="6">
-          <v-text-field
-              label="Usuario"
-              readonly
-              class="ma-5"
-              v-model="username"
-          >
+    <v-row align="center" class="d-flex ma-0 pa-0">
+      <v-col cols="3" ma-0 pa-0>
+        <v-row>
+          <v-avatar color="#D6F2D8" size="150">
+            <v-icon color="black" size="80">
+              mdi-account
+            </v-icon>
+          </v-avatar>
+        </v-row>
+      </v-col>
+      <v-col>
+        <v-row justify="left">
+          <h1 class="white--text ma-2">
             {{ username }}
-          </v-text-field>
-          <v-text-field
-              label="Mail"
-              readonly
-              class="ma-5"
-              v-model=email
-          >
+          </h1>
+        </v-row>
+        <v-row justify="left">
+          <h3 class="white--text ma-2">
             {{ email }}
-          </v-text-field>
-          <v-row class="mt-10">
-            <v-col cols="6">
-              <v-btn
-                  color="#4DFF00"
-                  elevation="2"
-                  rounded
-                  class="text-capitalize mr-5 mt-10"
-                  width="130"
-                  to="/home/myprofile"
-              >
-                Guardar
-              </v-btn>
-            </v-col>
-            <v-col mt-10 cols="6">
-              <v-btn
-                  color="#000000"
-                  elevation="2"
-                  rounded
-                  class="text-capitalize white--text mt-10"
-                  width="130"
-                  to="/home/myprofile"
-              >
-                Cancelar
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-card-text>
-  </v-card>
+          </h3>
+        </v-row>
+      </v-col>
+      <v-spacer></v-spacer>
+      <v-col>
+        <v-btn
+            color="white"
+            rounded
+            class="ma-2 pt-6 pb-6"
+            width="180"
+            @click="logout"
+        >
+          <h2 class="custom-transform-class text-none">
+            Cerrar Sesión
+          </h2>
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+
 export default {
   name: "ProfileMain",
   data() {
@@ -71,6 +59,16 @@ export default {
     },
     email() {
       return this.$store.getters["user/userData"].email;
+    }
+  },
+  methods: {
+    async logout() {
+      try {
+        await this.$store.dispatch('logOut');
+        await this.$router.replace('/');
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 }

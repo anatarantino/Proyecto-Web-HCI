@@ -1,31 +1,33 @@
 <template>
   <v-card
-      class="pa-2 rounded-xl "
-      outlined
-      max-width="80%"
-      height="600"
+      class="pa-4 rounded-xl "
+      color="rgb(0, 0, 0, 0.8)"
+      max-width="90%"
       elevation="2"
   >
-    <v-container fluid ma-5>
-      <v-row align="center" class="d-flex ma-0 pa-0">
-        <v-col cols="6" v-for="card in cards" :key="card">
-          <ExerciseCard :excard="card"></ExerciseCard>
-        </v-col>
-        <v-col>
-          <v-btn
-              color="#4DFF00"
-              elevation="2"
-              class="mx-2"
-              fab
-              to="/home/createexercise"
-          >
-            <v-icon>
-              mdi-plus
-            </v-icon>
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
+    <v-row class="d-flex ma-0 pa-0">
+      <v-col cols="12" class="d-flex ma-0 pa-0">
+        <h3 class="subt">Mis ejercicios</h3>
+      </v-col>
+    </v-row>
+    <v-row align="center" class="d-flex ma-0 pa-0">
+      <v-col cols="4" v-for="card in cards" :key="card">
+        <ExerciseCard :excard="card"></ExerciseCard>
+      </v-col>
+      <v-col>
+        <v-btn
+            color="#4DFF00"
+            elevation="2"
+            class="mx-2"
+            fab
+            to="/home/createexercise"
+        >
+          <v-icon>
+            mdi-plus
+          </v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
@@ -52,4 +54,7 @@ export default {
 </script>
 
 <style scoped>
+.subt {
+  color: #02ff00;
+}
 </style>
