@@ -5,13 +5,18 @@
       elevation="2"
   >
     <v-row align="center" class="d-flex ma-0 pa-0">
-      <v-col cols="3" ma-0 pa-0>
+      <v-col cols="3" class="d-flex align-center justify-center" style="position: relative">
         <v-row>
-          <v-avatar color="#D6F2D8" size="150">
-            <v-icon color="black" size="80">
-              mdi-account
-            </v-icon>
-          </v-avatar>
+          <div >
+            <v-avatar color="#D6F2D8" size="150">
+              <v-icon color="black" size="80">
+                mdi-account
+              </v-icon>
+            </v-avatar>
+            <v-btn icon style="position: absolute; bottom: 0;">
+              <v-icon color="white">mdi-pencil</v-icon>
+            </v-btn>
+          </div>
         </v-row>
       </v-col>
       <v-col>
@@ -27,19 +32,6 @@
         </v-row>
       </v-col>
       <v-spacer></v-spacer>
-      <v-col>
-        <v-btn
-            color="white"
-            rounded
-            class="ma-2 pt-6 pb-6"
-            width="180"
-            @click="logout"
-        >
-          <h2 class="custom-transform-class text-none">
-            Cerrar Sesión
-          </h2>
-        </v-btn>
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -59,16 +51,6 @@ export default {
     },
     email() {
       return this.$store.getters["user/userData"].email;
-    }
-  },
-  methods: {
-    async logout() {
-      try {
-        await this.$store.dispatch('logOut');
-        await this.$router.replace('/');
-      } catch (e) {
-        console.log(e);
-      }
     }
   }
 }
