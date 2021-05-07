@@ -186,8 +186,7 @@ export default {
         'Funcional',
         'Boxeo',
         'Levantamiento',
-        'Abdominales',
-        'Agregar +'
+        'Abdominales'
       ],
       routine: {
         name: ''

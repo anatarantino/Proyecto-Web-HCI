@@ -155,7 +155,7 @@ export default {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `bearer ${context.getters.token}`
+                    'Authorization': `bearer ${context.getters.getToken}`
                 },
                 body: JSON.stringify({
                     ...category
@@ -172,12 +172,251 @@ export default {
         let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}`,{
             method: 'DELETE',
             headers: {
-                'Authorization': `bearer ${context.getters.token}`
+                'Authorization': `bearer ${context.getters.getToken}`
             }
         });
         if(!response.ok) {
             throw new Error(response.statusText);
         }
+    },
+    async removeExerciseFromCycle(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`,{
+            method: 'DELETE',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`
+            }
+        });
+        if(!response.ok){
+            throw new Error(response.statusText);
+        }
+    },
+    async addExerciseToCycle(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    cycleId: payload.cycleId,
+                    exerciseId: payload.exerciseId,
+                    body: {
+                        order: payload.order,
+                        duration: payload.duration,
+                        repetitions: payload.repetitions
+                    } //fijarse si se manda asi el objeto
+                })
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async createRoutine(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/routines`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...payload
+            }) //estar atentas a si se esta creando bien
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async getCycleExercises(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cycleId: payload.cycleId,
+                orderBy: "exerciseId",
+                direction: "asc" //chequear!!!
+            })
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async getRoutineCycle(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}/cycles/${payload.cycleId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
+            body: JSON.stringify({
+                routineId: payload.routineId,
+                cycleId: payload.cycleId
+            })
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async getExercises(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/exercises}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
+            body: JSON.stringify({
+                orderBy: "name",
+                direction: "asc"
+            }) //chequear esto no se si estan bien pasados los param
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async getCurrentUserRoutines(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/users/${payload.userId}/routines`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
+            body: JSON.stringify({
+                userId: payload.userId,
+                difficulty: payload.difficulty,
+                orderBy: payload.orderBy,
+                direction: payload.direction,
+                search: payload.search
+            }) //chequear esto no se si estan bien pasados los param
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async getFavourite(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/favourites`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
+            body: JSON.stringify({
+                orderBy: payload.orderBy,
+                direction: payload.direction,
+            }) //chequear esto no se si estan bien pasados los param
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async addToFavourite(context,payload){
+        let response = await fetch(`${context.getters.baseUrl}/favourites/${payload.routineId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
+            body: JSON.stringify({
+                routineId: payload.routineId
+            })
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async removeFromFavourite(context,payload){
+        let response = await fetch(`${context.getters.baseUrl}/favourites/${payload.routineId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
+            body: JSON.stringify({
+                routineId: payload.routineId
+            })
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async getRoutineById(context,payload){
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
+            body: JSON.stringify({
+                routineId: payload.routineId
+            })
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async rateRoutine(context,payload){
+        let response = await fetch(`${context.getters.baseUrl}/reviews/${payload.routineId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify({
+                routineId: payload.routineId,
+                score: payload.score,
+                review: ''
+            })
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async isFavourite(context,payload){
+        let routinesInfo;
+        try {
+            routinesInfo = await context.dispatch("getFavourite",{
+                orderBy: `id`,
+                direction: `desc`
+            });
+        } catch(e) {
+            throw new Error(e);
+        }
+        const routines = routinesInfo.results;
+        for(const routine of routines) {
+            if (routine.id === payload.routineId) {
+                return true;
+            }
+        }
+        return false;
     }
-
 }
+
+
