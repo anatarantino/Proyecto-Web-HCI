@@ -1,19 +1,10 @@
 <template>
-  <v-card class="rounded-xl"
-
-  >
+  <v-card class="rounded-xl">
     <v-toolbar
         color="grey darken-3"
         dark
     >
-      <v-text-field
-          label="Ingresa un nombre"
-          outlined
-          clearable
-          hide-details
-      >
-
-      </v-text-field>
+      <h3 class="white--text text-start"> {{ bloque.name }} </h3>
 
       <v-spacer></v-spacer>
 
@@ -42,11 +33,6 @@
             <template v-slot:default="{ active }">
               <v-list-item-content>
                 <v-list-item-title v-text="item.title"></v-list-item-title>
-
-                <v-list-item-subtitle
-                    class="text--primary"
-                    v-text="item.headline"
-                ></v-list-item-subtitle>
 
                 <v-list-item-subtitle v-text="item.subtitle"></v-list-item-subtitle>
 
@@ -120,7 +106,18 @@ export default {
   props: ["bloque"],
   data() {
     return {
-      //Aca va la lista de ejercicios que sacamos de la api
+      items: [
+        {
+          id:1,
+          title: "ejecicio 1",
+          subtitle: "sub 1"
+        },
+        {
+          id:2,
+          title: "ejecicio 2",
+          subtitle: "sub 2"
+        }
+      ]
     }
   }
 }

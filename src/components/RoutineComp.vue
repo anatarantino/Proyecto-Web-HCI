@@ -9,28 +9,16 @@
               filled
               clearable
               dark
+              required
+              v-model="routine.name"
           >
           </v-text-field>
         </v-col>
         <v-row>
-          <v-col cols="6" class="d-flex align-center justify-center" v-for="b in bloques" :key="b">
-            <bloque :bloque="b"></bloque> <!--aca hay que hacer un for por cada bloque-->
-          </v-col>
-          <v-col cols="6" class="d-flex align-center justify-center">
-            <bloque></bloque>
+          <v-col cols="12" class="d-flex align-center justify-center" v-for="b in bloques" :key="id">
+            <bloque :bloque="b"></bloque>
           </v-col>
         </v-row>
-      </v-col>
-      <v-col cols="12" class="d-flex align-center justify-center">
-        <v-btn class="mx-2"
-               fab
-               color="#4DFF00"
-        >
-          <v-icon>
-            mdi-plus
-          </v-icon>
-
-        </v-btn>
       </v-col>
 
       <v-row class="pt-4">
@@ -177,13 +165,20 @@ export default {
     return {
       bloques: [       //esto vamos a tener que sacarlo de la api
         {
-          title: "bloque 1",
+          id:1,
+          name: "Entrada en calor",
           subtitle: "subtitiulo 1",
 
         },
         {
-          title: "bloque 2",
+          id:2,
+          name: "Ejercitación",
           subtitle: "subtitulo 2",
+        },
+        {
+          id:3,
+          name: "Enfriamiento",
+          subtitle: ""
         }
       ],
       tags: [
@@ -193,7 +188,10 @@ export default {
         'Levantamiento',
         'Abdominales',
         'Agregar +'
-      ]
+      ],
+      routine: {
+        name: ''
+      }
     }
   }
 }

@@ -133,6 +133,51 @@ export default {
         if (!response.ok) {
             throw new Error(response.statusText);
         }
+    },
+    async categoriesData(context) {
+        const categories = [
+            {
+                name: "Brazos"
+            },
+            {
+                name: "Glúteos"
+            },
+            {
+                name: "Abdominales"
+            },
+            {
+                name: "Funcional"
+            }
+        ]
+
+        for (let category of categories){
+            let response = await fetch(`${context.getters.baseUrl}/categories`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `bearer ${context.getters.token}`
+                },
+                body: JSON.stringify({
+                    ...category
+                })
+            });
+            const responseInfo = await response.json();
+            if(!response.ok) {
+                console.log(responseInfo);
+                throw new Error(response.statusText);
+            }
+        }
+    },
+    async removeRoutine(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}`,{
+            method: 'DELETE',
+            headers: {
+                'Authorization': `bearer ${context.getters.token}`
+            }
+        });
+        if(!response.ok) {
+            throw new Error(response.statusText);
+        }
     }
 
 }
