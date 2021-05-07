@@ -1,6 +1,6 @@
 export default {
     async updateProfile(context, payload) {
-        let response = await fetch(`${context.rootGetters.baseURL}/user/current`,{
+        let response = await fetch(`${context.rootGetters.baseUrl}/user/current`,{
             body: JSON.stringify(
                 {
                     ...payload
@@ -8,7 +8,7 @@ export default {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `bearer ${context.getters.token}`
+                'Authorization': `bearer ${context.getters.getToken}`
             }
         });
         let responseInfo = await response.json();
@@ -24,7 +24,7 @@ export default {
         const response = await fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `bearer ${context.getters.token}`
+                'Authorization': `bearer ${context.getters.getToken}`
             },
         });
 

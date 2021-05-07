@@ -11,7 +11,7 @@
         </v-row>
         <v-row justify="center">
           <h2 class="white--text ma-2">
-            {{ user }}
+            {{ username }}
           </h2>
         </v-row>
         <v-row justify="center" v-for="tab in tabs" v-bind:key="tab">
@@ -61,7 +61,7 @@ export default {
   components: {ProfileMain, ProfileEjs, ProfileConfig, ProfileTrophies},
   data() {
     return {
-      user: "Natalia",
+      username: "Natalia",
       currentComponent: ProfileMain,
       currentTab: "Mi perfil",
       tabs: [

@@ -8,13 +8,14 @@
   >
     <v-card-text class="mt-5">
       <v-row justify="center">
-        <v-col cols="12" sm="6"><!--append-icon=mdi-pencil-->
+        <v-col cols="12" sm="6">
           <v-text-field
-              readonly
               label="Usuario"
+              readonly
               class="ma-5"
-              v-model=user
+              v-model="username"
           >
+            {{username}}
           </v-text-field>
           <v-text-field
               label="Mail"
@@ -22,6 +23,7 @@
               class="ma-5"
               v-model=email
           >
+            {{email}}
           </v-text-field>
           <v-row class="mt-10">
             <v-col cols="6">
@@ -60,8 +62,15 @@ export default {
   name: "ProfileMain",
   data() {
     return {
-       user: "",
-      email: ""
+      url:""
+    }
+  },
+  computed: {
+    username(){
+      return this.$store.getters["user/userData"].username;
+    },
+    email(){
+      return this.$store.getters["user/userData"].email.toLowerCase();
     }
   }
 }
