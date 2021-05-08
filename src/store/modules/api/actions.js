@@ -346,10 +346,7 @@ export default {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`
-            },
-            body: JSON.stringify({
-                orderBy: "id"
-            })
+            }
         });
         let responseInfo = await response.json();
         if(!response.ok){
@@ -357,21 +354,6 @@ export default {
             throw new Error(responseInfo.message);
         }
         return responseInfo;
-    },
-    async getMyExercises(context,payload) {
-        let exercises;
-        try {
-            exercises = await context.dispatch("getExercises");
-        }catch (e) {
-            throw new Error(e);
-        }
-        let myExercises = [];
-        for(const exercise of exercises.results){
-            if(exercise.userId === payload.userId) {
-                myExercises.push(exercise);
-            }
-        }
-        return myExercises;
     },
     async getCurrentUserRoutines(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/users/${payload.userId}/routines`, {
