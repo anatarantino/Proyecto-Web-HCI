@@ -7,11 +7,6 @@
     </v-row>
     <v-row class="d-flex ma-0 pa-0 justify-center">
       <v-col md="8">
-        <ProfileTrophies></ProfileTrophies>
-      </v-col>
-    </v-row>
-    <v-row class="d-flex ma-0 pa-0 justify-center">
-      <v-col md="8">
         <ProfileEjs></ProfileEjs>
       </v-col>
     </v-row>
@@ -33,11 +28,10 @@
 <script>
 import ProfileMain from "../components/ProfileMain";
 import ProfileEjs from "../components/ProfileEjs";
-import ProfileTrophies from "../components/ProfileTrophies";
 
 export default {
   name: "MyProfile",
-  components: {ProfileMain, ProfileEjs, ProfileTrophies},
+  components: {ProfileMain, ProfileEjs},
   methods: {
     async logout() {
       try {

@@ -77,17 +77,6 @@
                     ></v-radio>
                   </v-radio-group>
                 </v-col>
-                <v-col cols="3" class="d-flex justify-end align-center">
-                  <v-btn
-                      text
-                      v-model="deleteExc"
-                      @click="removeExercise(index)"
-                  >
-                    <v-icon>
-                      mdi-delete-outline
-                    </v-icon>
-                  </v-btn>
-                </v-col>
               </v-row>
               <v-divider
                   v-if="index < totalExercises - 1"

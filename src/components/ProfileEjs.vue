@@ -1,9 +1,9 @@
 <template>
   <v-card
       class="pa-4 rounded-xl "
-      color="rgb(0, 0, 0, 0.8)"
+      color="transparent"
       max-width="90%"
-      elevation="2"
+      elevation="0"
   >
     <v-row class="d-flex ma-0 pa-0">
       <v-col cols="12" class="d-flex ma-0 pa-0">
@@ -11,7 +11,7 @@
       </v-col>
     </v-row>
     <v-row align="center" class="d-flex ma-0 pa-0">
-      <v-col cols="4" v-for="card in cards" :key="card">
+      <v-col cols="6" v-for="card in cards" :key="card.id">
         <ExerciseCard :excard="card"></ExerciseCard>
       </v-col>
       <v-col>
@@ -42,10 +42,22 @@ export default {
       name: "Natalia",
       cards: [
         {
+          id: 1,
           cTitle: "Puente de la mujer versión Nat",
           cText: "Puente con la pierna estirada",
           cType: "Cardio",
-          cImage: require('../assets/images/crear\ ejercicio.jpg')
+        },
+        {
+          id: 2,
+          cTitle: "Puente de la mujer versión Nat",
+          cText: "Puente con la pierna estirada",
+          cType: "Cardio",
+        },
+        {
+          id: 3,
+          cTitle: "Puente de la mujer versión Nat",
+          cText: "Puente con la pierna estirada",
+          cType: "Cardio",
         }
       ]
     }
