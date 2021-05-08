@@ -22,7 +22,7 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-row class="pt-4">
+      <v-col cols="12" class="d-flex align-center justify-center">
         <v-col cols="6">
           <v-card dark dense>
             <v-container fluid>
@@ -66,32 +66,7 @@
             </v-card>
           </v-container>
         </v-col>
-        <v-col cols="6" class="d-flex align-content-center">
-          <v-card elevation="0" class="mx-auto" color="transparent">
-            <v-container fluid>
-              <v-row>
-                <v-col cols="12" class="d-flex justify-center">
-                  <v-btn
-                      height="150"
-                      width="200"
-                      elevation="2"
-                      dark
-                  >
-                    <v-icon
-                        size="60"
-                        dark
-                        right
-                        justify="center"
-                    >mdi-image-plus
-                    </v-icon>
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-container>
-            <h3 class="my-color font-weight-light white--text">Agrega una imagen para tu rutina</h3>
-          </v-card>
-        </v-col>
-      </v-row>
+      </v-col>
       <v-row>
         <v-col cols="12" class="d-flex mx-auto" sm="4">
           <v-textarea
