@@ -39,27 +39,27 @@ export default {
   components: {ExerciseCard},
   data() {
     return {
-      name: "Natalia",
-      cards: [
-        {
-          id: 1,
-          cTitle: "Puente de la mujer versión Nat",
-          cText: "Puente con la pierna estirada",
-          cType: "Cardio",
-        },
-        {
-          id: 2,
-          cTitle: "Puente de la mujer versión Nat",
-          cText: "Puente con la pierna estirada",
-          cType: "Cardio",
-        },
-        {
-          id: 3,
-          cTitle: "Puente de la mujer versión Nat",
-          cText: "Puente con la pierna estirada",
-          cType: "Cardio",
+      cards: []
+    }
+  },
+  created() {
+    this.getExercises();
+  },
+  methods: {
+    async getExercises() {
+      try {
+        const aux = await this.$store.dispatch('getExercises');
+        this.cards = aux.content;
+        console.log(aux.totalCount);
+        for(let i of aux.content){
+          console.log(i.name);
         }
-      ]
+        // for(let i of this.currentExercises){
+        //   console.log(i.name);
+        // }
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 }

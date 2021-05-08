@@ -7,7 +7,7 @@
     <v-row align="center" class="d-flex ma-0 pa-0">
       <v-col cols="3" class="d-flex align-center justify-center" style="position: relative">
         <v-row>
-          <div >
+          <div>
             <v-avatar color="#D6F2D8" size="150">
               <v-icon color="black" size="80">
                 mdi-account
