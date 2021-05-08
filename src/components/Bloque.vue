@@ -8,10 +8,10 @@
           dark
       >
         <template v-slot:actions>
-            <v-icon color="white">
-             mdi-chevron-down
-            </v-icon>
-          </template>
+          <v-icon color="white">
+            mdi-chevron-down
+          </v-icon>
+        </template>
         <h3 class="white--text text-start"> {{ bloque.name }} </h3>
       </v-expansion-panel-header>
       <v-expansion-panel-content>

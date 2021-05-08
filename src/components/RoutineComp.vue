@@ -13,7 +13,7 @@
               dark
               required
               hide-details
-              v-model="rout.name"
+              v-model="routine.name"
               color="#4DFF00"
           >
           </v-text-field>
@@ -43,7 +43,7 @@
                 </v-col>
                 <div class="pl-2 pr-2 pb-1">
                   <v-chip-group
-                      v-model="chosenCategory"
+                      v-model="routine.chosenCategory"
                       active-class="light-green accent-3 black--text "
                       column
                       class="pl-6 pr-2 "
@@ -64,7 +64,7 @@
               <v-card-actions class="align-center justify-center">
                 <h3 class="font-weight-regular">Dificultad</h3>
                 <v-rating
-                    v-model="difficulty"
+                    v-model="routine.difficulty"
                     color="#4DFF00"
                     empty-icon="mdi-fire"
                     full-icon="mdi-fire"
@@ -80,15 +80,24 @@
       </v-col>
       <v-row>
         <v-col cols="12" class="d-flex mx-auto" sm="4">
-          <v-textarea
-              dark
-              prepend-inner-icon="mdi-comment"
-              class="mx-2"
-              label="Describe tu rutina"
-              rows="1"
-              auto-grow
-          >
-          </v-textarea>
+          <v-row>
+            <v-textarea
+                dark
+                prepend-inner-icon="mdi-comment"
+                class="mx-2"
+                label="Describe tu rutina"
+                rows="1"
+                auto-grow
+            >
+            </v-textarea>
+            <v-switch
+                v-model="routine.isPublic"
+                dark
+                color="#4DFF00"
+                :label=this.state
+                @click="changeStatus"
+            ></v-switch>
+          </v-row>
         </v-col>
         <v-col cols="12" class="d-flex justify-center">
           <v-btn
@@ -127,30 +136,18 @@ export default {
   components: {bloque},
   data() {
     return {
-      difficulty: 3,
-      bloques: [       //esto vamos a tener que sacarlo de la api
-        {
-          id: 1,
-          name: "Entrada en calor",
-          subtitle: "subtitiulo 1",
-
-        },
-        {
-          id: 2,
-          name: "Ejercitación",
-          subtitle: "subtitulo 2",
-        },
-        {
-          id: 3,
-          name: "Enfriamiento",
-          subtitle: ""
-        }
-      ],
+      routine: {
+        EntradaEnCalor: [],
+        Ejercitacion: [],
+        Enfriamiento: [],
+        difficulty: 0,
+        chosenCategory: [1],
+        name: '',
+        detail: '',
+        isPublic: false
+      },
       categories: [],
-      chosenCategory: [1],
-      rout: {
-        name: ''
-      }
+      state:'Privada'
     }
   },
   created() {
@@ -167,6 +164,13 @@ export default {
         this.categories = aux.content;
       } catch (e) {
         console.log(e);
+      }
+    },
+    changeStatus(){
+      if(this.routine.isPublic){
+        this.state='Pública';
+      }else{
+       this.state='Privada';
       }
     }
   },
