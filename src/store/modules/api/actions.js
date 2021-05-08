@@ -66,7 +66,7 @@ export default {
             throw new Error("No se pudieron recuperar los datos después de iniciar sesión");
         }
         context.commit("user/setUserData", responseInfo);
-
+        await context.dispatch("categoriesData");
     },
     async logOut(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/users/logout`, {
@@ -136,7 +136,7 @@ export default {
             throw new Error(response.statusText);
         }
     },
-    async categoriesData(context,payload) {
+    async categoriesData(context, payload) {
         const categories = [
             {
                 name: "Brazos"
@@ -152,7 +152,7 @@ export default {
             }
         ]
 
-        for (let category of categories){
+        for (let category of categories) {
             let response = await fetch(`${context.getters.baseUrl}/categories`, {
                 method: 'POST',
                 headers: {
@@ -164,13 +164,13 @@ export default {
                 })
             });
             const responseInfo = await response.json();
-            if(!response.ok) {
+            if (!response.ok) {
                 console.log(responseInfo);
                 throw new Error(response.statusText);
             }
         }
     },
-    async getCategories(context,payload) {
+    async getCategories(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/categories`, {
             method: 'GET',
             headers: {
@@ -178,31 +178,31 @@ export default {
             }
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
         return responseInfo;
     },
     async removeRoutine(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}`,{
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`
             }
         });
-        if(!response.ok) {
+        if (!response.ok) {
             throw new Error(response.statusText);
         }
     },
     async removeExerciseFromCycle(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`,{
+        let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`
             }
         });
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error(response.statusText);
         }
     },
@@ -225,7 +225,7 @@ export default {
                 })
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
@@ -247,24 +247,24 @@ export default {
                 })
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
         return responseInfo;
     },
-    async deleteExercise(context,payload) {
-        let response = await fetch(`${context.getters.baseUrl}/exercises/${payload.exerciseId}`,{
+    async deleteExercise(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/exercises/${payload.exerciseId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`
             }
         });
-        if(!response.ok) {
+        if (!response.ok) {
             throw new Error(response.statusText);
         }
     },
-    async modifyExercise(context,payload) {
+    async modifyExercise(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/exercises/${payload.exerciseId}`, {
             method: 'PUT',
             headers: {
@@ -279,7 +279,7 @@ export default {
             })
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
@@ -297,7 +297,7 @@ export default {
             }) //estar atentas a si se esta creando bien
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
@@ -317,7 +317,7 @@ export default {
             })
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
@@ -335,7 +335,7 @@ export default {
             })
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
@@ -349,7 +349,7 @@ export default {
             }
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
@@ -370,7 +370,7 @@ export default {
             }) //chequear esto no se si estan bien pasados los param
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
@@ -388,13 +388,13 @@ export default {
             }) //chequear esto no se si estan bien pasados los param
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
         return responseInfo;
     },
-    async addToFavourite(context,payload){
+    async addToFavourite(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/favourites/${payload.routineId}`, {
             method: 'POST',
             headers: {
@@ -405,13 +405,13 @@ export default {
             })
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
         return responseInfo;
     },
-    async removeFromFavourite(context,payload){
+    async removeFromFavourite(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/favourites/${payload.routineId}`, {
             method: 'DELETE',
             headers: {
@@ -422,13 +422,13 @@ export default {
             })
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
         return responseInfo;
     },
-    async getRoutineById(context,payload){
+    async getRoutineById(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}`, {
             method: 'GET',
             headers: {
@@ -439,13 +439,13 @@ export default {
             })
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
         return responseInfo;
     },
-    async rateRoutine(context,payload){
+    async rateRoutine(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/reviews/${payload.routineId}`, {
             method: 'POST',
             headers: {
@@ -459,24 +459,24 @@ export default {
             })
         });
         let responseInfo = await response.json();
-        if(!response.ok){
+        if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
         }
         return responseInfo;
     },
-    async isFavourite(context,payload){
+    async isFavourite(context, payload) {
         let routinesInfo;
         try {
-            routinesInfo = await context.dispatch("getFavourite",{
+            routinesInfo = await context.dispatch("getFavourite", {
                 orderBy: `id`,
                 direction: `desc`
             });
-        } catch(e) {
+        } catch (e) {
             throw new Error(e);
         }
         const routines = routinesInfo.content;
-        for(const routine of routines) {
+        for (const routine of routines) {
             if (routine.id === payload.routineId) {
                 return true;
             }

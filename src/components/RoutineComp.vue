@@ -79,8 +79,6 @@
           >
           </v-textarea>
         </v-col>
-
-
         <v-col cols="12" class="d-flex justify-center">
           <v-btn
               large
@@ -103,8 +101,6 @@
           >Publicar rutina
           </v-btn>
         </v-col>
-
-
       </v-row>
     </v-row>
   </v-container>
@@ -163,12 +159,6 @@ export default {
       }
     }
   },
-  computed: {
-    showCat() {
-      console.log(this.chosenCategory.name);
-      console.log(this.chosenCategory.id);
-    }
-  }
 }
 </script>
 

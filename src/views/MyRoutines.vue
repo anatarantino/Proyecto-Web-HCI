@@ -30,6 +30,7 @@
           bottom
           fixed
           rounded
+          elevation="5"
           class="text-capitalize"
           width="150"
           to="/home/createroutine"
