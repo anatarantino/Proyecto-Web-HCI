@@ -65,6 +65,8 @@ export default {
         if (!response.ok) {
             throw new Error("No se pudieron recuperar los datos después de iniciar sesión");
         }
+        context.commit("user/setUserData", responseInfo);
+
     },
     async logOut(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/users/logout`, {
