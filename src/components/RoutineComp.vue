@@ -2,7 +2,9 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1 class="font-weight-light font-italic text-start white--text">{{ routine.title }}</h1>
+        <v-col cols="12" class="d-flex align-center justify-center">
+          <h1 class="font-weight-light font-italic text-start white--text">{{ routine.title }}</h1>
+        </v-col>
         <v-col cols="12" class="d-flex mx-auto" sm="4">
           <v-text-field
               label="Ingresa un nombre para tu rutina"
@@ -10,21 +12,18 @@
               clearable
               dark
               required
-              v-model="routine.name"
+              v-model="rout.name"
           >
           </v-text-field>
         </v-col>
         <v-row>
-          <v-col cols="12" class="d-flex align-center justify-center" v-for="b in bloques" :key="id">
+          <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center" v-for="b in bloques" :key="b.id">
             <bloque :bloque="b"></bloque>
           </v-col>
         </v-row>
       </v-col>
-
       <v-row class="pt-4">
-
         <v-col cols="6">
-
           <v-card dark dense>
             <v-container fluid>
               <v-row>
@@ -33,34 +32,25 @@
                 </v-col>
                 <div class="pl-2 pr-2 pb-1">
                   <v-chip-group
-                      v-model="selection"
                       active-class="light-green accent-3 black--text "
                       column
                       class="pl-6 pr-2 "
                   >
-                    <v-chip v-for="tag in tags" :key="tag">{{ tag }}</v-chip>
+                    <v-chip v-for="cat in categories" :key="cat.id">{{ cat.name }}</v-chip>
                   </v-chip-group>
                 </div>
               </v-row>
             </v-container>
           </v-card>
-
           <v-container>
             <v-card
-                class="mx-auto elevation-15 "
-                height="50"
+                class="mx-auto elevation-4 rounded-l"
                 dark
-                style="max-width: 400px;"
-                color="grey darken-3"
+                color="black"
                 outlined
-                shaped
             >
-              <!--poner mas lindo el dificultad-->
-              <v-card-actions class="mx-auto">
-                Dificultad
-                <v-spacer></v-spacer>
-
-
+              <v-card-actions class="align-center justify-center">
+                <h3 class="font-weight-regular">Dificultad</h3>
                 <v-rating
                     color="#4DFF00"
                     empty-icon="mdi-fire"
@@ -74,12 +64,8 @@
             </v-card>
           </v-container>
         </v-col>
-
-
         <v-col cols="6" class="d-flex align-content-center">
-
           <v-card elevation="0" class="mx-auto" color="transparent">
-
             <v-container fluid>
               <v-row>
                 <v-col cols="12" class="d-flex justify-center">
@@ -93,32 +79,27 @@
                         size="60"
                         dark
                         right
-                        align="center"
                         justify="center"
                     >mdi-image-plus
                     </v-icon>
                   </v-btn>
                 </v-col>
-
               </v-row>
             </v-container>
             <h3 class="my-color font-weight-light white--text">Agrega una imagen para tu rutina</h3>
           </v-card>
         </v-col>
-
-
       </v-row>
-
       <v-row>
-
-
         <v-col cols="12" class="d-flex mx-auto" sm="4">
           <v-textarea
               dark
               prepend-inner-icon="mdi-comment"
               class="mx-2"
-              label="¿Desea agregar un comentario?"
-              rows="1">
+              label="Describe tu rutina"
+              rows="1"
+              auto-grow
+          >
           </v-textarea>
         </v-col>
 
@@ -126,11 +107,11 @@
         <v-col cols="12" class="d-flex justify-center">
           <v-btn
               large
-              dark
+              color="black"
               depressed
               rounded
               width="150"
-              class="text-capitalize ma-1 pt-1 pb-1"
+              class="text-capitalize white--text ma-1 pt-1 pb-1"
               to="/home/myroutines"
           >Cancelar
           </v-btn>
@@ -148,7 +129,6 @@
 
 
       </v-row>
-
     </v-row>
   </v-container>
 </template>
@@ -181,16 +161,24 @@ export default {
           subtitle: ""
         }
       ],
-      tags: [
-        'Cardio',
-        'Funcional',
-        'Boxeo',
-        'Levantamiento',
-        'Abdominales'
-      ],
-      routine: {
+      categories: [],
+      rout: {
         name: ''
       }
+    }
+  },
+  created() {
+    this.getCategories();
+  },
+  methods: {
+    async getCategories() {
+      try {
+        const aux = await this.$store.dispatch('getCategories');
+        this.categories = aux.content;
+      } catch(e) {
+        console.log(e);
+      }
+
     }
   }
 }

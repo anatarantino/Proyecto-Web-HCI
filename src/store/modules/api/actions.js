@@ -134,7 +134,7 @@ export default {
             throw new Error(response.statusText);
         }
     },
-    async categoriesData(context) {
+    async categoriesData(context,payload) {
         const categories = [
             {
                 name: "Brazos"
@@ -167,6 +167,20 @@ export default {
                 throw new Error(response.statusText);
             }
         }
+    },
+    async getCategories(context,payload) {
+        let response = await fetch(`${context.getters.baseUrl}/categories`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`
+            }
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
     },
     async removeRoutine(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}`,{
@@ -206,6 +220,28 @@ export default {
                         duration: payload.duration,
                         repetitions: payload.repetitions
                     } //fijarse si se manda asi el objeto
+                })
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async addExercise(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/exercises`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    name: payload.name,
+                    detail: payload.detail,
+                    type: "exercise",
+                    metadata: null
                 })
         });
         let responseInfo = await response.json();
@@ -272,15 +308,11 @@ export default {
         return responseInfo;
     },
     async getExercises(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/exercises}`, {
+        let response = await fetch(`${context.getters.baseUrl}/exercises`, {
             method: 'GET',
             headers: {
-                'Authorization': `bearer ${context.getters.getToken}`,
-            },
-            body: JSON.stringify({
-                orderBy: "name",
-                direction: "asc"
-            }) //chequear esto no se si estan bien pasados los param
+                'Authorization': `bearer ${context.getters.getToken}`
+            }
         });
         let responseInfo = await response.json();
         if(!response.ok){
