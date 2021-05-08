@@ -253,6 +253,38 @@ export default {
         }
         return responseInfo;
     },
+    async deleteExercise(context,payload) {
+        let response = await fetch(`${context.getters.baseUrl}/exercises/${payload.exerciseId}`,{
+            method: 'DELETE',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`
+            }
+        });
+        if(!response.ok) {
+            throw new Error(response.statusText);
+        }
+    },
+    async modifyExercise(context,payload) {
+        let response = await fetch(`${context.getters.baseUrl}/exercises/${payload.exerciseId}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: payload.name,
+                detail: payload.detail,
+                type: "exercise",
+                metadata: null
+            })
+        });
+        let responseInfo = await response.json();
+        if(!response.ok){
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
     async createRoutine(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/routines`, {
             method: 'POST',
@@ -314,7 +346,10 @@ export default {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`
-            }
+            },
+            body: JSON.stringify({
+                orderBy: "id"
+            })
         });
         let responseInfo = await response.json();
         if(!response.ok){
@@ -322,6 +357,21 @@ export default {
             throw new Error(responseInfo.message);
         }
         return responseInfo;
+    },
+    async getMyExercises(context,payload) {
+        let exercises;
+        try {
+            exercises = await context.dispatch("getExercises");
+        }catch (e) {
+            throw new Error(e);
+        }
+        let myExercises = [];
+        for(const exercise of exercises.results){
+            if(exercise.userId === payload.userId) {
+                myExercises.push(exercise);
+            }
+        }
+        return myExercises;
     },
     async getCurrentUserRoutines(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/users/${payload.userId}/routines`, {
@@ -443,7 +493,7 @@ export default {
         } catch(e) {
             throw new Error(e);
         }
-        const routines = routinesInfo.results;
+        const routines = routinesInfo.content;
         for(const routine of routines) {
             if (routine.id === payload.routineId) {
                 return true;

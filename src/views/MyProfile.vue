@@ -7,11 +7,6 @@
     </v-row>
     <v-row class="d-flex ma-0 pa-0 justify-center">
       <v-col md="8">
-        <ProfileTrophies></ProfileTrophies>
-      </v-col>
-    </v-row>
-    <v-row class="d-flex ma-0 pa-0 justify-center">
-      <v-col md="8">
         <ProfileEjs></ProfileEjs>
       </v-col>
     </v-row>
