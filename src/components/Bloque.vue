@@ -12,7 +12,7 @@
             mdi-chevron-down
           </v-icon>
         </template>
-        <h3 class="white--text text-start"> {{ bloque.name }} </h3>
+        <h3 class="white--text text-start"> {{ title }} </h3>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-col class="d-flex align-content-lg-space-between">
@@ -99,17 +99,24 @@
 <script>
 export default {
   name: "Bloque",
-  props: ["bloque"],
+  props: {
+    title: {
+      type: String
+    },
+    section: {
+      type: String
+    },
+  },
   data: () => ({
     panel: [0, 1],
     currentExercises: [],
     totalExercises: 0,
     deleteExc: "",
   }),
-
   created() {
     this.exercises();
-  },
+  }
+  ,
 
   methods: {
     async exercises() {

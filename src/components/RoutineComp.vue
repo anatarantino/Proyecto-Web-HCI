@@ -28,8 +28,14 @@
           </v-btn>
         </v-col>
         <v-row>
-          <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center" v-for="b in bloques" :key="b.id">
-            <bloque :bloque="b"></bloque>
+          <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center">
+            <bloque title="Entrada en calor" section="EntradaEnCalor"></bloque>
+          </v-col>
+          <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center">
+            <bloque title="Ejercitación" section="Ejercitacion"></bloque>
+          </v-col>
+          <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center">
+            <bloque title="Enfriamiento" section="Enfriamiento"></bloque>
           </v-col>
         </v-row>
       </v-col>
@@ -125,7 +131,6 @@
     </v-row>
   </v-container>
 </template>
-
 <script>
 
 import bloque from "@/components/Bloque";
@@ -137,9 +142,7 @@ export default {
   data() {
     return {
       routine: {
-        EntradaEnCalor: [],
-        Ejercitacion: [],
-        Enfriamiento: [],
+        bloquesName: ["Entrada en calor", "Ejercitación", "Enfriamiento"],
         difficulty: 0,
         chosenCategory: [1],
         name: '',
@@ -147,7 +150,7 @@ export default {
         isPublic: false
       },
       categories: [],
-      state:'Privada'
+      state: 'Privada'
     }
   },
   created() {
@@ -166,11 +169,11 @@ export default {
         console.log(e);
       }
     },
-    changeStatus(){
-      if(this.routine.isPublic){
-        this.state='Pública';
-      }else{
-       this.state='Privada';
+    changeStatus() {
+      if (this.routine.isPublic) {
+        this.state = 'Pública';
+      } else {
+        this.state = 'Privada';
       }
     }
   },
