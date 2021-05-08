@@ -7,7 +7,6 @@
             <v-card-title class="align-center justify-center">
               <h1 class="font-weight-light font-italic text-start white--text">{{ exercise.title }}</h1>
             </v-card-title>
-
             <v-text-field
                 clearable
                 dark
@@ -16,7 +15,6 @@
                 label="Nombre"
                 @blur="$v.nombre.$touch()"
                 v-model="nombre"
-
             ></v-text-field>
             <v-textarea
                 dense

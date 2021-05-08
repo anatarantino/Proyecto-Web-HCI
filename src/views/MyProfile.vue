@@ -28,11 +28,10 @@
 <script>
 import ProfileMain from "../components/ProfileMain";
 import ProfileEjs from "../components/ProfileEjs";
-import ProfileTrophies from "../components/ProfileTrophies";
 
 export default {
   name: "MyProfile",
-  components: {ProfileMain, ProfileEjs, ProfileTrophies},
+  components: {ProfileMain, ProfileEjs},
   methods: {
     async logout() {
       try {

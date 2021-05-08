@@ -2,11 +2,22 @@
   <v-card class="rounded-xl">
     <v-container fluid>
       <v-row>
-        <v-col class="grey darken-3 d-flex justify-space-between align-center rounded-t-xl" cols="12">
+        <v-col class="grey darken-3 d-flex justify-space-between align-center rounded-t-xl pa-0 ma-0" cols="12">
+          <v-col class="d-flex justify-start" cols="9">
           <h3 class="text-start white--text"> {{ excard.cTitle }} </h3>
+
+          </v-col>
+          <v-col class="d-flex justify-end" cols="3">
+
           <v-btn icon to="/home/editexercise">
             <v-icon color="white">mdi-pencil</v-icon>
           </v-btn>
+          <v-btn icon @click="deleteExercise">
+            <v-icon color="white">mdi-delete-outline</v-icon>
+          </v-btn>
+
+          </v-col>
+
         </v-col>
         <v-col cols="8">
           <v-container fluid>
