@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-col cols="12" class="d-flex align-center justify-center">
-          <h1 class="font-weight-light font-italic text-start white--text">{{ routine.title }}</h1>
+          <h1 class="font-italic white--text font-weight-regular">{{ routine.title }}</h1>
         </v-col>
         <v-col cols="12" class="d-flex mx-auto" sm="4">
           <v-text-field
@@ -12,9 +12,20 @@
               clearable
               dark
               required
+              hide-details
               v-model="rout.name"
+              color="#4DFF00"
           >
           </v-text-field>
+        </v-col>
+        <v-col class="d-flex align-center justify-center">
+          <v-btn to="/home/createexercise"
+                 class="mx-2 text-capitalize"
+                 rounded
+                 width="150"
+                 color="#4DFF00"
+          >Crear ejercicio
+          </v-btn>
         </v-col>
         <v-row>
           <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center" v-for="b in bloques" :key="b.id">
@@ -28,7 +39,7 @@
             <v-container fluid>
               <v-row>
                 <v-col cols="12" class="d-flex justify-center align-center pa-0 ma-0">
-                  <v-card-title>Elija el enfoque de su rutina</v-card-title>
+                  <v-card-title><h3 class="font-weight-regular">Elija el enfoque de su rutina</h3></v-card-title>
                 </v-col>
                 <div class="pl-2 pr-2 pb-1">
                   <v-chip-group

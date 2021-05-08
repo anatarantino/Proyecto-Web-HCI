@@ -4,28 +4,35 @@
       <v-expansion-panel-header
           fluid
           class="rounded-1"
-          color="grey darken-3"
+          color="grey darken-4"
+          dark
       >
+        <template v-slot:actions>
+            <v-icon color="white">
+             mdi-chevron-down
+            </v-icon>
+          </template>
         <h3 class="white--text text-start"> {{ bloque.name }} </h3>
-
-        <v-spacer></v-spacer>
-        <v-col cols="3">
-          <v-text-field
-              label="Vueltas"
-              class="mt-0 pt-0 ml-6 sm2"
-              dark
-              hide-details
-              single-line
-              type="number"
-              min="1"
-
-          ></v-text-field>
-        </v-col>
-
       </v-expansion-panel-header>
-
       <v-expansion-panel-content>
-
+        <v-col class="d-flex align-content-lg-space-between">
+          <v-col cols="8" class="d-flex align-center justify-start">
+            <h4 class="font-weight-regular">Marque los ejercicios que desea agregar al bloque.</h4>
+          </v-col>
+          <v-col cols="4" class="d-flex align-center">
+            <v-text-field
+                label="Vueltas a completar"
+                class="mt-0 pt-0 ml-6 sm2"
+                light
+                hide-details
+                single-line
+                type="number"
+                min="1"
+                color="black"
+            ></v-text-field>
+          </v-col>
+        </v-col>
+        <v-divider></v-divider>
         <v-list two-line light>
           <v-list-item-group
               multiple
@@ -83,17 +90,6 @@
               ></v-divider>
             </v-col>
           </v-list-item-group>
-          <v-col class="d-flex align-center justify-center">
-            <v-btn to="/home/createexercise"
-                   fab
-                   class="mx-2"
-                   color="grey darken-3"
-            >
-              <v-icon color="white">
-                mdi-plus
-              </v-icon>
-            </v-btn>
-          </v-col>
         </v-list>
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -108,7 +104,7 @@ export default {
     panel: [0, 1],
     currentExercises: [],
     totalExercises: 0,
-    deleteExc:"",
+    deleteExc: "",
   }),
 
   created() {
