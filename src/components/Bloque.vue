@@ -30,7 +30,7 @@
           <v-list-item-group
               multiple
           >
-            <v-col v-for="(ex,index) in currentExercises" :key="index" >
+            <v-col v-for="(ex,index) in currentExercises" :key="index">
               <v-list-item active-class="green--text text--accent-6">
                 <template v-slot:default="{ active }">
                   <v-list-item-content>
@@ -58,12 +58,10 @@
                       type="number"
                       min="1"
                       style="width: 50px"
-
                   ></v-text-field>
                 </v-col>
-                <v-col cols="8">
+                <v-col cols="6">
                   <v-radio-group
-                      v-model="row"
                       row
                       mandatory
                   >
@@ -79,8 +77,18 @@
                     ></v-radio>
                   </v-radio-group>
                 </v-col>
+                <v-col cols="3" class="d-flex justify-end align-center">
+                  <v-btn
+                      text
+                      v-model="deleteExc"
+                      @click="removeExercise(index)"
+                  >
+                    <v-icon>
+                      mdi-delete-outline
+                    </v-icon>
+                  </v-btn>
+                </v-col>
               </v-row>
-
               <v-divider
                   v-if="index < totalExercises - 1"
               ></v-divider>
@@ -91,13 +99,11 @@
                    fab
                    class="mx-2"
                    color="grey darken-3"
-
             >
               <v-icon color="white">
                 mdi-plus
               </v-icon>
             </v-btn>
-
           </v-col>
         </v-list>
       </v-expansion-panel-content>
@@ -109,10 +115,11 @@
 export default {
   name: "Bloque",
   props: ["bloque"],
-  data: ()=> ({
-    panel: [0,1],
+  data: () => ({
+    panel: [0, 1],
     currentExercises: [],
-    totalExercises: 0
+    totalExercises: 0,
+    deleteExc:"",
   }),
 
   created() {
@@ -133,7 +140,7 @@ export default {
         // for(let i of this.currentExercises){
         //   console.log(i.name);
         // }
-      } catch(e) {
+      } catch (e) {
         console.log(e);
       }
 

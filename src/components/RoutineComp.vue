@@ -148,18 +148,18 @@ export default {
       difficulty: 3,
       bloques: [       //esto vamos a tener que sacarlo de la api
         {
-          id:1,
+          id: 1,
           name: "Entrada en calor",
           subtitle: "subtitiulo 1",
 
         },
         {
-          id:2,
+          id: 2,
           name: "Ejercitación",
           subtitle: "subtitulo 2",
         },
         {
-          id:3,
+          id: 3,
           name: "Enfriamiento",
           subtitle: ""
         }
@@ -183,13 +183,13 @@ export default {
       try {
         const aux = await this.$store.dispatch('getCategories');
         this.categories = aux.content;
-      } catch(e) {
+      } catch (e) {
         console.log(e);
       }
     }
   },
   computed: {
-    showCat(){
+    showCat() {
       console.log(this.chosenCategory.name);
       console.log(this.chosenCategory.id);
     }
