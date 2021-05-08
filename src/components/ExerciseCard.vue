@@ -10,7 +10,7 @@
             <v-btn icon to="/home/editexercise">
               <v-icon color="white">mdi-pencil</v-icon>
             </v-btn>
-            <v-btn icon @click="deleteExercise">
+            <v-btn icon @click="deleteExercise(excard.id)">
               <v-icon color="white">mdi-delete-outline</v-icon>
             </v-btn>
           </v-col>
@@ -33,7 +33,16 @@
 <script>
 export default {
   name: "ExerciseCard",
-  props: ["excard"]
+  props: ["excard"],
+  methods: {
+    async deleteExercise(id) {
+      try {
+        await this.$store.dispatch('deleteExercise', {exerciseId: id});
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }
 }
 </script>
 
