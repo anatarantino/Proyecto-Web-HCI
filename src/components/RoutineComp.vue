@@ -32,6 +32,7 @@
                 </v-col>
                 <div class="pl-2 pr-2 pb-1">
                   <v-chip-group
+                      v-model="chosenCategory"
                       active-class="light-green accent-3 black--text "
                       column
                       class="pl-6 pr-2 "
@@ -52,6 +53,7 @@
               <v-card-actions class="align-center justify-center">
                 <h3 class="font-weight-regular">Dificultad</h3>
                 <v-rating
+                    v-model="difficulty"
                     color="#4DFF00"
                     empty-icon="mdi-fire"
                     full-icon="mdi-fire"
@@ -143,6 +145,7 @@ export default {
   components: {bloque},
   data() {
     return {
+      difficulty: 3,
       bloques: [       //esto vamos a tener que sacarlo de la api
         {
           id:1,
@@ -162,6 +165,7 @@ export default {
         }
       ],
       categories: [],
+      chosenCategory: [1],
       rout: {
         name: ''
       }
@@ -169,6 +173,10 @@ export default {
   },
   created() {
     this.getCategories();
+  },
+  beforeUpdate() {
+    console.log(this.chosenCategory.name);
+    console.log(this.chosenCategory.id);
   },
   methods: {
     async getCategories() {
@@ -178,7 +186,12 @@ export default {
       } catch(e) {
         console.log(e);
       }
-
+    }
+  },
+  computed: {
+    showCat(){
+      console.log(this.chosenCategory.name);
+      console.log(this.chosenCategory.id);
     }
   }
 }
