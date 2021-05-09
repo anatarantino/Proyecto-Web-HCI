@@ -36,7 +36,7 @@
           </v-col>
         </v-col>
         <v-divider></v-divider>
-        <v-list two-line light>
+        <v-list two-line flat>
           <v-list-item-group
               multiple
           >
