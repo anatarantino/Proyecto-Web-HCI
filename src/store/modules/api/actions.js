@@ -482,6 +482,28 @@ export default {
             }
         }
         return false;
+    },
+    async createCycle(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}/cycles`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                routineId: payload.routineId,
+                name: payload.cycle.name,
+                detail: '',
+                type: payload.cycle.type,
+                repetitions: payload.cycle.repetitions
+            })
+        });
+        let responseInfo = await response.json();
+        if (!response.ok) {
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
     }
 }
 

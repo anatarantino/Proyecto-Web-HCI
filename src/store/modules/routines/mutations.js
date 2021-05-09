@@ -9,13 +9,34 @@ export default {
         state.Enfriamiento.push(payload);
     },
     deleteEntradaEnCalor(state, payload) {
-        state.EntradaEnCalor.splice(payload);
+        let i=0;
+        for(let ex of state.EntradaEnCalor){
+            if(ex.id === payload.id){
+                state.EntradaEnCalor.splice(i,1);
+                return;
+            }
+            i++;
+        }
     },
     deleteEjercitacion(state, payload) {
-        state.Ejercitacion.splice(payload);
+        let i=0;
+        for(let ex of state.Ejercitacion){
+            if(ex.id === payload.id){
+                state.Ejercitacion.splice(i,1);
+                return;
+            }
+            i++;
+        }
     },
     deleteEnfriamiento(state, payload) {
-        state.Enfriamiento.splice(payload);
+        let i=0;
+        for(let ex of state.Enfriamiento){
+            if(ex.id === payload.id){
+                state.Enfriamiento.splice(i,1);
+                return;
+            }
+            i++;
+        }
     },
     resetEjercicios(state) {
         state.EntradaEnCalor = [];

@@ -94,6 +94,7 @@
                 label="Describe tu rutina"
                 rows="1"
                 auto-grow
+                v-model="routines.detail"
             >
             </v-textarea>
             <v-switch
@@ -123,6 +124,7 @@
               depressed
               rounded
               width="150"
+              @click="createRoutine"
               to="/home/myroutiness"
           >Publicar rutina
           </v-btn>
@@ -144,7 +146,7 @@ export default {
       routines: {
         bloquesName: ["Entrada en calor", "Ejercitación", "Enfriamiento"],
         difficulty: 0,
-        chosenCategory: [1],
+        chosenCategory: '',
         name: '',
         detail: '',
         isPublic: false
@@ -170,6 +172,25 @@ export default {
         this.state = 'Pública';
       } else {
         this.state = 'Privada';
+      }
+      console.log("categoria elegida");
+      console.log(this.routines.chosenCategory);
+    },
+    async createRoutine() {
+      if(this.$v.$invalid) {
+        this.$v.$touch();
+        console.log("Faltan datos");
+        return;
+      }
+      try {
+        this.routines.name = this.routines.name.toUpperCase();
+        let routine = await this.$store.dispatch('createRoutine',this.routines);
+
+        let exercises = this.$store.getters['routines/getCycles'];
+
+        let entradaEnCalor = await this.$store.dispatch('createCycle')
+
+
       }
     }
   },
