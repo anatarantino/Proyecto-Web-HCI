@@ -156,10 +156,6 @@ export default {
   created() {
     this.getCategories();
   },
-  beforeUpdate() {
-    console.log(this.chosenCategory.name);
-    console.log(this.chosenCategory.id);
-  },
   methods: {
     async getCategories() {
       try {

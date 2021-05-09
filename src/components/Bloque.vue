@@ -132,23 +132,23 @@ export default {
       }
     },
     checkboxUpdated(newValue, exercise) {
-      if(!newValue){
+      if (!newValue) {
         console.log(exercise);
         this.addToBlock(exercise);
-      }else{
+      } else {
         this.removeFromBlock(exercise);
       }
     },
     addToBlock(exercise) {
-      this.$store.commit(`routines/add${this.section}`,exercise);
-      let aux= this.$store.getters[`routines/getCycles`];
+      this.$store.commit(`routines/add${this.section}`, exercise);
+      let aux = this.$store.getters[`routines/getCycles`];
       console.log("Ejercicios agregados:");
-      for(let x of aux.EntradaEnCalor){
+      for (let x of aux.EntradaEnCalor) {
         console.log(x.name);
       }
     },
     removeFromBlock(exercise) {
-      this.$store.commit(`routines/delete${this.section}`,exercise);
+      this.$store.commit(`routines/delete${this.section}`, exercise);
     },
   }
 }
