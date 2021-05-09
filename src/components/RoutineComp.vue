@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-col cols="12" class="d-flex align-center justify-center">
-          <h1 class="font-italic white--text font-weight-regular">{{ routine.title }}</h1>
+          <h1 class="font-italic white--text font-weight-regular">{{ routines.title }}</h1>
         </v-col>
         <v-col cols="12" class="d-flex mx-auto" sm="4">
           <v-text-field
@@ -13,7 +13,7 @@
               dark
               required
               hide-details
-              v-model="routine.name"
+              v-model="routines.name"
               color="#4DFF00"
           >
           </v-text-field>
@@ -49,7 +49,7 @@
                 </v-col>
                 <div class="pl-2 pr-2 pb-1">
                   <v-chip-group
-                      v-model="routine.chosenCategory"
+                      v-model="routines.chosenCategory"
                       active-class="light-green accent-3 black--text "
                       column
                       class="pl-6 pr-2 "
@@ -70,7 +70,7 @@
               <v-card-actions class="align-center justify-center">
                 <h3 class="font-weight-regular">Dificultad</h3>
                 <v-rating
-                    v-model="routine.difficulty"
+                    v-model="routines.difficulty"
                     color="#4DFF00"
                     empty-icon="mdi-fire"
                     full-icon="mdi-fire"
@@ -97,7 +97,7 @@
             >
             </v-textarea>
             <v-switch
-                v-model="routine.isPublic"
+                v-model="routines.isPublic"
                 dark
                 color="#4DFF00"
                 :label=this.state
@@ -113,7 +113,7 @@
               rounded
               width="150"
               class="text-capitalize white--text ma-1 pt-1 pb-1"
-              to="/home/myroutines"
+              to="/home/myroutiness"
           >Cancelar
           </v-btn>
           <v-btn
@@ -123,7 +123,7 @@
               depressed
               rounded
               width="150"
-              to="/home/myroutines"
+              to="/home/myroutiness"
           >Publicar rutina
           </v-btn>
         </v-col>
@@ -141,7 +141,7 @@ export default {
   components: {bloque},
   data() {
     return {
-      routine: {
+      routines: {
         bloquesName: ["Entrada en calor", "Ejercitación", "Enfriamiento"],
         difficulty: 0,
         chosenCategory: [1],
@@ -170,7 +170,7 @@ export default {
       }
     },
     changeStatus() {
-      if (this.routine.isPublic) {
+      if (this.routines.isPublic) {
         this.state = 'Pública';
       } else {
         this.state = 'Privada';

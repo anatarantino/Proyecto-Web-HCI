@@ -42,13 +42,11 @@
                 <template v-slot:default="{ active }">
                   <v-list-item-content>
                     <v-list-item-title v-text="ex.name"></v-list-item-title>
-
                     <v-list-item-subtitle v-text="ex.detail"></v-list-item-subtitle>
-
                   </v-list-item-content>
-
                   <v-list-item-action>
                     <v-checkbox
+                        @change="checkboxUpdated(active,ex)"
                         :input-value="active"
                         color="#4DFF00"
                     ></v-checkbox>
@@ -115,16 +113,13 @@ export default {
   }),
   created() {
     this.exercises();
-  }
-  ,
-
+  },
   methods: {
     async exercises() {
       try {
         const exercises = await this.$store.dispatch('getExercises');
         this.totalExercises = exercises.totalCount;
         this.currentExercises = exercises.content;
-
         // console.log(this.totalExercises);
         // // for(let i of exercises.content){
         // //   console.log(i.name);
@@ -135,7 +130,26 @@ export default {
       } catch (e) {
         console.log(e);
       }
-    }
+    },
+    checkboxUpdated(newValue, exercise) {
+      if(!newValue){
+        console.log(exercise);
+        this.addToBlock(exercise);
+      }else{
+        this.removeFromBlock(exercise);
+      }
+    },
+    addToBlock(exercise) {
+      this.$store.commit(`routines/add${this.section}`,exercise);
+      let aux= this.$store.getters[`routines/getCycles`];
+      console.log("Ejercicios agregados:");
+      for(let x of aux.EntradaEnCalor){
+        console.log(x.name);
+      }
+    },
+    removeFromBlock(exercise) {
+      this.$store.commit(`routines/delete${this.section}`,exercise);
+    },
   }
 }
 
