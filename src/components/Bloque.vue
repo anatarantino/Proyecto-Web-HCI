@@ -27,7 +27,6 @@
                 class="mt-0 pt-0 ml-6 sm2"
                 light
                 hide-details
-                single-line
                 type="number"
                 min="1"
                 color="black"
@@ -50,12 +49,10 @@
                       <v-col cols="5" class="d-flex justify-end align-center">
                         <v-text-field
                             label="Repeticiones"
-                            placeholder="Repeticiones"
                             v-model="ex.repetitions"
-                            class="mt-0 pt-3 ml-6 mb-4 text-center"
+                            class="mt-0 pt-3 ml-6 mb-4"
                             hide-details
                             type="number"
-                            single-line
                             min="1"
                             style="width: 50px"
                             color="black"
@@ -64,11 +61,9 @@
                       <v-col cols="7" class="d-flex justify-end align-center">
                         <v-text-field
                             label="Duración (en segundos)"
-                            placeholder="Duración (en segundos)"
                             v-model="ex.duration"
-                            class="mt-0 pt-3 ml-6 mb-4 text-center"
+                            class="mt-0 pt-3 ml-6 mb-4"
                             hide-details
-                            single-line
                             type="number"
                             min="1"
                             style="width: 50px"
