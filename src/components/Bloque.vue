@@ -41,15 +41,15 @@
               multiple
           >
             <v-col v-for="(ex,index) in currentExercises" :key="index">
-              <v-list-item active-class="green--text text--accent-6">
-                <template v-slot:default="{ active }">
+              <v-list-item>
+                <template>
                   <v-list-item-content>
                     <v-list-item-title v-text="ex.name" ></v-list-item-title>
                     <v-list-item-subtitle v-text="ex.detail"></v-list-item-subtitle>
                   </v-list-item-content>
                   <v-row pa-3>
                     <v-col cols="12" class="d-flex align-center justify-center ma-0 pa-0">
-                      <v-col cols="3" class="d-flex justify-end align-center">
+                      <v-col cols="5" class="d-flex justify-end align-center">
                         <v-text-field
                             label="Repeticiones"
                             placeholder="Repeticiones"
@@ -63,7 +63,7 @@
                             color="black"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="5" class="d-flex justify-end align-center">
+                      <v-col cols="7" class="d-flex justify-end align-center">
                         <v-text-field
                             label="Duración (en segundos)"
                             placeholder="Duración (en segundos)"
