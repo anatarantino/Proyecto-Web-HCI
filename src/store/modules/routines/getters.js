@@ -4,9 +4,9 @@ export default {
             EntradaEnCalor: state.EntradaEnCalor,
             Ejercitacion: state.Ejercitacion,
             Enfriamiento: state.Enfriamiento,
-            roundsEntradaEnCalor: state.EntradaEnCalor,
-            roundsEjercitacion: state.Ejercitacion,
-            roundsEnfriamiento: state.Enfriamiento
+            roundsEntradaEnCalor: state.roundsEntradaEnCalor,
+            roundsEjercitacion: state.roundsEjercitacion,
+            roundsEnfriamiento: state.roundsEnfriamiento
         };
     }
 }

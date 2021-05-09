@@ -35,7 +35,7 @@
             <bloque title="Ejercitación" section="Ejercitacion"></bloque>
           </v-col>
           <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center">
-            <bloque title="Enfriamiento" section="Enfriamiento"></bloque>
+            <bloque title="Enfriamiento" section="Enfriamiento" ></bloque>
           </v-col>
         </v-row>
       </v-col>
@@ -70,7 +70,7 @@
               <v-card-actions class="align-center justify-center">
                 <h3 class="font-weight-regular">Dificultad</h3>
                 <v-rating
-                    v-model="routines.difficulty"
+                    v-model="routines.difficultyNum"
                     color="#4DFF00"
                     empty-icon="mdi-fire"
                     full-icon="mdi-fire"
@@ -144,12 +144,13 @@ export default {
     return {
       routines: {
         bloquesName: ["Entrada en calor", "Ejercitación", "Enfriamiento"],
-        difficulty: 0,
+        difficulty: '',
         chosenCategory: '',
         name: '',
         detail: '',
         isPublic: false
       },
+      difficultyNum: 1,
       categories: [],
       state: 'Privada',
       apiDifficulties: [ "rookie", "beginner", "intermediate", "advanced", "expert" ]
@@ -180,68 +181,74 @@ export default {
       console.log(this.routines.chosenCategory);
     },
     async createRoutine() {
-      if(this.$v.$invalid) {
-        this.$v.$touch();
-        console.log("Faltan datos");
-        return;
-      }
+      console.log("Un momento! creando rutina...");
       try {
         this.routines.name = this.routines.name.toUpperCase();
-        this.routines.difficulty = this.apiDifficulties[this.routines.difficulty];
+        this.routines.difficulty = this.apiDifficulties[this.routines.difficultyNum-1];
         let routine = await this.$store.dispatch('createRoutine',this.routines);
-
         let exercises = this.$store.getters['routines/getCycles'];
-
+        console.log("obtuve los ejercicios");
+        console.log("Al ciclo le voy a mandar:");
+        console.log("repetitions");
+        console.log(exercises.roundsEntradaEnCalor);
         let entradaEnCalor = await this.$store.dispatch('createCycle', {
           routineId: routine.id,
-          body: {
-            name: "Entrada en calor",
-            type: "warmup",
-            order: 1,
-            repetitions: exercises.roundsEntradaEnCalor
-          }
+          name: "Entrada en calor",
+          type: "warmup",
+          order: 1,
+          repetitions: exercises.roundsEntradaEnCalor
         });
+        console.log("cree la entrada en calor y su id es");
+        console.log(entradaEnCalor.id);
 
-        for (const ex of exercises.EntradaEnCalor) {
+        let index=1;
+        for (let ex of exercises.EntradaEnCalor) {
           let aux = await this.$store.dispatch('addExerciseToCycle', {
-            routineId: routine.id,
             cycleId: entradaEnCalor.id,
-            exercise: ex
+            exerciseId: ex.id,
+            order: index,
+            duration: parseInt(ex.duration),
+            repetitions: parseInt(ex.repetitions)
           })
+          index++
         }
+        console.log("ejercicios agregados a la entrada en calor")
         let ejercitacion = await this.$store.dispatch('createCycle', {
           routineId: routine.id,
-          body: {
-            name: "Ejercitacion",
-            type: "exercise",
-            order: 2,
-            repetitions: exercises.roundsEjercitacion
-          }
+          name: "Ejercitacion",
+          type: "exercise",
+          order: 2,
+          repetitions: exercises.roundsEjercitacion
         });
 
+        index=1
         for (const ex of exercises.Ejercitacion) {
           let aux = await this.$store.dispatch('addExerciseToCycle', {
-            routineId: routine.id,
             cycleId: ejercitacion.id,
-            exercise: ex
+            exerciseId: ex.id,
+            order: index,
+            duration: parseInt(ex.duration),
+            repetitions: parseInt(ex.repetitions)
           })
+          index++
         }
         let enfriamiento = await this.$store.dispatch('createCycle', {
           routineId: routine.id,
-          body: {
-            name: "Enfriamiento",
-            type: "cooldown",
-            order: 3,
-            repetitions: exercises.roundsEnfriamiento
-          }
+          name: "Enfriamiento",
+          type: "cooldown",
+          order: 3,
+          repetitions: exercises.roundsEnfriamiento
         });
-
+        index=1
         for (const ex of exercises.Enfriamiento) {
           let aux = await this.$store.dispatch('addExerciseToCycle', {
-            routineId: routine.id,
             cycleId: enfriamiento.id,
-            exercise: ex
+            exerciseId: ex.id,
+            order: index,
+            duration: parseInt(ex.duration),
+            repetitions: parseInt(ex.repetitions)
           })
+          index++
         }
 
         this.$emit('resetRoutine');
@@ -249,7 +256,9 @@ export default {
         await this.$router.replace('/home/myRoutines');
       } catch(e){
         console.log(e);
+        console.log("che algo paso y me fui");
       }
+
     },
     resetForm() {
       this.$v.$reset();

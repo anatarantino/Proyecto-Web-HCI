@@ -207,6 +207,7 @@ export default {
         }
     },
     async addExerciseToCycle(context, payload) {
+        console.log(payload);
         let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`, {
             method: 'POST',
             headers: {
@@ -215,15 +216,9 @@ export default {
             },
             body: JSON.stringify(
                 {
-                    cycleId: payload.cycleId,
-                    exerciseId: payload.exerciseId,
-                    body: {
-                        order: payload.order,
-                        // duration: payload.duration,
-                        // repetitions: payload.repetitions
-                        duration: 1,
-                        repetitions: 1
-                    } //fijarse si se manda asi el objeto
+                    order: payload.order,
+                    duration: payload.duration,
+                    repetitions: payload.repetitions
                 })
         });
         let responseInfo = await response.json();
@@ -295,7 +290,8 @@ export default {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                ...payload
+                ...payload,
+                metadata: null
             }) //estar atentas a si se esta creando bien
         });
         let responseInfo = await response.json();
@@ -493,11 +489,12 @@ export default {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                routineId: payload.routineId,
-                name: payload.body.name,
+                name: payload.name,
                 detail: '',
-                type: payload.body.type,
-                repetitions: payload.body.repetitions
+                type: payload.type,
+                order: payload.order,
+                repetitions: payload.repetitions,
+                metadata: null
             })
         });
         let responseInfo = await response.json();

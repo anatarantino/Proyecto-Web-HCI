@@ -41,10 +41,10 @@ export default {
     updateRoundsEntradaEnCalor(state, payload) {
         state.roundsEntradaEnCalor = payload;
     },
-    updateEjercitacion(state,payload) {
+    updateRoundsEjercitacion(state,payload) {
         state.roundsEjercitacion = payload;
     },
-    updateEnfriamiento(state,payload) {
+    updateRoundsEnfriamiento(state,payload) {
         state.roundsEnfriamiento = payload;
     },
     resetEjercicios(state) {
