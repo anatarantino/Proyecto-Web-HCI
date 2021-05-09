@@ -3,7 +3,10 @@ export default {
         return {
             EntradaEnCalor: state.EntradaEnCalor,
             Ejercitacion: state.Ejercitacion,
-            Enfriamiento: state.Enfriamiento
+            Enfriamiento: state.Enfriamiento,
+            roundsEntradaEnCalor: state.EntradaEnCalor,
+            roundsEjercitacion: state.Ejercitacion,
+            roundsEnfriamiento: state.Enfriamiento
         };
     }
 }

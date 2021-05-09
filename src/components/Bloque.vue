@@ -30,6 +30,7 @@
                 type="number"
                 min="1"
                 color="black"
+                @click="updateRounds"
             ></v-text-field>
           </v-col>
         </v-col>
@@ -42,7 +43,7 @@
               <v-list-item active-class="green--text text--accent-6">
                 <template v-slot:default="{ active }">
                   <v-list-item-content>
-                    <v-list-item-title v-text="ex.name"></v-list-item-title>
+                    <v-list-item-title v-text="ex.name" ></v-list-item-title>
                     <v-list-item-subtitle v-text="ex.detail"></v-list-item-subtitle>
                   </v-list-item-content>
                   <v-list-item-action>
@@ -55,33 +56,33 @@
                 </template>
               </v-list-item>
               <v-row pa-3>
-                <v-col cols="3" class="d-flex justify-end align-center">
-                  <v-text-field
-                      label="Cantidad"
-                      class="mt-0 pt-3 ml-6 mb-4 text-center"
-                      hide-details
-                      single-line
-                      type="number"
-                      min="1"
-                      style="width: 50px"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="6">
-                  <v-radio-group
-                      row
-                      mandatory
-                  >
-                    <v-radio
-                        label="Segundos"
-                        color="#4DFF00"
-                        value="seg"
-                    ></v-radio>
-                    <v-radio
+                <v-col cols="12" class="d-flex align-center justify-center ma-0 pa-0">
+                  <v-col cols="3" class="d-flex justify-end align-center">
+                    <v-text-field
                         label="Repeticiones"
-                        color="#4DFF00"
-                        value="reps"
-                    ></v-radio>
-                  </v-radio-group>
+                        v-model="exerciseInfo.repetitions"
+                        class="mt-0 pt-3 ml-6 mb-4 text-center"
+                        hide-details
+                        single-line
+                        type="number"
+                        min="1"
+                        style="width: 50px"
+                        color="black"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="5" class="d-flex justify-end align-center">
+                    <v-text-field
+                        label="Duración (en segundos)"
+                        v-model="exerciseInfo.duration"
+                        class="mt-0 pt-3 ml-6 mb-4 text-center"
+                        hide-details
+                        single-line
+                        type="number"
+                        min="1"
+                        style="width: 50px"
+                        color="black"
+                    ></v-text-field>
+                  </v-col>
                 </v-col>
               </v-row>
               <v-divider
@@ -104,14 +105,21 @@ export default {
     },
     section: {
       type: String
-    },
+    }
   },
   data: () => ({
     panel: [0, 1],
     currentExercises: [],
     totalExercises: 0,
     deleteExc: "",
-    vueltas: 1
+    vueltas: '',
+    exerciseInfo: {
+      name: '',
+      detail: '',
+      type: 'exercise',
+      repetitions: '',
+      duration: ''
+    }
   }),
   created() {
     this.exercises();
@@ -142,11 +150,14 @@ export default {
     },
     addToBlock(exercise) {
       this.$store.commit(`routines/add${this.section}`, exercise);
-      let aux = this.$store.getters[`routines/getCycles`];
     },
     removeFromBlock(exercise) {
       this.$store.commit(`routines/delete${this.section}`, exercise);
     },
+    updateRounds(){
+      this.$store.commit(`routines/`,vueltas);
+
+    }
   }
 }
 

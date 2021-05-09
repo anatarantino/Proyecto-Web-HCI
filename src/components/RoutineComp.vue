@@ -125,7 +125,6 @@
               rounded
               width="150"
               @click="createRoutine"
-              to="/home/myroutiness"
           >Publicar rutina
           </v-btn>
         </v-col>
@@ -152,13 +151,17 @@ export default {
         isPublic: false
       },
       categories: [],
-      state: 'Privada'
+      state: 'Privada',
+      apiDifficulties: [ "rookie", "beginner", "intermediate", "advanced", "expert" ]
     }
   },
   created() {
     this.getCategories();
   },
   methods: {
+    resetRoutine(){
+      this.resetForm();
+    },
     async getCategories() {
       try {
         const aux = await this.$store.dispatch('getCategories');
@@ -184,15 +187,79 @@ export default {
       }
       try {
         this.routines.name = this.routines.name.toUpperCase();
+        this.routines.difficulty = this.apiDifficulties[this.routines.difficulty];
         let routine = await this.$store.dispatch('createRoutine',this.routines);
 
         let exercises = this.$store.getters['routines/getCycles'];
 
-        let entradaEnCalor = await this.$store.dispatch('createCycle')
+        let entradaEnCalor = await this.$store.dispatch('createCycle', {
+          routineId: routine.id,
+          body: {
+            name: "Entrada en calor",
+            type: "warmup",
+            order: 1,
+            repetitions: exercises.roundsEntradaEnCalor
+          }
+        });
 
+        for (const ex of exercises.EntradaEnCalor) {
+          let aux = await this.$store.dispatch('addExerciseToCycle', {
+            routineId: routine.id,
+            cycleId: entradaEnCalor.id,
+            exercise: ex
+          })
+        }
+        let ejercitacion = await this.$store.dispatch('createCycle', {
+          routineId: routine.id,
+          body: {
+            name: "Ejercitacion",
+            type: "exercise",
+            order: 2,
+            repetitions: exercises.roundsEjercitacion
+          }
+        });
 
+        for (const ex of exercises.Ejercitacion) {
+          let aux = await this.$store.dispatch('addExerciseToCycle', {
+            routineId: routine.id,
+            cycleId: ejercitacion.id,
+            exercise: ex
+          })
+        }
+        let enfriamiento = await this.$store.dispatch('createCycle', {
+          routineId: routine.id,
+          body: {
+            name: "Enfriamiento",
+            type: "cooldown",
+            order: 3,
+            repetitions: exercises.roundsEnfriamiento
+          }
+        });
+
+        for (const ex of exercises.Enfriamiento) {
+          let aux = await this.$store.dispatch('addExerciseToCycle', {
+            routineId: routine.id,
+            cycleId: enfriamiento.id,
+            exercise: ex
+          })
+        }
+
+        this.$emit('resetRoutine');
+        this.$store.commit('routines/resetExercises');
+        await this.$router.replace('/home/myRoutines');
+      } catch(e){
+        console.log(e);
       }
+    },
+    resetForm() {
+      this.$v.$reset();
+      this.difficulty= 0;
+      this.chosenCategory= '';
+      this.name= '';
+      this.detail= '';
+      this.isPublic= false;
     }
+
   },
 }
 </script>

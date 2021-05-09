@@ -38,9 +38,21 @@ export default {
             i++;
         }
     },
+    updateRoundsEntradaEnCalor(state, payload) {
+        state.roundsEntradaEnCalor = payload;
+    },
+    updateEjercitacion(state,payload) {
+        state.roundsEjercitacion = payload;
+    },
+    updateEnfriamiento(state,payload) {
+        state.roundsEnfriamiento = payload;
+    },
     resetEjercicios(state) {
         state.EntradaEnCalor = [];
         state.Ejercitacion = [];
         state.Enfriamiento = [];
+        state.roundsEntradaEnCalor= 1;
+        state.roundsEjercitacion= 1;
+        state.roundsEnfriamiento= 1;
     }
 }

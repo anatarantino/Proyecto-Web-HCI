@@ -219,8 +219,10 @@ export default {
                     exerciseId: payload.exerciseId,
                     body: {
                         order: payload.order,
-                        duration: payload.duration,
-                        repetitions: payload.repetitions
+                        // duration: payload.duration,
+                        // repetitions: payload.repetitions
+                        duration: 1,
+                        repetitions: 1
                     } //fijarse si se manda asi el objeto
                 })
         });
@@ -492,10 +494,10 @@ export default {
             },
             body: JSON.stringify({
                 routineId: payload.routineId,
-                name: payload.cycle.name,
+                name: payload.body.name,
                 detail: '',
-                type: payload.cycle.type,
-                repetitions: payload.cycle.repetitions
+                type: payload.body.type,
+                repetitions: payload.body.repetitions
             })
         });
         let responseInfo = await response.json();
