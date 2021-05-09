@@ -36,11 +36,9 @@
           </v-col>
         </v-col>
         <v-divider></v-divider>
-        <v-list two-line flat>
-          <v-list-item-group
-              multiple
-          >
-            <v-col v-for="(ex,index) in currentExercises" :key="index">
+        <v-list flat>
+          <v-list-item-group multiple>
+            <v-col v-for="(ex,index) in currentExercises" :key="index" class="ma-0 pa-0">
               <v-list-item>
                 <template>
                   <v-list-item-content>
