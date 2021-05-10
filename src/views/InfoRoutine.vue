@@ -2,14 +2,9 @@
   <v-container fluid class="ml-10 mt-8">
     <v-row align="center">
       <h1 class="font-weight-light font-italic white--text"> {{ routName }} </h1>
-      <v-btn color="transparent" x-small>
-        <v-icon color="white">
-          mdi-share-variant
-        </v-icon>
-      </v-btn>
-      <v-btn color="transparent" x-small>
-        <v-icon color="white">
-          mdi-heart-outline
+      <v-btn icon @click="markFav" >
+        <v-icon icon :color="fav ? 'red' : 'white'">
+          mdi-heart
         </v-icon>
       </v-btn>
       <v-btn color="transparent" x-small to="/home/editroutine">
@@ -116,7 +111,7 @@
           <v-col cols="6">
             <v-card>
               <v-card-title>
-                Comentarios del creador
+                Descripción de la rutina
               </v-card-title>
               <v-card-text>
                 <p> Con el entrenamiento con cuerdas durante
@@ -141,6 +136,8 @@ export default {
   components: {ExerciseLine},
   data() {
     return {
+      fav: false,
+      routine: '',
       routName: "Fuerza de Martin Quito",
       lines: [
         {
@@ -187,6 +184,29 @@ export default {
       ],
     }
   },
+  methods: {
+    async markFav(){
+      if (this.fav) {
+        this.fav = false;
+        // try {
+        //   await this.$store.dispatch('removeFromFavourite',{routineId: this.routine.id});
+        //   this.fav = false;
+        // }catch (e) {
+        //   this.fav = true;
+        //   console.log(e);
+        // }
+      }else {
+        this.fav = true;
+        // try {
+        //   await this.$store.dispatch('addToFavourite',{routineId: this.id});
+        //   this.fav = true;
+        // } catch(e) {
+        //   this.fav = false;
+        //   console.log(e);
+        // }
+      }
+    }
+  }
 }
 </script>
 

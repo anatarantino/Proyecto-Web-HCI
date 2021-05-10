@@ -8,26 +8,26 @@
         <v-container fluid>
           <v-row class="d-flex ma-0 pa-0">
             <v-col cols="12" class="d-flex ma-0 pa-0">
-              <h3 class="subt">Tus últimos entrenamientos</h3>
+              <h3 class="subt">Tus últimas rutinas creadas</h3>
             </v-col>
-            <v-col cols="4" v-for="rout in routines" :key="rout.id">
+            <v-col cols="4" v-for="rout in lastCreatedRoutines" :key="rout.id">
               <RoutineCard :routine="rout"></RoutineCard>
             </v-col>
           </v-row>
         </v-container>
       </v-col>
-      <v-col cols="12" class="d-flex ma-0 pa-0">
-        <v-container fluid>
-          <v-row class="d-flex ma-0 pa-0">
-            <v-col cols="12" class="d-flex ma-0 pa-0">
-              <h3 class="subt">Tus rutinas favoritas</h3>
-            </v-col>
-            <v-col cols="4" v-for="fav in favorites" :key="fav.id">
-              <RoutineCard :routine="fav"></RoutineCard>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-col>
+<!--      <v-col cols="12" class="d-flex ma-0 pa-0">-->
+<!--        <v-container fluid>-->
+<!--          <v-row class="d-flex ma-0 pa-0">-->
+<!--            <v-col cols="12" class="d-flex ma-0 pa-0">-->
+<!--              <h3 class="subt">Tus rutinas favoritas</h3>-->
+<!--            </v-col>-->
+<!--            <v-col cols="4" v-for="fav in favorites" :key="fav.id">-->
+<!--              <RoutineCard :routine="fav"></RoutineCard>-->
+<!--            </v-col>-->
+<!--          </v-row>-->
+<!--        </v-container>-->
+<!--      </v-col>-->
     </v-row>
   </v-container>
 </template>
@@ -42,65 +42,39 @@ export default {
   components: {RoutineCard},
   data() {
     return {
-      categoryOptions: [
-        {option: "Cardio", value: 1},
-        {option: "Fuerza", value: 2},
-        {option: "Abdominales", value: 3}
-      ],
-      routines: [
-        {
-          id: 1,
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 4,
-          rating: 3,
-          category: 1
-        },
-        {
-          id:2,
-          name: "Cardio",
-          entradaEnCalor: 10,
-          ejercitacion: 15,
-          enfriamiento: 5,
-          dificultad: 1,
-          rating: 3,
-          category: 1
-        },
-      ],
-      favorites: [
-        {
-          id:1,
-          name: "Fuerza",
-          entradaEnCalor: 10,
-          ejercitacion: 40,
-          enfriamiento: 10,
-          dificultad: 2,
-          rating: 5,
-          category: 2
-        },
-        {
-          id:2,
-          name: "Abdominales",
-          entradaEnCalor: 15,
-          ejercitacion: 30,
-          enfriamiento: 15,
-          dificultad: 3,
-          rating: 5,
-          category: 3
-        },
-        {
-          id:3,
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 3,
-          rating: 4,
-          category: 1
-        }
-      ]
+      lastCreatedRoutines: [],
+      favouriteRoutine: []
+
+    }
+  },
+  created() {
+    this.getFavourites();
+    this.getLastRoutines();
+  },
+  methods: {
+    async getLastRoutines() {
+      const data = {
+        orderBy: "date",
+        size: 3,
+        direction: "desc"
+      }
+      try {
+        const aux = await this.$store.dispatch('getCurrentUserRoutines',data);
+        console.log("entre a lo de las ultimas");
+        console.log(aux.content);
+        this.lastCreatedRoutines = aux.content;
+      }catch (e){
+        console.log(e);
+      }
+    },
+    async getFavourites() {
+      try {
+        const aux = await this.$store.dispatch('getFavourites');
+        this.favouriteRoutine = aux.content;
+      }catch (e){
+        console.log(e);
+      }
+
     }
   }
 }

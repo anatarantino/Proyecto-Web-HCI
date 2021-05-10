@@ -352,7 +352,9 @@ export default {
         return responseInfo;
     },
     async getCurrentUserRoutines(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/users/current/routines/`, {
+        let response = await fetch(`${context.getters.baseUrl}/users/current/routines/?` + new URLSearchParams({
+            ...payload
+        }), {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`,
@@ -366,7 +368,9 @@ export default {
         return responseInfo;
     },
     async getRoutines(context,payload) {
-        let response = await fetch(`${context.getters.baseUrl}/routines`, {
+        let response = await fetch(`${context.getters.baseUrl}/routines?` + new URLSearchParams({
+            ...payload
+        }), {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`,
@@ -379,16 +383,14 @@ export default {
         }
         return responseInfo;
     },
-    async getFavourite(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/favourites`, {
+    async getFavourites(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/favourites?` + new URLSearchParams({
+            ...payload
+        }), {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`,
             },
-            body: JSON.stringify({
-                orderBy: payload.orderBy,
-                direction: payload.direction,
-            }) //chequear esto no se si estan bien pasados los param
         });
         let responseInfo = await response.json();
         if (!response.ok) {
