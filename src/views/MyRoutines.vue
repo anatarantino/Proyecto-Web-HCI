@@ -51,11 +51,6 @@ export default {
       drawer: false,
       group: null,
       hidden: false,
-      categoryOptions: [
-        {option: "Cardio", value: 1},
-        {option: "Fuerza", value: 2},
-        {option: "Abdominales", value: 3}
-      ],
       myRoutines: []
     }
   },

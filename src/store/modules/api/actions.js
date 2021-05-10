@@ -365,6 +365,20 @@ export default {
         }
         return responseInfo;
     },
+    async getRoutines(context,payload) {
+        let response = await fetch(`${context.getters.baseUrl}/routines`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
+        });
+        let responseInfo = await response.json();
+        if (!response.ok) {
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
     async getFavourite(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/favourites`, {
             method: 'GET',

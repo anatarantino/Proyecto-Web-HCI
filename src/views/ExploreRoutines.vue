@@ -13,29 +13,29 @@
                 hide-details
             ></v-text-field>
           </v-col>
-          <v-col class="d-flex justify-start">
-            <FilterRout></FilterRout>
-          </v-col>
+<!--          <v-col class="d-flex justify-start">-->
+<!--            <FilterRout></FilterRout>-->
+<!--          </v-col>-->
         </v-col>
       </v-row>
       <v-col cols="12" class="d-flex ma-0 pa-0">
         <v-container fluid>
           <v-row class="d-flex ma-0 pa-0">
-            <v-col cols="4" v-for="rout in routines" :key="rout">
+            <v-col cols="4" v-for="rout in publicRoutines" :key="rout.id">
               <RoutineCard :routine="rout"></RoutineCard>
             </v-col>
           </v-row>
         </v-container>
       </v-col>
-      <v-col cols="12" class="d-flex ma-0 pa-0">
-        <v-container fluid>
-          <v-row class="d-flex ma-0 pa-0">
-            <v-col cols="4" v-for="fav in favorites" :key="fav">
-              <RoutineCard :routine="fav"></RoutineCard>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-col>
+<!--      <v-col cols="12" class="d-flex ma-0 pa-0">-->
+<!--        <v-container fluid>-->
+<!--          <v-row class="d-flex ma-0 pa-0">-->
+<!--            <v-col cols="4" v-for="fav in favorites" :key="fav">-->
+<!--              <RoutineCard :routine="fav"></RoutineCard>-->
+<!--            </v-col>-->
+<!--          </v-row>-->
+<!--        </v-container>-->
+<!--      </v-col>-->
       <v-btn
           color="#4DFF00"
           depressed
@@ -60,86 +60,26 @@ export default {
   components: {FilterRout, RoutineCard},
   data() {
     return {
-      categoryOptions: [
-        {option: "Cardio", value: 1},
-        {option: "Fuerza", value: 2},
-        {option: "Abdominales", value: 3}
-      ],
-      routines: [
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 4,
-          rating: 3,
-          category: 1
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 4,
-          rating: 3,
-          category: 1
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 10,
-          ejercitacion: 15,
-          enfriamiento: 5,
-          dificultad: 1,
-          rating: 3,
-          category: 1
-        },
-      ],
-      favorites: [
-        {
-          name: "Fuerza",
-          entradaEnCalor: 10,
-          ejercitacion: 40,
-          enfriamiento: 10,
-          dificultad: 2,
-          rating: 5,
-          category: 2
-        },
-        {
-          name: "Abdominales",
-          entradaEnCalor: 15,
-          ejercitacion: 30,
-          enfriamiento: 15,
-          dificultad: 3,
-          rating: 5,
-          category: 3
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 3,
-          rating: 4,
-          category: 1
+      publicRoutines: []
+    }
+  },
+  created() {
+    this.getPublicRoutines();
+  },
+  methods: {
+    async getPublicRoutines() {
+      try {
+        const aux = await this.$store.dispatch('getRoutines');
+        let index = 0;
+        for(let r of aux.content){
+          if(r.isPublic){
+            this.publicRoutines.push(r);
+          }
+          index++;
         }
-      ],
-      items: [
-        {
-          it: 1
-        },
-        {
-          it: 2
-        },
-        {
-          it: 3
-        },
-        {
-          it: 4
-        },
-        {
-          it: 5
-        }
-      ]
+      }catch (e){
+        console.log(e);
+      }
     }
   }
 }
