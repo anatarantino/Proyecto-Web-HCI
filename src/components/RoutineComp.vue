@@ -177,20 +177,14 @@ export default {
       } else {
         this.state = 'Privada';
       }
-      console.log("categoria elegida");
-      console.log(this.routines.chosenCategory);
     },
     async createRoutine() {
-      console.log("Un momento! creando rutina...");
+
       try {
         this.routines.name = this.routines.name.toUpperCase();
         this.routines.difficulty = this.apiDifficulties[this.routines.difficultyNum-1];
         let routine = await this.$store.dispatch('createRoutine',this.routines);
         let exercises = this.$store.getters['routines/getCycles'];
-        console.log("obtuve los ejercicios");
-        console.log("Al ciclo le voy a mandar:");
-        console.log("repetitions");
-        console.log(exercises.roundsEntradaEnCalor);
         let entradaEnCalor = await this.$store.dispatch('createCycle', {
           routineId: routine.id,
           name: "Entrada en calor",
@@ -198,8 +192,6 @@ export default {
           order: 1,
           repetitions: exercises.roundsEntradaEnCalor
         });
-        console.log("cree la entrada en calor y su id es");
-        console.log(entradaEnCalor.id);
 
         let index=1;
         for (let ex of exercises.EntradaEnCalor) {
@@ -212,7 +204,7 @@ export default {
           })
           index++
         }
-        console.log("ejercicios agregados a la entrada en calor")
+
         let ejercitacion = await this.$store.dispatch('createCycle', {
           routineId: routine.id,
           name: "Ejercitacion",
@@ -232,6 +224,7 @@ export default {
           })
           index++
         }
+
         let enfriamiento = await this.$store.dispatch('createCycle', {
           routineId: routine.id,
           name: "Enfriamiento",
@@ -239,6 +232,7 @@ export default {
           order: 3,
           repetitions: exercises.roundsEnfriamiento
         });
+
         index=1
         for (const ex of exercises.Enfriamiento) {
           let aux = await this.$store.dispatch('addExerciseToCycle', {
@@ -250,13 +244,11 @@ export default {
           })
           index++
         }
-
         this.$emit('resetRoutine');
         this.$store.commit('routines/resetExercises');
         await this.$router.replace('/home/myRoutines');
       } catch(e){
         console.log(e);
-        console.log("che algo paso y me fui");
       }
 
     },

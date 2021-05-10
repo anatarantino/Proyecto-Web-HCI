@@ -207,6 +207,7 @@ export default {
         }
     },
     async addExerciseToCycle(context, payload) {
+        console.log("agregando ciclos");
         console.log(payload);
         let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`, {
             method: 'POST',
@@ -482,6 +483,8 @@ export default {
         return false;
     },
     async createCycle(context, payload) {
+        console.log("creando ciclo..");
+        console.log(payload);
         let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}/cycles`, {
             method: 'POST',
             headers: {
