@@ -2,12 +2,13 @@
   <v-container>
     <v-row class="d-flex ma-0 pa-0 justify-center">
       <v-col class="d-flex justify-start align-center" cols="12">
-        <FilterRout></FilterRout>
+        <!--        <FilterRout></FilterRout>-->
       </v-col>
       <v-col cols="12" class="d-flex ma-0 pa-0">
         <v-container fluid>
           <v-row class="d-flex ma-0 pa-0">
-            <v-col cols="4" v-for="rout in routines" :key="rout">
+            <v-col cols="4" v-for="rout in myRoutines" :key="rout.id">
+              <h1>{{rout}}</h1>
               <RoutineCard :routine="rout"></RoutineCard>
             </v-col>
           </v-row>
@@ -16,9 +17,9 @@
       <v-col cols="12" class="d-flex ma-0 pa-0">
         <v-container fluid>
           <v-row class="d-flex ma-0 pa-0">
-            <v-col cols="4" v-for="fav in favorites" :key="fav">
-              <RoutineCard :routine="fav"></RoutineCard>
-            </v-col>
+            <!--            <v-col cols="4" v-for="fav in favorites" :key="fav">-->
+            <!--              <RoutineCard :routine="fav"></RoutineCard>-->
+            <!--            </v-col>-->
           </v-row>
         </v-container>
       </v-col>
@@ -57,117 +58,7 @@ export default {
         {option: "Fuerza", value: 2},
         {option: "Abdominales", value: 3}
       ],
-      routines: [
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 4,
-          rating: 3,
-          category: 1
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 4,
-          rating: 3,
-          category: 1
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 10,
-          ejercitacion: 15,
-          enfriamiento: 5,
-          dificultad: 1,
-          rating: 3,
-          category: 1
-        },
-      ],
-      favorites: [
-        {
-          name: "Fuerza",
-          entradaEnCalor: 10,
-          ejercitacion: 40,
-          enfriamiento: 10,
-          dificultad: 2,
-          rating: 5,
-          category: 2
-        },
-        {
-          name: "Abdominales",
-          entradaEnCalor: 15,
-          ejercitacion: 30,
-          enfriamiento: 15,
-          dificultad: 3,
-          rating: 5,
-          category: 3
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 3,
-          rating: 4,
-          category: 1
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 4,
-          rating: 3,
-          category: 1
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 4,
-          rating: 3,
-          category: 1
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 4,
-          rating: 3,
-          category: 1
-        },
-        {
-          name: "Cardio",
-          entradaEnCalor: 15,
-          ejercitacion: 35,
-          enfriamiento: 10,
-          dificultad: 4,
-          rating: 3,
-          category: 1
-        },
-      ],
-      items: [
-        {
-          it: 1
-        },
-        {
-          it: 2
-        },
-        {
-          it: 3
-        },
-        {
-          it: 4
-        },
-        {
-          it: 5
-        }
-      ]
+      myRoutines: []
     }
   },
   watch: {
@@ -175,6 +66,27 @@ export default {
       this.drawer = false
     },
   },
+  created() {
+    this.getMyRoutines();
+  },
+  methods: {
+    async getMyRoutines() {
+      try {
+        console.log("HOOLAAAAAAAAAAA MARTI")
+        const aux = await this.$store.dispatch('getCurrentUserRoutines');
+        console.log(aux.totalCount);
+        this.myRoutines = aux.content;
+        console.log(this.myRoutines[0].name);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  },
+  computed: {
+    // categoryImg() {
+    //   return require(`../assets/images/${this.routine.category}.jpg`)
+    // }
+  }
 }
 </script>
 

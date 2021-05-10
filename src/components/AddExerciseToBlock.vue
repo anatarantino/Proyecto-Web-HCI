@@ -3,8 +3,8 @@
     <v-col cols="12">
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>{{exercise.name}}</v-list-item-title>
-          <v-list-item-subtitle>{{exercise.detail}}</v-list-item-subtitle>
+          <v-list-item-title>{{ exercise.name }}</v-list-item-title>
+          <v-list-item-subtitle>{{ exercise.detail }}</v-list-item-subtitle>
         </v-list-item-content>
         <v-row pa-3>
           <v-col cols="12" class="d-flex align-center justify-center ma-0 pa-0">
@@ -44,7 +44,6 @@
               color="#4DFF00"
           ></v-checkbox>
         </v-list-item-action>
-
       </v-list-item>
     </v-col>
   </v-row>
@@ -52,9 +51,10 @@
 
 <script>
 import {required} from 'vuelidate/lib/validators'
+
 export default {
   name: "AddExerciseToBlock",
-  props: ["exercise","section"],
+  props: ["exercise", "section"],
   data() {
     return {
       checkbox: false,
@@ -65,7 +65,6 @@ export default {
   },
   methods: {
     emitState(event) {
-
       if (this.$v.$invalid) {
         this.$v.$touch();
         console.log("Por favor complete todos los datos");
@@ -74,9 +73,8 @@ export default {
       }
       this.exercise.repetitions = parseInt(this.reps);
       this.exercise.duration = parseInt(this.duration);
-      this.$emit('exMarked',this.checkbox,this.exercise);
+      this.$emit('exMarked', this.checkbox, this.exercise);
     },
-
   },
   validations: {
     reps: {
@@ -87,17 +85,17 @@ export default {
     }
   },
   computed: {
-    errorReps(){
+    errorReps() {
       const errors = []
-      if(!this.$v.reps.$dirty){
+      if (!this.$v.reps.$dirty) {
         return errors
       }
       !this.$v.reps.required && errors.push('Ingrese una cantidad')
       return errors
     },
-    errorDur(){
+    errorDur() {
       const errors = []
-      if(!this.$v.duration.$dirty){
+      if (!this.$v.duration.$dirty) {
         return errors
       }
       !this.$v.duration.required && errors.push('Ingrese una cantidad')

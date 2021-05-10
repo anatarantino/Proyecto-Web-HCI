@@ -355,18 +355,11 @@ export default {
         return responseInfo;
     },
     async getCurrentUserRoutines(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/users/${payload.userId}/routines`, {
+        let response = await fetch(`${context.getters.baseUrl}/users/current/routines/`, {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`,
             },
-            body: JSON.stringify({
-                userId: payload.userId,
-                difficulty: payload.difficulty,
-                orderBy: payload.orderBy,
-                direction: payload.direction,
-                search: payload.search
-            }) //chequear esto no se si estan bien pasados los param
         });
         let responseInfo = await response.json();
         if (!response.ok) {

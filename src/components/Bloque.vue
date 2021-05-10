@@ -39,7 +39,8 @@
           <v-list-item-group multiple>
             <v-col v-for="(ex,index) in currentExercises" :key="index" class="ma-0 pa-0">
               <v-list-item>
-                <add-exercise-to-block :exercise="ex" :section="section" v-on:exMarked="checkboxUpdated"></add-exercise-to-block>
+                <add-exercise-to-block :exercise="ex" :section="section"
+                                       v-on:exMarked="checkboxUpdated"></add-exercise-to-block>
               </v-list-item>
               <v-divider
                   v-if="index < totalExercises - 1"
@@ -54,6 +55,7 @@
 
 <script>
 import AddExerciseToBlock from "@/components/AddExerciseToBlock";
+
 export default {
   name: "Bloque",
   components: {AddExerciseToBlock},
@@ -93,7 +95,7 @@ export default {
         console.log(e);
       }
     },
-    checkboxUpdated(value,exercise) {
+    checkboxUpdated(value, exercise) {
       if (value) {
         this.addToBlock(exercise);
       } else {
@@ -107,8 +109,8 @@ export default {
     removeFromBlock(exercise) {
       this.$store.commit(`routines/delete${this.section}`, exercise);
     },
-    updateRounds(){
-      this.$store.commit(`routines/updateRounds${this.section}`,this.rounds);
+    updateRounds() {
+      this.$store.commit(`routines/updateRounds${this.section}`, this.rounds);
     }
   },
 

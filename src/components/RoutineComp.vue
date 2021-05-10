@@ -190,7 +190,7 @@ export default {
           name: "Entrada en calor",
           type: "warmup",
           order: 1,
-          repetitions: exercises.roundsEntradaEnCalor
+          repetitions: parseInt(exercises.roundsEntradaEnCalor)
         });
 
         let index=1;
@@ -210,7 +210,7 @@ export default {
           name: "Ejercitacion",
           type: "exercise",
           order: 2,
-          repetitions: exercises.roundsEjercitacion
+          repetitions: parseInt(exercises.roundsEjercitacion)
         });
 
         index=1
@@ -230,7 +230,7 @@ export default {
           name: "Enfriamiento",
           type: "cooldown",
           order: 3,
-          repetitions: exercises.roundsEnfriamiento
+          repetitions: parseInt(exercises.roundsEnfriamiento)
         });
 
         index=1
@@ -245,7 +245,7 @@ export default {
           index++
         }
         this.$emit('resetRoutine');
-        this.$store.commit('routines/resetExercises');
+        this.$store.commit('routines/resetEjercicios');
         await this.$router.replace('/home/myRoutines');
       } catch(e){
         console.log(e);
