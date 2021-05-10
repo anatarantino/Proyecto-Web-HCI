@@ -49,12 +49,12 @@
                 </v-col>
                 <div class="pl-2 pr-2 pb-1">
                   <v-chip-group
-                      v-model="routines.chosenCategory"
+                      v-model="chosenCategory"
                       active-class="light-green accent-3 black--text "
                       column
                       class="pl-6 pr-2 "
                   >
-                    <v-chip v-for="cat in categories" :key="cat.id">{{ cat.name }}</v-chip>
+                    <v-chip v-for="cat in this.categories" :key="cat.id" :value="cat">{{ cat.name }}</v-chip>
                   </v-chip-group>
                 </div>
               </v-row>
@@ -145,15 +145,16 @@ export default {
       routines: {
         bloquesName: ["Entrada en calor", "Ejercitación", "Enfriamiento"],
         difficulty: '',
-        chosenCategory: '',
         name: '',
         detail: '',
-        isPublic: false
+        isPublic: false,
+        category: ''
       },
+      categories: '',
       difficultyNum: 1,
-      categories: [],
       state: 'Privada',
-      apiDifficulties: [ "rookie", "beginner", "intermediate", "advanced", "expert" ]
+      apiDifficulties: [ "rookie", "beginner", "intermediate", "advanced", "expert" ],
+      chosenCategory: ''
     }
   },
   created() {
@@ -182,6 +183,8 @@ export default {
 
       try {
         this.routines.name = this.routines.name.toUpperCase();
+        this.routines.category = this.chosenCategory;
+        this.routines.date = Date.now();
         this.routines.difficulty = this.apiDifficulties[this.routines.difficultyNum-1];
         let routine = await this.$store.dispatch('createRoutine',this.routines);
         let exercises = this.$store.getters['routines/getCycles'];
@@ -255,10 +258,13 @@ export default {
     resetForm() {
       this.$v.$reset();
       this.difficulty= 0;
-      this.chosenCategory= '';
+      this.category= '';
       this.name= '';
       this.detail= '';
       this.isPublic= false;
+    },
+    logging(){
+      console.log(this.chosenCategory.name);
     }
 
   },

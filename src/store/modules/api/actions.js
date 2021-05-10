@@ -25,7 +25,6 @@ export default {
             }
             throw new Error(errorMsg);
         }
-        await context.dispatch("categoriesData");
     },
     async signIn(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/users/login`, {
@@ -207,8 +206,6 @@ export default {
         }
     },
     async addExerciseToCycle(context, payload) {
-        console.log("agregando ciclos");
-        console.log(payload);
         let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`, {
             method: 'POST',
             headers: {
@@ -476,8 +473,6 @@ export default {
         return false;
     },
     async createCycle(context, payload) {
-        console.log("creando ciclo..");
-        console.log(payload);
         let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}/cycles`, {
             method: 'POST',
             headers: {

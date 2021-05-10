@@ -8,7 +8,6 @@
         <v-container fluid>
           <v-row class="d-flex ma-0 pa-0">
             <v-col cols="4" v-for="rout in myRoutines" :key="rout.id">
-              <h1>{{rout}}</h1>
               <RoutineCard :routine="rout"></RoutineCard>
             </v-col>
           </v-row>
@@ -29,7 +28,6 @@
           depressed
           absolute
           bottom
-          fixed
           rounded
           elevation="5"
           class="text-capitalize"
@@ -72,11 +70,8 @@ export default {
   methods: {
     async getMyRoutines() {
       try {
-        console.log("HOOLAAAAAAAAAAA MARTI")
         const aux = await this.$store.dispatch('getCurrentUserRoutines');
-        console.log(aux.totalCount);
         this.myRoutines = aux.content;
-        console.log(this.myRoutines[0].name);
       } catch (e) {
         console.log(e);
       }

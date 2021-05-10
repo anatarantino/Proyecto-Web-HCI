@@ -15,13 +15,13 @@
                 <h4 class="font-weight-light text-start">Categoría: {{ routine.category.name }} </h4>
               </v-col>
               <v-col cols="12" class="d-flex justify-start align-center pa-0">
-                <h4 class="font-weight-light text-start">Descripción: {{ routine.detail }}</h4>
+                <h4 class="font-weight-light text-start">Creada: {{ this.date }}</h4>
               </v-col>
               <v-col cols="12" class="d-flex justify-start align-center pa-0">
                 <h4 class="font-weight-light text-start">{{ routine.isPublic ? "Pública" : "Privada" }}</h4>
               </v-col>
               <v-col cols="4" class="d-flex justify-start align-center pa-0">
-                <v-icon color="#4DFF00"  v-for="index in this.difficultyNum" :key="index">mdi-fire</v-icon>
+                <v-icon color="#4DFF00"  v-for="index in this.difficultyNum+1" :key="index">mdi-fire</v-icon>
               </v-col>
             </v-row>
           </v-container>
@@ -30,16 +30,16 @@
           <v-container fluid>
             <v-row>
               <v-col cols="12" class="d-flex justify-end align-center pa-0">
-<!--                <v-img-->
-<!--                    position="top"-->
-<!--                    max-height="150"-->
-<!--                    max-width="150"-->
-<!--                    :src="categoryImg"-->
-<!--                ></v-img>-->
+                <v-img
+                    position="top"
+                    max-height="150"
+                    max-width="150"
+                    :src="categoryImg"
+                ></v-img>
               </v-col>
-              <v-col cols="12" class="d-flex justify-end align-center pa-0">
+<!--              <v-col cols="12" class="d-flex justify-end align-center pa-0">-->
 <!--                <v-icon color="black" v-for="rating in routine.rating" :key="rating">mdi-star</v-icon>-->
-              </v-col>
+<!--              </v-col>-->
             </v-row>
           </v-container>
         </v-col>
@@ -57,6 +57,7 @@ export default {
       apiDifficulties: ["rookie", "beginner", "intermediate", "advanced", "expert"],
       difficulty: this.routine.difficulty,
       difficultyNum: 0,
+      date: new Date(this.routine.date).toLocaleDateString()
     }
   },
   created() {
@@ -66,18 +67,18 @@ export default {
     getDifficulties() {
       let index = 1;
       for (let d of this.apiDifficulties) {
-        if (this.difficulty === this.apiDifficulties[d]) {
+        if (this.difficulty === this.apiDifficulties[index]) {
           this.difficultyNum = index
           return;
         }
+        index++;
       }
     }
   },
   computed: {
-
-    // categoryImg() {
-    //   return require(`../assets/images/${this.routine.category}.jpg`)
-    // }
+    categoryImg() {
+      return require(`../assets/images/${this.routine.category.id}.jpeg`)
+    }
   }
 }
 </script>

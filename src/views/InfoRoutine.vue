@@ -182,7 +182,7 @@ export default {
           src: require('../assets/images/crear\ ejercicio.jpg'),
         },
         {
-          src: require('../assets/images/3.jpg'),
+          src: require('../assets/images/3.jpeg'),
         },
       ],
     }
