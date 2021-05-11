@@ -30,10 +30,11 @@
           bottom
           rounded
           elevation="5"
-          class="text-capitalize"
+          class="first-letter-capitalized"
           width="150"
           to="/home/createroutine"
-      >Crear rutinas
+
+      >crear rutinas
       </v-btn>
     </v-row>
   </v-container>
@@ -81,6 +82,10 @@ export default {
 </script>
 
 <style scoped>
+
+a[v-btn]::first-letter {
+  text-transform: uppercase !important;
+}
 
 .let {
   color: white;

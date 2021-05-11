@@ -29,6 +29,7 @@ export default {
       rgba(0, 0, 0, 0)
   ), url("../assets/images/background2.jpeg") no-repeat center;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 </style>

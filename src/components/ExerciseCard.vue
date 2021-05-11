@@ -4,7 +4,7 @@
       <v-row>
         <v-col class="grey darken-3 d-flex justify-space-between align-center rounded-t-xl pa-0 ma-0" cols="12">
           <v-col class="d-flex justify-start" cols="9">
-            <h3 class="text-start white--text"> {{ excard.name }} </h3>
+            <h3 class="text-start white--text text-truncate"> {{ excard.name }} </h3>
           </v-col>
           <v-col class="d-flex justify-end" cols="3">
             <v-btn icon to="/home/editexercise">

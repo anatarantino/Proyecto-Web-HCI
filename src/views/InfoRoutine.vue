@@ -3,7 +3,7 @@
     <v-row align="center">
       <h1 class="font-weight-light font-italic white--text"> {{ routName }} </h1>
       <v-btn icon @click="markFav" >
-        <v-icon icon :color="fav ? 'red' : 'white'">
+        <v-icon icon :color="fav ? '#4DFF00' : 'white'">
           mdi-heart
         </v-icon>
       </v-btn>

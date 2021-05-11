@@ -68,7 +68,7 @@ export default {
       if (this.$v.$invalid) {
         this.$v.$touch();
         console.log("Por favor complete todos los datos");
-        this.checkbox = false;
+        event.preventDefault();
         return;
       }
       this.exercise.repetitions = parseInt(this.reps);

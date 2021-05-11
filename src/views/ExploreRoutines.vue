@@ -37,9 +37,11 @@
 <!--        </v-container>-->
 <!--      </v-col>-->
       <v-btn
+          v-show="!hidden"
           color="#4DFF00"
           depressed
           rounded
+          bottom
           elevation="5"
           class="text-capitalize"
           width="150"
@@ -60,6 +62,7 @@ export default {
   components: {FilterRout, RoutineCard},
   data() {
     return {
+      hidden: false,
       publicRoutines: []
     }
   },

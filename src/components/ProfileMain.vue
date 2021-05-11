@@ -9,9 +9,10 @@
         <v-row>
           <div>
             <v-avatar color="#D6F2D8" size="150">
-              <v-icon color="black" size="80">
-                mdi-account
-              </v-icon>
+              <img alt="fallo" src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"/>
+<!--              <v-icon color="black" size="80">-->
+<!--                mdi-account-->
+<!--              </v-icon>-->
             </v-avatar>
             <v-btn icon style="position: absolute; bottom: 0;">
               <v-icon color="white">mdi-pencil</v-icon>
