@@ -49,6 +49,12 @@ const routes = [
                 path: '/verifyAccount',
                 name: 'VerifyAccount',
                 component: VerifyAccount
+            },
+            {
+                meta: {auth: true},
+                path: '/loaddata',
+                name: 'LoadDataBase',
+                component: LoadDataBase
             }
         ]
     },
@@ -110,12 +116,6 @@ const routes = [
                 name: 'editExercise',
                 component: EditExercise
             },
-            {
-                meta: {auth: true},
-                path: 'LoadDataBase',
-                name: 'LoadDataBase',
-                component: LoadDataBase
-            }
 
         ]
     },
