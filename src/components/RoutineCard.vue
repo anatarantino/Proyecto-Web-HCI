@@ -4,24 +4,26 @@
       <v-row>
         <v-col class="grey darken-3 d-flex justify-space-between align-center rounded-t-xl" cols="12">
           <h3 class="white--text text-start"> {{ routine.name }} </h3>
+          <v-spacer></v-spacer>
+          <div>
+          <v-icon color="white">{{this.privacyIcon}}</v-icon>
           <v-btn icon to="/home/info">
             <v-icon color="white">mdi-information-outline</v-icon>
           </v-btn>
+          </div>
         </v-col>
         <v-col cols="7">
-          <v-container fill-height>
-            <v-row align="center">
-              <v-col cols="12" class="d-flex justify-start align-center pa-0">
-                <h4 class="font-weight-light text-start">Categoría: {{ routine.category.name }} </h4>
+          <v-container >
+            <v-row >
+              <v-col cols="12" class="d-flex justify-start align-start pa-0">
+                <h3 class="font-weight-regular text-start">{{ routine.category.name }} </h3>
               </v-col>
-              <v-col cols="12" class="d-flex justify-start align-center pa-0">
-                <h4 class="font-weight-light text-start">Creada: {{ this.date }}</h4>
+              <v-col cols="12" class="d-flex justify-start align-start pa-0">
+                <h4 class="font-weight-light text-start text-truncate" >{{ routine.detail }} </h4>
               </v-col>
-              <v-col cols="12" class="d-flex justify-start align-center pa-0">
-                <h4 class="font-weight-light text-start">{{ routine.isPublic ? "Pública" : "Privada" }}</h4>
-              </v-col>
+              <br><br>
               <v-col cols="4" class="d-flex justify-start align-center pa-0">
-                <v-icon color="#4DFF00"  v-for="index in this.difficultyNum+1" :key="index">mdi-fire</v-icon>
+                <v-icon color="#4DFF00" size="30" v-for="index in this.difficultyNum+1" :key="index">mdi-fire</v-icon>
               </v-col>
             </v-row>
           </v-container>
@@ -32,10 +34,13 @@
               <v-col cols="12" class="d-flex justify-end align-center pa-0">
                 <v-img
                     position="top"
-                    max-height="150"
-                    max-width="150"
+                    max-height="140"
+                    max-width="140"
                     :src="categoryImg"
                 ></v-img>
+              </v-col>
+              <v-col cols="12" class="d-flex justify-start align-center pa-0">
+                <h4 class="font-weight-light text-start">{{ this.date }}</h4>
               </v-col>
 <!--              <v-col cols="12" class="d-flex justify-end align-center pa-0">-->
 <!--                <v-icon color="black" v-for="rating in routine.rating" :key="rating">mdi-star</v-icon>-->
@@ -57,10 +62,12 @@ export default {
       apiDifficulties: ["rookie", "beginner", "intermediate", "advanced", "expert"],
       difficulty: this.routine.difficulty,
       difficultyNum: 0,
-      date: new Date(this.routine.date).toLocaleDateString()
+      date: new Date(this.routine.date).toLocaleDateString(),
+      privacyIcon: ''
     }
   },
   created() {
+    this.getPrivacyIcon();
     this.getDifficulties();
   },
   methods: {
@@ -72,6 +79,13 @@ export default {
           return;
         }
         index++;
+      }
+    },
+    getPrivacyIcon(){
+      if(this.routine.isPublic){
+        this.privacyIcon = "mdi-lock"
+      }else{
+        this.privacyIcon = "mdi-lock-open-variant"
       }
     }
   },

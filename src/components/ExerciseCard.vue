@@ -19,7 +19,7 @@
           <v-container fluid>
             <v-row>
               <v-col cols="12" class="d-flex justify-center align-center pa-0">
-                <v-text class="d-flex">{{ excard.detail }}</v-text>
+                <h4 class=" font-weight-regular">{{ excard.detail }}</h4>
               </v-col>
             </v-row>
           </v-container>

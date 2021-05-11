@@ -16,6 +16,7 @@ import ExploreRoutines from "@/views/ExploreRoutines";
 import MyRoutines from "@/views/MyRoutines";
 import VerifyAccount from "@/views/VerifyAccount";
 import store from '../store/index'
+import LoadDataBase from "@/views/LoadDataBase";
 
 Vue.use(VueRouter)
 
@@ -108,6 +109,12 @@ const routes = [
                 path: 'editexercise',
                 name: 'editExercise',
                 component: EditExercise
+            },
+            {
+                meta: {auth: true},
+                path: 'LoadDataBase',
+                name: 'LoadDataBase',
+                component: LoadDataBase
             }
 
         ]
