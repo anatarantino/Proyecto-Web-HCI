@@ -8,7 +8,7 @@ export default {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `bearer ${context.getters.getToken}`
+                'Authorization': `bearer ${context.rootGetters.getToken}`
             }
         });
         let responseInfo = await response.json();
@@ -24,7 +24,7 @@ export default {
         const response = await fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `bearer ${context.getters.getToken}`
+                'Authorization': `bearer ${context.rootGetters.getToken}`
             },
         });
 

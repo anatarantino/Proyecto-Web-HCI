@@ -8,7 +8,7 @@
       <v-col cols="3" class="d-flex align-center justify-center" style="position: relative">
         <div style="position: absolute">
           <v-avatar size="150px" class="avatar-border elevation-5">
-            <v-img alt="Foto de perfil" src="profilePic" lazy-src="../assets/images/emptyUser.png"></v-img>
+            <v-img alt="Foto de perfil" :src="profilePic" lazy-src="../assets/images/emptyUser.png"></v-img>
           </v-avatar>
           <v-btn
               class="mx-2"
@@ -76,7 +76,6 @@ export default {
   data() {
     return {
       picPopUp: false,
-
       url: ""
     }
   },
@@ -88,7 +87,8 @@ export default {
       return this.$store.getters["user/userData"].email;
     },
     profilePic(){
-      return this.$store.getters["users/avatarUrl"];
+      console.log(this.$store.getters["user/userData"].avatarUrl);
+      return this.$store.getters["user/userData"].avatarUrl;
     },
     urlErrors() {
       const errors = [];
@@ -113,9 +113,7 @@ export default {
         return;
       }
       try {
-        const data = {
-          ...this.$store.getters["user/userData"],
-        };
+        const data = this.$store.getters["user/userData"];
         data.avatarUrl = this.url;
         await this.$store.dispatch("user/updateProfile", data);
         this.picDialog = false;
