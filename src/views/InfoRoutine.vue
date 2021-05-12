@@ -37,6 +37,34 @@
               >Descripción de la rutina</v-card-title>
               <v-card-text class="white--text" >Esta seria una descripcion un poco mas larga para la rutina hola anita mirame. Que largo este texto!!! todo sea por ver que quede lindo!!! Bueno creo que con esta frase ya esta.
               </v-card-text>
+              <v-row>
+                <v-col cols="6">
+                  <v-col cols="3">
+                    <v-rating
+                        size="30"
+                        color="black"
+                        background-color="black"
+                        readonly
+                        v-model="this.routine.averageRating + 3"
+                        empty-icon="mdi-star-outline"
+                        full-icon="mdi-star"
+                        length="5"
+                    ></v-rating>
+                  </v-col>
+                  <v-col cols="3">
+                    <v-rating
+                        size="30"
+                        color="#4DFF00"
+                        background-color="black"
+                        readonly
+                        v-model="getDifficulties"
+                        empty-icon="mdi-fire"
+                        full-icon="mdi-fire"
+                        length="5"
+                    ></v-rating>
+                  </v-col>
+                </v-col>
+              </v-row>
             </div>
 
             <v-avatar
@@ -47,32 +75,6 @@
             </v-avatar>
           </div>
         </v-card>
-      </v-col>
-      <v-col cols="6">
-        <v-row>
-          <v-icon color="#4DFF00" size="30" v-for="index in getDifficulties" :key="index">mdi-fire</v-icon>
-        </v-row>
-        <v-row>
-          <!--          <v-icon color="black" size="30" v-for="dif in this.routine.averageRating +4" :key="dif">-->
-          <!--            mdi-star-->
-          <!--          </v-icon>-->
-          <v-card
-              class="mx-auto elevation-4 rounded-l"
-              dark
-              color="white"
-              outlined>
-            <v-rating
-                size="30"
-                color="black"
-                background-color="black"
-                readonly
-                v-model="this.routine.averageRating + 3"
-                empty-icon="mdi-star-outline"
-                full-icon="mdi-star"
-                length="5"
-            ></v-rating>
-          </v-card>
-        </v-row>
       </v-col>
     </v-row>
     <v-row>
