@@ -1,11 +1,12 @@
 <template>
+  <div v-if="!dataLoaded">
   <v-container>
     <v-row align="center">
       <v-col cols="4" class="d-flex justify-start align-center pr-0 mr-0">
-        <h1 class="font-weight-light font-italic text-start white--text"> {{this.routine.name}}</h1>
+        <h1 class="font-weight-light font-italic text-start white--text"> {{name}}</h1>
       </v-col>
       <v-col cols="4" class="d-flex justify-start align-center pl-0 ml-0">
-        <h3 class="white--text font-weight-light">por {{this.routine.user.username}}</h3>
+        <h3 class="white--text font-weight-light">por {{username}}</h3>
       </v-col>
       <v-col cols="4" class="d-flex justify-end align-center">
         <v-btn icon @click="markFav" >
@@ -36,7 +37,7 @@
                 <v-card-title
                     class="text-h5 white--text"
                 >Descripción de la rutina</v-card-title>
-                <v-card-text class="white--text" >Esta seria una descripcion un poco mas larga para la rutina hola anita mirame. Que largo este texto!!! todo sea por ver que quede lindo!!! Bueno creo que con esta frase ya esta.
+                <v-card-text class="white--text" >{{ detail }}
                 </v-card-text>
                 <v-row>
                   <v-col cols="6" class="ml-16 pl-16">
@@ -46,7 +47,7 @@
                           color="#4DFF00"
                           background-color="white"
                           readonly
-                          v-model="getDifficulties"
+                          v-model="difficultyNum"
                           empty-icon="mdi-fire"
                           full-icon="mdi-fire"
                           length="5"
@@ -58,7 +59,7 @@
                           color="white"
                           background-color="white"
                           readonly
-                          v-model="this.routine.averageRating + 3"
+                          v-model="averageRating"
                           empty-icon="mdi-star-outline"
                           full-icon="mdi-star"
                           length="5"
@@ -72,7 +73,7 @@
                   class="ma-3"
                   size="125"
               >
-                <v-img :src="this.routine.user.avatarUrl" lazy-src="../assets/images/emptyUser.png"></v-img>
+                <v-img :src="avatarUrl" lazy-src="../assets/images/emptyUser.png"></v-img>
               </v-avatar>
             </div>
           </v-card>
@@ -80,53 +81,30 @@
       </v-col>
     </v-row>
     <v-container>
-    <v-row class="mt-8">
-      <v-col cols="12" class="d-flex ma-0 pa-0 justify-space-between align-start justify-center">
+      <v-row class="mt-8">
+        <v-col cols="12" class="d-flex ma-0 pa-0 justify-space-between align-start justify-center">
           <v-row class="d-flex align-start justify-center mb-2">
-            <v-col cols="4">
+            <v-col cols="4" v-for="(cycle,indexC) in cycles" :key="indexC">
               <div class="justify-center align-center rounded-xl grey darken-4 white--text">
-                <v-col class="d-flex align-center justify-center ">
-                  <h2 class="white--text">{{this.cycles[0].name}}</h2>
+                <v-col class="d-flex align-center justify-center mb-4">
+                  <h2 class="white--text">{{cycles[indexC].name}}</h2>
+                  <v-spacer></v-spacer>
+                  <h3 class="green--text">{{cycles[indexC].repetitions}} vueltas</h3>
                 </v-col>
               </div>
-              <v-col cols="12" class="mt-3 mb-3">
-                <v-col v-for="ex in this.ejsPrueba1" :key="ex.id">
-                  <exercise-line :exercise="ex"></exercise-line>
-                </v-col>
-              </v-col>
-              <!--                            <exercise-line :exercises="this.exercises[0].content"></exercise-line>-->
-            </v-col>
-            <v-col cols="4">
-              <div class="align-center rounded-xl grey darken-4 white--text">
-                <v-col class="d-flex align-center justify-center">
-                  <h2 class="white--text">{{this.cycles[1].name}}</h2>
-                </v-col>
-              </div>
-              <v-col cols="12" class="mt-3 mb-3">
-                <v-col v-for="ex in this.ejsPrueba2" :key="ex.id">
-                  <exercise-line :exercise="ex"></exercise-line>
-                </v-col>
-              </v-col>
-
-              <!--              <exercise-line :exercises="this.exercises[1].content"></exercise-line>-->
-            </v-col>
-            <v-col cols="4">
-              <div class="align-center rounded-xl grey darken-4 white--text">
-                <v-col class="d-flex align-center justify-center ">
-                  <h2 class="white--text">{{this.cycles[2].name}}</h2>
-                </v-col>
-              </div>
-              <v-col cols="12" class="mt-3 mb-3">
-                <v-col v-for="ex in this.ejsPrueba1" :key="ex.id">
-                  <exercise-line :exercise="ex"></exercise-line>
-                </v-col>
+              <v-col v-for="(ex,indexE) in exercises[indexC]" :key="indexE">
+                <exercise-line :exercise="ex"></exercise-line>
               </v-col>
             </v-col>
           </v-row>
-      </v-col>
-    </v-row>
+        </v-col>
+      </v-row>
     </v-container>
   </v-container>
+  </div>
+  <div v-else>
+    <h1 class="yellow--text">cargandooo</h1>
+  </div>
 </template>
 <script>
 import ExerciseLine from "../components/ExerciseLine";
@@ -142,106 +120,77 @@ export default {
   components: {ExerciseLine},
   data() {
     return {
-      prueba: 'hola',
       apiDifficulties: ["rookie", "beginner", "intermediate", "advanced", "expert"],
       difficultyNum: 0,
-      routine: '',
+      name: '',
+      username: '',
+      avatarUrl: '',
+      date: 0,
+      detail: '',
+      difficulty: '',
+      averageRating: 0,
+      ispublic: false,
       cycles: [],
       exercises: [],
-      currentCycle: 0,
-      exercisesPrueba: [],
       fav: false,
-      ejsPrueba1: {
-        ex1:{
-          id:1,
-          name:'un nombre medio largo',
-          detail: "breve descripcion listo",
-          repetitions: 3,
-          duration: 20,
-        },
-        ex2:{
-          id:2,
-          name:'uno corto',
-          detail: "larga descripcion listo aaaa dklajda lkadjla klajdk lkad klas lka  akldj lkajdlakd jadlk",
-          repetitions: 3,
-          duration: 20,
-        }
-      },
-      ejsPrueba2: {
-        ex1:{
-          id:1,
-          name:'un nombre medio largo',
-          detail: "breve descripcion listo",
-          repetitions: 3,
-          duration: 20,
-        },
-        ex2:{
-          id:2,
-          name:'uno corto',
-          detail: "larga descripcion listo aaaa dklajda lkadjla klajdk lkad klas lka  akldj lkajdlakd jadlk",
-          repetitions: 3,
-          duration: 20,
-        },
-        ex3:{
-          id:3,
-          name:'un nombre medio largo',
-          detail: "breve descripcion listo",
-          repetitions: 3,
-          duration: 20,
-        },
-      }
     }
   },
+
   created() {
-    this.getRoutine();
-  },
-  mounted() {
-    this.getRoutine();
-  },
-  beforeMount() {
     this.getRoutine();
   },
   methods: {
     async getRoutine(){
-      try {
-        this.routine = await this.$store.dispatch('getRoutineById', {routineId: this.id});
+      if(this.id !== "undefined") {
         try {
-          const aux = await this.$store.dispatch('getRoutineCycles', {routineId: this.id});
-          this.cycles = aux.content;
-          try{
-            this.exercises[0]  = await this.$store.dispatch('getCycleExercises',{cycleId: this.cycles[0].id});
+          const aux1 = await this.$store.dispatch('getRoutineById', {routineId: this.id});
+          this.name = aux1.name;
+          this.detail = aux1.detail;
+          this.difficulty = aux1.difficulty;
+          let index = 0;
+          for (let d of this.apiDifficulties) {
+            if (this.difficulty === this.apiDifficulties[index]) {
+              this.difficultyNum = index+1
+            }
+            index++;
+          }
+          this.averageRating = aux1.averageRating;
+          this.date = aux1.date;
+          this.ispublic = aux1.isPublic;
+          this.username = aux1.user.username;
+          this.avatarUrl = aux1.user.avatarUrl;
+          try {
+            const aux = await this.$store.dispatch('getRoutineCycles', {routineId: this.id});
+            this.cycles = aux.content;
+            try{
+              const aux2  = await this.$store.dispatch('getCycleExercises',{cycleId: this.cycles[0].id});
+              this.exercises[0] = aux2.content
+            }catch (e) {
+              console.log(e);
+            }
+            try{
+              const aux3  = await this.$store.dispatch('getCycleExercises',{cycleId: this.cycles[1].id});
+              this.exercises[1] = aux3.content
+            }catch(e){
+              console.log(e);
+            }
+            try{
+              const aux4  = await this.$store.dispatch('getCycleExercises',{cycleId: this.cycles[2].id});
+              this.exercises[2] = aux4.content
+            }catch(e){
+              console.log(e);
+            }
           }catch (e) {
             console.log(e);
           }
-          try{
-            this.exercises[1]  = await this.$store.dispatch('getCycleExercises',{cycleId: this.cycles[1].id});
-          }catch(e){
-            console.log(e);
-          }
-          try{
-            this.exercises[2]  = await this.$store.dispatch('getCycleExercises',{cycleId: this.cycles[2].id});
-          }catch(e){
-            console.log(e);
-          }
-        }catch (e) {
+        }catch (e){
           console.log(e);
         }
-      }catch (e){
-        console.log(e);
+        console.log("this.exercises")
+        console.log(this.exercises)
+        console.log("this.exercises[0]")
+        console.log(this.exercises[0])
       }
-      console.log("this.cycles")
-      console.log(this.cycles)
-      console.log("this.exercises")
-      console.log(this.exercises)
-      console.log("this.exercises[0].content")
-      console.log(this.exercises[0].content)
-      console.log("this.exercises[0].content[0]")
-      console.log(this.exercises[0].content[0])
-      console.log("this.exercises[0].content[0].exercise")
-      console.log(this.exercises[0].content[0].exercise.id)
-      this.exercisePrueba[0] = this.exercises[0].content[0]
-      this.exercisePrueba[1] = this.exercises[0].content[0]
-
     },
     async markFav(){
       if (this.fav) {
@@ -267,17 +216,10 @@ export default {
 
   },
   computed: {
-    getDifficulties() {
-      let index = 0;
-      for (let d of this.apiDifficulties) {
-        if (this.routine.difficulty === this.apiDifficulties[index]) {
-          this.difficultyNum = index
-          return index+1;
-        }
-        index++;
-      }
-      return index;
+    dataLoaded(){
+      return this.exercises === undefined
     }
+
   },
 }
 </script>

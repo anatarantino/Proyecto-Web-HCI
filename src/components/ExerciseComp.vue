@@ -81,7 +81,7 @@ export default {
         this.loading = true;
         await sleep(1000);
         await this.$store.dispatch('addExercise', {
-          name: this.nombre,
+          name: this.nombre.toUpperCase(),
           detail: this.desc
         });
         this.message = "Ejercicio creado exitosamente";
