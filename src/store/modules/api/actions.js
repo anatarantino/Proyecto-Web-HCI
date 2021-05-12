@@ -300,17 +300,14 @@ export default {
         return responseInfo;
     },
     async getCycleExercises(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises`, {
+        let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/?` + new URLSearchParams({
+            ...payload
+        }), {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                cycleId: payload.cycleId,
-                orderBy: "exerciseId",
-                direction: "asc" //chequear!!!
-            })
         });
         let responseInfo = await response.json();
         if (!response.ok) {
@@ -319,7 +316,7 @@ export default {
         }
         return responseInfo;
     },
-    async getRoutineCycle(context, payload) {
+    async getRoutineCycleById(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}/cycles/${payload.cycleId}`, {
             method: 'GET',
             headers: {
@@ -329,6 +326,22 @@ export default {
                 routineId: payload.routineId,
                 cycleId: payload.cycleId
             })
+        });
+        let responseInfo = await response.json();
+        if (!response.ok) {
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async getRoutineCycles(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}/cycles/?` + new URLSearchParams({
+            ...payload
+        }), {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
         });
         let responseInfo = await response.json();
         if (!response.ok) {
@@ -434,14 +447,11 @@ export default {
         return responseInfo;
     },
     async getRoutineById(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}`, {
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}?`, {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`,
             },
-            body: JSON.stringify({
-                routineId: payload.routineId
-            })
         });
         let responseInfo = await response.json();
         if (!response.ok) {

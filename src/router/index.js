@@ -50,12 +50,12 @@ const routes = [
                 name: 'VerifyAccount',
                 component: VerifyAccount
             },
-            {
-                meta: {auth: true},
-                path: '/loaddata',
-                name: 'LoadDataBase',
-                component: LoadDataBase
-            }
+            // {
+            //     meta: {unauth: false},
+            //     path: '/home/loaddata',
+            //     name: 'LoadDataBase',
+            //     component: LoadDataBase
+            // }
         ]
     },
     {
@@ -82,7 +82,8 @@ const routes = [
             },
             {
                 meta: {auth: true},
-                path: 'info',
+                path: 'info/:id',
+                props: true,
                 name: 'infoRoutine',
                 component: InfoRoutine
             },

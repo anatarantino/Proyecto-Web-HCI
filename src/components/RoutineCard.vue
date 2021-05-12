@@ -7,7 +7,7 @@
           <v-spacer></v-spacer>
           <div>
           <v-icon color="white">{{this.privacyIcon}}</v-icon>
-          <v-btn icon to="/home/info">
+          <v-btn icon :to="`info/${routine.id}`" >
             <v-icon color="white">mdi-information-outline</v-icon>
           </v-btn>
           </div>
@@ -23,7 +23,7 @@
               </v-col>
               <br><br>
               <v-col cols="4" class="d-flex justify-start align-center pa-0">
-                <v-icon color="#4DFF00" size="30" v-for="index in this.difficultyNum+1" :key="index">mdi-fire</v-icon>
+                <v-icon color="#4DFF00" size="30" v-for="index in this.difficultyNum" :key="index">mdi-fire</v-icon>
               </v-col>
             </v-row>
           </v-container>
@@ -54,8 +54,10 @@
 </template>
 
 <script>
+import InfoRoutine from "@/views/InfoRoutine";
 export default {
   name: "RoutineCard",
+  components: {InfoRoutine},
   props: ["routine"],
   data() {
     return {
@@ -63,7 +65,8 @@ export default {
       difficulty: this.routine.difficulty,
       difficultyNum: 0,
       date: new Date(this.routine.date).toLocaleDateString(),
-      privacyIcon: ''
+      privacyIcon: '',
+      openInfo: false
     }
   },
   created() {
@@ -72,10 +75,10 @@ export default {
   },
   methods: {
     getDifficulties() {
-      let index = 1;
+      let index = 0;
       for (let d of this.apiDifficulties) {
         if (this.difficulty === this.apiDifficulties[index]) {
-          this.difficultyNum = index
+          this.difficultyNum = index + 1
           return;
         }
         index++;

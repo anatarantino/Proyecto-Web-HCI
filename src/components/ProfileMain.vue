@@ -21,7 +21,7 @@
               @click="picPopUp=true">
             <v-icon color="black">mdi-pencil</v-icon>
           </v-btn>
-          <v-dialog v-model="picPopUp" width="550">
+          <v-dialog v-model="picPopUp" width="550" >
             <v-card class="pa-6">
               <v-row align="center" justify="center">
                 <v-col cols="12" md="8">
@@ -35,12 +35,10 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="8" class="d-flex justify-space-between align-center">
-                  <v-btn @click="cancelPicChange" outlined color="#212529">
-                    <v-icon class="mr-2" left>mdi-cancel</v-icon>
+                  <v-btn @click="cancelPicChange" rounded color="black" elevation="5" width="150" class="white--text text-capitalize">
                     Cancelar
                   </v-btn>
-                  <v-btn @click="changeProfilePicture" outlined color="#212529">
-                    <v-icon class="mr-2">mdi-content-save-outline</v-icon>
+                  <v-btn @click="changeProfilePicture" rounded color="white" elevation="5" width="150" class="text-capitalize">
                     Cambiar
                   </v-btn>
                 </v-col>
@@ -87,7 +85,6 @@ export default {
       return this.$store.getters["user/userData"].email;
     },
     profilePic(){
-      console.log(this.$store.getters["user/userData"].avatarUrl);
       return this.$store.getters["user/userData"].avatarUrl;
     },
     urlErrors() {
