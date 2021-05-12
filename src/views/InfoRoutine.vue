@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!dataLoaded">
+  <div v-if="loaded">
   <v-container>
     <v-row align="center">
       <v-col cols="4" class="d-flex justify-start align-center pr-0 mr-0">
@@ -87,9 +87,9 @@
             <v-col cols="4" v-for="(cycle,indexC) in cycles" :key="indexC">
               <div class="justify-center align-center rounded-xl grey darken-4 white--text">
                 <v-col class="d-flex align-center justify-center mb-4">
-                  <h2 class="white--text">{{cycles[indexC].name}}</h2>
+                  <h2 class="white--text">{{cycle.name}}</h2>
                   <v-spacer></v-spacer>
-                  <h3 class="green--text">{{cycles[indexC].repetitions}} vueltas</h3>
+                  <h3 class="green--text">{{cycle.repetitions}} vueltas</h3>
                 </v-col>
               </div>
               <v-col v-for="(ex,indexE) in exercises[indexC]" :key="indexE">
@@ -103,7 +103,9 @@
   </v-container>
   </div>
   <div v-else>
-    <h1 class="yellow--text">cargandooo</h1>
+    <v-col cols="12" class="d-flex justify-center align-center">
+      <v-progress-circular size="30" :rotate="360" :value="progress" color="#4DFF00"></v-progress-circular>
+    </v-col>
   </div>
 </template>
 <script>
@@ -133,6 +135,8 @@ export default {
       cycles: [],
       exercises: [],
       fav: false,
+      loaded: false,
+      progress: 0
     }
   },
 
@@ -141,6 +145,7 @@ export default {
   },
   methods: {
     async getRoutine(){
+      this.progress=20;
       if(this.id !== "undefined") {
         try {
           const aux1 = await this.$store.dispatch('getRoutineById', {routineId: this.id});
@@ -159,30 +164,36 @@ export default {
           this.ispublic = aux1.isPublic;
           this.username = aux1.user.username;
           this.avatarUrl = aux1.user.avatarUrl;
+          this.progress = 50;
           try {
             const aux = await this.$store.dispatch('getRoutineCycles', {routineId: this.id});
             this.cycles = aux.content;
             try{
               const aux2  = await this.$store.dispatch('getCycleExercises',{cycleId: this.cycles[0].id});
               this.exercises[0] = aux2.content
+              this.progress = 60;
             }catch (e) {
               console.log(e);
             }
             try{
               const aux3  = await this.$store.dispatch('getCycleExercises',{cycleId: this.cycles[1].id});
               this.exercises[1] = aux3.content
+              this.progress = 70;
             }catch(e){
               console.log(e);
             }
             try{
               const aux4  = await this.$store.dispatch('getCycleExercises',{cycleId: this.cycles[2].id});
               this.exercises[2] = aux4.content
+              this.progress = 80;
             }catch(e){
               console.log(e);
             }
           }catch (e) {
             console.log(e);
           }
+          this.progress = 100;
+          this.loaded = true;
         }catch (e){
           console.log(e);
         }

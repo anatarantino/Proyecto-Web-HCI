@@ -2,10 +2,10 @@
   <v-row>
     <v-col cols="12">
       <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title>{{ exercise.name }}</v-list-item-title>
-          <v-list-item-subtitle>{{ exercise.detail }}</v-list-item-subtitle>
-        </v-list-item-content>
+          <v-list-item-content>
+            <v-list-item-title>{{ exercise.name }}</v-list-item-title>
+            <v-list-item-subtitle >{{ exercise.detail }}</v-list-item-subtitle>
+          </v-list-item-content>
         <v-row pa-3>
           <v-col cols="12" class="d-flex align-center justify-center ma-0 pa-0">
             <v-col cols="5" class="d-flex justify-end align-center">
@@ -37,12 +37,14 @@
           </v-col>
         </v-row>
         <v-list-item-action>
-          <v-checkbox
-              @blur="$v.reps.$touch()"
-              v-model="checkbox"
-              v-on:change="emitState"
-              color="#4DFF00"
-          ></v-checkbox>
+          <v-btn
+              :disabled="$v.$invalid"
+              icon
+              color="transparent"
+              @click="check"
+          >
+            <v-icon color="black">{{icon}}</v-icon>
+          </v-btn>
         </v-list-item-action>
       </v-list-item>
     </v-col>
@@ -58,23 +60,26 @@ export default {
   data() {
     return {
       checkbox: false,
+      icon: 'mdi-checkbox-blank-outline',
       prueba: 1,
       reps: '',
       duration: ''
     }
   },
   methods: {
-    emitState(event) {
-      if (this.$v.$invalid) {
-        this.$v.$touch();
-        console.log("Por favor complete todos los datos");
-        event.preventDefault();
-        return;
+    check(){
+      if(this.checkbox) {
+        this.checkbox = false;
+        this.icon = 'mdi-checkbox-blank-outline';
+      }else{
+        this.checkbox = true;
+        this.icon = 'mdi-checkbox-marked';
       }
       this.exercise.repetitions = parseInt(this.reps);
       this.exercise.duration = parseInt(this.duration);
       this.$emit('exMarked', this.checkbox, this.exercise);
-    },
+
+    }
   },
   validations: {
     reps: {
@@ -100,7 +105,8 @@ export default {
       }
       !this.$v.duration.required && errors.push('Ingrese una cantidad')
       return errors
-    }
+    },
+
   }
 }
 </script>

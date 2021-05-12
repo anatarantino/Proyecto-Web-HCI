@@ -39,8 +39,12 @@
           <v-list-item-group multiple>
             <v-col v-for="(ex,index) in currentExercises" :key="index" class="ma-0 pa-0">
               <v-list-item>
+                <v-col cols="12">
+
+
                 <add-exercise-to-block :exercise="ex" :section="section"
                                        v-on:exMarked="checkboxUpdated"></add-exercise-to-block>
+                  </v-col>
               </v-list-item>
               <v-divider
                   v-if="index < totalExercises - 1"

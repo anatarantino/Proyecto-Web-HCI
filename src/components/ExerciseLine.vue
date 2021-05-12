@@ -1,6 +1,4 @@
 <template>
-  <div v-if="dataLoaded">
-
     <v-row class="align-center justify-space-between justify-center mb-2">
       <v-col cols="12" class="grey lighten-2 pt-1 pb-0 mb-0 d-flex justify-center">
         <h3 class="text-start mt-2 font-weight-regular">
@@ -17,10 +15,7 @@
 
       </v-col>
     </v-row>
-  </div>
-<div v-else>
-  <h1 class="pink--text"></h1>
-</div>
+
 </template>
 
 <script>
@@ -32,9 +27,6 @@ export default {
     }
   },
   computed: {
-    dataLoaded(){
-      return this.exercise === undefined;
-    }
   }
 
 }
