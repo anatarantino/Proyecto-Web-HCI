@@ -1,18 +1,18 @@
 <template>
-  <v-row class="align-center  justify-center  mb-2">
-    <v-col cols="6">
-      <v-row class="align-center justify-center">
-        <v-col cols="3" class=" grey lighten-1 pa-0">
-          <p class="text-center mt-4">
-            {{ exline.exvalue }}
-          </p>
-        </v-col>
-        <v-col cols="8" class="grey lighten-1 pa-0 ml-1">
-          <p class="text-center  mt-4">
-            {{ exline.exname }}
-          </p>
-        </v-col>
+  <v-row class="align-center justify-space-between justify-center mb-2">
+    <v-col cols="12" class="grey lighten-2 pt-1 pb-0 mb-0">
+      <h3 class="text-start mt-2 font-weight-regular">
+        {{ exercise.name }}
+      </h3>
+    </v-col>
+
+    <v-col cols="12" class="grey lighten-2 mb-2 pl-14 pr-14 d-flex align-start justify-center">
+      <v-row>
+        <h3 class="text-start font-weight-light">{{exercise.repetitions}} reps</h3>
+        <v-spacer></v-spacer>
+        <h3 class="text-start font-weight-light">{{exercise.duration}} segs</h3>
       </v-row>
+
     </v-col>
   </v-row>
 </template>
@@ -20,7 +20,11 @@
 <script>
 export default {
   name: "ExerciseLine",
-  props: ["exline"]
+  props: ["exercise"],
+  data() {
+
+  },
+
 }
 </script>
 
