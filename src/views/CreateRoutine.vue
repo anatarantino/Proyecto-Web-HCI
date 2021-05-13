@@ -4,7 +4,6 @@
       <routine-comp :routine="types[0]"></routine-comp>
     </v-col>
   </v-container>
-
 </template>
 
 

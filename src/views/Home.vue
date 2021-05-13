@@ -1,17 +1,17 @@
 <template>
   <v-container v-if="loaded">
-      <v-row align="center" justify="center">
+      <v-row class="d-flex ma-0 pa-0">
         <v-col cols="12" class="d-flex ma-0 pa-0 pe-0 me-0">
-          <v-container fluid>
+          <v-container>
             <v-row class="d-flex ma-0 pa-0">
-              <v-col cols="12" class="d-flex ma-0 pa-0">
+              <v-col cols="12" class="d-flex ma-0 pa-0 ml-3 pl-3">
                 <h3 class="subt">Tus últimas rutinas creadas</h3>
               </v-col>
-              <div v-if="lastCreatedRoutines.length!==0">
+              <v-container v-if="lastCreatedRoutines.length!==0">
                 <v-col cols="4" v-for="rout in lastCreatedRoutines" :key="rout.id">
                   <RoutineCard :routine="rout"></RoutineCard>
                 </v-col>
-              </div>
+              </v-container>
               <v-container fluid v-else>
                 <v-col cols="12">
                   <v-col cols="12" class="d-flex justify-center align-center">
@@ -38,14 +38,14 @@
         <v-col cols="12" class="d-flex ma-0 pa-0">
           <v-container fluid>
             <v-row class="d-flex ma-0 pa-0">
-              <v-col cols="12" class="d-flex ma-0 pa-0">
+              <v-col cols="12" class="d-flex ma-0 pa-0 ml-3 pl-3">
                 <h3 class="subt">Tus rutinas favoritas</h3>
               </v-col>
-              <div v-if="favouriteRoutine.length!==0">
+              <v-container v-if="favouriteRoutine.length!==0">
                 <v-col cols="4" v-for="fav in favouriteRoutine" :key="fav.id">
                   <RoutineCard :routine="fav"></RoutineCard>
                 </v-col>
-              </div>
+              </v-container>
               <v-container fluid v-else>
                 <v-col cols="12" class="d-flex justify-center align-center">
                   <h1 class="white--text text-center font-weight-regular">Aún no tienes rutinas favoritas..<br>

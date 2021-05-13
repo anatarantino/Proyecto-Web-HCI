@@ -18,7 +18,7 @@
       <!--          </v-col>-->
       <!--        </v-col>-->
       <!--      </v-row>-->
-      <v-container v-if="!isEmpty" fluid>
+      <v-container v-if="!isEmpty">
         <v-col cols="12" class="d-flex ma-0 pa-0">
           <v-container fluid>
             <v-row class="d-flex ma-0 pa-0">
@@ -32,8 +32,8 @@
       <v-container fluid v-else>
         <v-col cols="12">
           <v-col cols="12" class="d-flex justify-center align-center">
-            <h1 class="white--text text-center font-weight-regular">Ups..aún no hay rutinas en la comunidad<br>
-              se el primero en crear una!</h1>
+            <h1 class="white--text text-center font-weight-regular">Ups..aún no hay rutinas en la comunidad.<br>
+              Se el primero en crear una!</h1>
           </v-col>
           <v-col cols="12" class="d-flex justify-center align-center">
             <v-btn
