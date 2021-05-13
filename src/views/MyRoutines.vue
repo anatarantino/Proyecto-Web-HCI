@@ -1,12 +1,12 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row class="d-flex ma-0 pa-0 justify-center">
       <!--      <v-col class="d-flex justify-start align-center" cols="12">-->
       <!--        &lt;!&ndash;        <FilterRout></FilterRout>&ndash;&gt;-->
       <!--      </v-col>-->
-      <div v-if="myRoutines.length!==0">
+      <v-container v-if="myRoutines.length!==0">
         <v-col cols="12" class="d-flex ma-0 pa-0">
-          <v-container fluid>
+          <v-container>
             <v-row class="d-flex ma-0 pa-0">
               <v-col cols="4" v-for="rout in myRoutines" :key="rout.id">
                 <RoutineCard :routine="rout"></RoutineCard>
@@ -23,20 +23,22 @@
             </v-row>
           </v-container>
         </v-col>
-        <v-btn
-            v-show="!hidden"
-            color="#4DFF00"
-            depressed
-            absolute
-            bottom
-            rounded
-            elevation="10"
-            class="text-capitalize"
-            width="150"
-            to="/home/createroutine"
-        >Crear rutinas
-        </v-btn>
-      </div>
+        <v-col cols="12" class="d-flex justify-center align-center">
+          <v-btn
+              v-show="!hidden"
+              color="#4DFF00"
+              depressed
+              absolute
+              bottom
+              rounded
+              elevation="10"
+              class="text-capitalize"
+              width="150"
+              to="/home/createroutine"
+          >Crear rutinas
+          </v-btn>
+        </v-col>
+      </v-container>
       <v-container fluid v-else>
         <v-col cols="12">
           <v-col cols="12" class="d-flex justify-center align-center">

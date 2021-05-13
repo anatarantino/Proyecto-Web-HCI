@@ -2,7 +2,7 @@
   <v-card class="rounded-xl">
     <v-container fluid>
       <v-row>
-        <v-col class="grey darken-4 d-flex justify-space-between align-center rounded-t-xl" cols="12">
+        <v-col class="grey darken-3 d-flex justify-space-between align-center rounded-t-xl" cols="12">
           <h3 class="white--text text-start"> {{ routine.name }} </h3>
           <v-spacer></v-spacer>
           <div>

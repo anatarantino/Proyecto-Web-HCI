@@ -31,6 +31,7 @@
                       placeholder="URL"
                       outlined
                       clearable
+                      color="black"
                       :error-messages="urlErrors"
                   ></v-text-field>
                 </v-col>
