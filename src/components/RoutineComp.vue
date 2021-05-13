@@ -48,13 +48,21 @@
                   <v-card-title><h3 class="font-weight-regular">Elija el enfoque de su rutina</h3></v-card-title>
                 </v-col>
                 <div class="pl-2 pr-2 pb-1">
+<!--                  <v-select-->
+<!--                      :items="categories.name"-->
+<!--                      label="Categorias"-->
+<!--                      outlined-->
+<!--                  >-->
+
+<!--                  </v-select>-->
                   <v-chip-group
                       v-model="chosenCategory"
                       active-class="light-green accent-3 black--text "
                       column
                       class="pl-6 pr-2 "
+
                   >
-                    <v-chip v-for="cat in this.categories" :key="cat.id" :value="cat">{{ cat.name }}</v-chip>
+                    <v-chip v-for="cat in this.categories" :key="cat.id" :value="cat" :input-value="catSelected(cat)">{{ cat.name }}</v-chip>
                   </v-chip-group>
                 </div>
               </v-row>
@@ -124,7 +132,7 @@
               depressed
               rounded
               width="150"
-              @click="createRoutine"
+              @click="publish"
           >Publicar
           </v-btn>
         </v-col>
@@ -148,13 +156,13 @@ export default {
         name: '',
         detail: '',
         isPublic: false,
-        category: ''
+        category: {}
       },
       categories: '',
       difficultyNum: 1,
       state: 'Privada',
       apiDifficulties: [ "rookie", "beginner", "intermediate", "advanced", "expert" ],
-      chosenCategory: '',
+      chosenCategory: {},
       editMode: false
     }
   },
@@ -163,17 +171,19 @@ export default {
     this.loadData();
   },
   methods: {
+
     loadData(){
       if(this.routine.id !== 0) {
         this.editMode = true;
         this.routines.name = this.routine.name;
-        console.log(this.routines.name)
         this.routines.id = this.id;
         this.routines.detail = this.routine.detail;
         this.routines.isPublic = this.routine.isPublic;
         this.changeStatus();
         this.difficultyNum = this.routine.difficultyNum;
         this.chosenCategory = this.routine.category;
+        this.routines.category = this.routine.category;
+
       }
     },
     resetRoutine(){
@@ -193,6 +203,16 @@ export default {
       } else {
         this.state = 'Privada';
       }
+    },
+    publish() {
+      if(this.editMode){
+        this.updateRoutine();
+      }else{
+        this.createRoutine();
+      }
+    },
+    async updateRoutine(){
+
     },
     async createRoutine() {
 
@@ -269,6 +289,9 @@ export default {
         console.log(e);
       }
 
+    },
+    catSelected(cat){
+      return this.chosenCategory.id === cat.id;
     },
     resetForm() {
       this.$v.$reset();

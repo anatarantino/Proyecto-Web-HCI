@@ -10,12 +10,12 @@
                 mdi-heart
               </v-icon>
             </v-btn>
-            <v-btn color="transparent" x-small :to="`/home/editroutine/${id}`">
+            <v-btn color="transparent" x-small v-if="hasPermission" :to="`/home/editroutine/${id}`">
               <v-icon color="white">
                 mdi-pencil
               </v-icon>
             </v-btn>
-            <v-btn color="transparent" x-small @click="deleteDialog=true">
+            <v-btn color="transparent" x-small v-if="hasPermission" @click="deleteDialog=true">
               <v-icon color="white">
                 mdi-delete-outline
               </v-icon>
@@ -24,22 +24,7 @@
           <v-dialog v-model="deleteDialog" width="550" persistent>
             <v-card class="pa-6">
               <v-row>
-                <v-container v-if="!hasPermission" fluid>
-                  <v-row justify="end">
-                    <v-col cols="12" class="d-flex justify-end align-start">
-                      <v-btn @click="deleteDialog=false" icon color="transparent">
-                        <v-icon color="black">
-                          mdi-window-close
-                        </v-icon>
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                  <v-row justify="center">
-                    <v-card-title class="justify-center">No tienes permiso para borrar esta rutina
-                    </v-card-title>
-                  </v-row>
-                </v-container>
-                <v-container v-else fluid>
+                <v-container fluid>
                   <v-card-title class="justify-center">¿Seguro deseas borrar esta rutina?</v-card-title>
                   <v-card-actions class="justify-center">
                     <v-btn @click="deleteDialog=false" rounded color="black" elevation="5" width="150"

@@ -419,7 +419,7 @@ export default {
                 'Authorization': `bearer ${context.getters.getToken}`,
             }
         });
-        let responseInfo = await response.json();
+        let responseInfo = await response.text();
         if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
@@ -433,7 +433,7 @@ export default {
                 'Authorization': `bearer ${context.getters.getToken}`,
             }
         });
-        let responseInfo = await response.json();
+        let responseInfo = await response.text();
         if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);
