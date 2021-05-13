@@ -5,6 +5,48 @@
         <v-col class="d-flex justify-space-between align-center" cols="12">
           <h1 class="font-weight-light font-italic text-start white--text"> {{ name }}</h1>
           <v-col cols="4" class="d-flex justify-end align-center">
+            <v-col cols="5">
+              <v-btn
+                  color="white"
+                  depressed
+                  class="text-capitalize"
+                  @click="ratingPopUp=true"
+              >
+                Puntuación
+              </v-btn>
+            </v-col>
+            <v-dialog v-model="ratingPopUp" width="350" persistent>
+              <v-card class="pa-6">
+                <v-row>
+                  <v-container fluid>
+                    <v-row justify="end">
+                      <v-col cols="12" class="d-flex justify-end align-start">
+                        <v-btn @click="ratingPopUp=false" icon color="transparent">
+                          <v-icon color="black">
+                            mdi-window-close
+                          </v-icon>
+                        </v-btn>
+                      </v-col>
+                    </v-row>
+                    <v-col class="d-flex justify-center align-center">
+                      <v-rating
+                          v-model="rating"
+                          color="black"
+                          background-color="black"
+                          hover
+                          empty-icon="mdi-star-outline"
+                          large
+                          full-icon="mdi-star"
+                      ></v-rating>
+                    </v-col>
+                    <v-btn @click="addRating" rounded color="white" elevation="5" width="150"
+                           class="text-capitalize">
+                      Confirmar
+                    </v-btn>
+                  </v-container>
+                </v-row>
+              </v-card>
+            </v-dialog>
             <v-btn icon @click="markFav">
               <v-icon icon :color="fav ? '#4DFF00' : 'white'">
                 mdi-heart
@@ -89,14 +131,12 @@
                   </v-row>
                 </div>
                 <v-col class="d-flex px-0 py-0">
-                <v-avatar
-                    size="125"
-                >
-                  <v-img :src="avatarUrl" lazy-src="../assets/images/emptyUser.png"></v-img>
-                </v-avatar>
-
+                  <v-avatar
+                      size="125"
+                  >
+                    <v-img :src="avatarUrl" lazy-src="../assets/images/emptyUser.png"></v-img>
+                  </v-avatar>
                 </v-col>
-
               </v-container>
             </v-card>
           </v-col>
@@ -142,11 +182,13 @@ export default {
       required: true
     }
   },
-  components: {ExerciseLine,EditRoutine},
+  components: {ExerciseLine, EditRoutine},
   data() {
     return {
       apiDifficulties: ["rookie", "beginner", "intermediate", "advanced", "expert"],
+      ratingPopUp: false,
       difficultyNum: 0,
+      rating: 0,
       name: '',
       username: '',
       avatarUrl: '',
@@ -154,7 +196,7 @@ export default {
       detail: '',
       difficulty: '',
       averageRating: 0,
-      ispublic: false,
+      isPublic: false,
       cycles: [],
       exercises: [],
       fav: false,
@@ -186,7 +228,7 @@ export default {
           }
           this.averageRating = aux1.averageRating;
           this.date = aux1.date;
-          this.ispublic = aux1.isPublic;
+          this.isPublic = aux1.isPublic;
           this.username = aux1.user.username;
           this.avatarUrl = aux1.user.avatarUrl;
           if (this.username === this.currentUser) {
@@ -244,6 +286,17 @@ export default {
           this.fav = false;
           console.log(e);
         }
+      }
+    },
+    async addRating() {
+      try {
+        await this.$store.dispatch('rateRoutine', {
+          routineId: this.id,
+          score: this.rating
+        });
+      }
+      catch(e){
+        console.log(e);
       }
     },
     async deleteRoutine() {
