@@ -4,7 +4,6 @@
       <exerciseComp :exercise="types[0]"></exerciseComp>
     </v-col>
   </v-container>
-
 </template>
 
 <script>

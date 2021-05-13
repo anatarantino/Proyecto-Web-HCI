@@ -21,7 +21,7 @@
               @click="picPopUp=true">
             <v-icon color="black">mdi-pencil</v-icon>
           </v-btn>
-          <v-dialog v-model="picPopUp" width="550" >
+          <v-dialog v-model="picPopUp" width="550" persistent>
             <v-card class="pa-6">
               <v-row align="center" justify="center">
                 <v-col cols="12" md="8">
