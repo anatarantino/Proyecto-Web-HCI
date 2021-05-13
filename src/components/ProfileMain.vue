@@ -113,7 +113,7 @@ export default {
         const data = this.$store.getters["user/userData"];
         data.avatarUrl = this.url;
         await this.$store.dispatch("user/updateProfile", data);
-        this.picDialog = false;
+        this.picPopUp = false;
       } catch (e) {
         console.log(e)
       }
