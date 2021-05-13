@@ -205,31 +205,24 @@ export default {
     },
     async markFav(){
       if (this.fav) {
-        this.fav = false;
-        // try {
-        //   await this.$store.dispatch('removeFromFavourite',{routineId: this.routine.id});
-        //   this.fav = false;
-        // }catch (e) {
-        //   this.fav = true;
-        //   console.log(e);
-        // }
+        try {
+          await this.$store.dispatch('removeFromFavourite',{routineId: this.id});
+          this.fav = false;
+        }catch (e) {
+          this.fav = true;
+          console.log(e);
+        }
       }else {
-        this.fav = true;
-        // try {
-        //   await this.$store.dispatch('addToFavourite',{routineId: this.id});
-        //   this.fav = true;
-        // } catch(e) {
-        //   this.fav = false;
-        //   console.log(e);
-        // }
+        try {
+          await this.$store.dispatch('addToFavourite',{routineId: this.id});
+          this.fav = true;
+        } catch(e) {
+          this.fav = false;
+          console.log(e);
+        }
       }
     },
 
-  },
-  computed: {
-    dataLoaded(){
-      return this.exercises === undefined
-    }
 
   },
 }

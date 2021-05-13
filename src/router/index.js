@@ -64,7 +64,7 @@ const routes = [
         children: [
             {
                 meta: {auth: true},
-                path: '',
+                path: 'main',
                 name: 'Home',
                 component: Home
             },

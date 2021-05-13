@@ -413,14 +413,11 @@ export default {
         return responseInfo;
     },
     async addToFavourite(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/favourites/${payload.routineId}`, {
+        let response = await fetch(`${context.getters.baseUrl}/favourites/${payload.routineId}/`, {
             method: 'POST',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`,
-            },
-            body: JSON.stringify({
-                routineId: payload.routineId
-            })
+            }
         });
         let responseInfo = await response.json();
         if (!response.ok) {
@@ -430,14 +427,11 @@ export default {
         return responseInfo;
     },
     async removeFromFavourite(context, payload) {
-        let response = await fetch(`${context.getters.baseUrl}/favourites/${payload.routineId}`, {
+        let response = await fetch(`${context.getters.baseUrl}/favourites/${payload.routineId}/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`,
-            },
-            body: JSON.stringify({
-                routineId: payload.routineId
-            })
+            }
         });
         let responseInfo = await response.json();
         if (!response.ok) {
