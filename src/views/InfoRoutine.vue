@@ -1,106 +1,142 @@
 <template>
   <div v-if="loaded">
-  <v-container>
-    <v-row align="center">
-      <v-col cols="4" class="d-flex justify-start align-center pr-0 mr-0">
-        <h1 class="font-weight-light font-italic text-start white--text"> {{name}}</h1>
-      </v-col>
-      <v-col cols="4" class="d-flex justify-start align-center pl-0 ml-0">
-        <h3 class="white--text font-weight-light">por {{username}}</h3>
-      </v-col>
-      <v-col cols="4" class="d-flex justify-end align-center">
-        <v-btn icon @click="markFav" >
-          <v-icon icon :color="fav ? '#4DFF00' : 'white'">
-            mdi-heart
-          </v-icon>
-        </v-btn>
-        <v-btn color="transparent" x-small to="/home/editroutine">
-          <v-icon color="white">
-            mdi-pencil
-          </v-icon>
-        </v-btn>
-        <v-btn color="transparent" x-small>
-          <v-icon color="white">
-            mdi-delete-outline
-          </v-icon>
-        </v-btn>
-      </v-col>
-    </v-row>
-    <v-row class="align-center mt-5">
-      <v-col cols="12" class="d-flex justify-center align-center">
-        <v-col cols="6" >
-          <v-card
-              dark
-          >
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <div>
-                <v-card-title
-                    class="text-h5 white--text"
-                >Descripción de la rutina</v-card-title>
-                <v-card-text class="white--text" >{{ detail }}
-                </v-card-text>
-                <v-row>
-                  <v-col cols="6" class="ml-16 pl-16">
-                    <v-col cols="3" class="pa-0 ma-0">
-                      <v-rating
-                          size="30"
-                          color="#4DFF00"
-                          background-color="white"
-                          readonly
-                          v-model="difficultyNum"
-                          empty-icon="mdi-fire"
-                          full-icon="mdi-fire"
-                          length="5"
-                      ></v-rating>
-                    </v-col>
-                    <v-col cols="3" class="ma-0 pa-0">
-                      <v-rating
-                          size="30"
-                          color="white"
-                          background-color="white"
-                          readonly
-                          v-model="averageRating"
-                          empty-icon="mdi-star-outline"
-                          full-icon="mdi-star"
-                          length="5"
-                      ></v-rating>
-                    </v-col>
-                  </v-col>
-                </v-row>
-              </div>
-
-              <v-avatar
-                  class="ma-3"
-                  size="125"
-              >
-                <v-img :src="avatarUrl" lazy-src="../assets/images/emptyUser.png"></v-img>
-              </v-avatar>
-            </div>
-          </v-card>
-        </v-col>
-      </v-col>
-    </v-row>
     <v-container>
-      <v-row class="mt-8">
-        <v-col cols="12" class="d-flex ma-0 pa-0 justify-space-between align-start justify-center">
-          <v-row class="d-flex align-start justify-center mb-2">
-            <v-col cols="4" v-for="(cycle,indexC) in cycles" :key="indexC">
-              <div class="justify-center align-center rounded-xl grey darken-4 white--text">
-                <v-col class="d-flex align-center justify-center mb-4">
-                  <h2 class="white--text">{{cycle.name}}</h2>
-                  <v-spacer></v-spacer>
-                  <h3 class="green--text">{{cycle.repetitions}} vueltas</h3>
-                </v-col>
-              </div>
-              <v-col v-for="(ex,indexE) in exercises[indexC]" :key="indexE">
-                <exercise-line :exercise="ex"></exercise-line>
-              </v-col>
-            </v-col>
-          </v-row>
+      <v-row align="center">
+        <v-col cols="4" class="d-flex justify-start align-center pr-0 mr-0">
+          <h1 class="font-weight-light font-italic text-start white--text"> {{name}}</h1>
+        </v-col>
+        <v-col cols="4" class="d-flex justify-start align-center pl-0 ml-0">
+          <h3 class="white--text font-weight-light">por {{username}}</h3>
+        </v-col>
+        <v-col cols="4" class="d-flex justify-end align-center">
+          <v-btn icon @click="markFav" >
+            <v-icon icon :color="fav ? '#4DFF00' : 'white'">
+              mdi-heart
+            </v-icon>
+          </v-btn>
+          <v-btn color="transparent" x-small to="/home/editroutine">
+            <v-icon color="white">
+              mdi-pencil
+            </v-icon>
+          </v-btn>
+          <v-btn color="transparent" x-small @click="deleteDialog=true">
+            <v-icon color="white">
+              mdi-delete-outline
+            </v-icon>
+          </v-btn>
+          <v-dialog v-model="deleteDialog" width="550">
+            <v-card >
+              <v-row>
+                <v-container v-if="!hasPermission" fluid>
+                  <v-row justify="end">
+                    <v-col cols="12" class="d-flex justify-end align-start">
+                      <v-btn @click="deleteDialog=false" icon color="transparent" >
+                        <v-icon color="black">
+                          mdi-window-close
+                        </v-icon>
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                  <v-row justify="center">
+                    <v-card-title class="justify-center">No tienes permiso para borrar esta rutina
+                    </v-card-title>
+                  </v-row>
+                </v-container>
+                <v-container v-else fluid>
+                  <v-card-title class="justify-center">¿Seguro deseas borrar esta rutina?</v-card-title>
+                  <v-card-actions class="justify-center">
+                    <v-btn @click="deleteDialog=false" rounded color="black" elevation="5" width="150" class="white--text text-capitalize">
+                      Cancelar
+                    </v-btn>
+                    <v-btn @click="deleteRoutine" rounded color="white" elevation="5" width="150" class="text-capitalize">
+                      Confirmar
+                    </v-btn>
+
+                  </v-card-actions>
+
+                </v-container>
+              </v-row>
+            </v-card>
+
+
+          </v-dialog>
         </v-col>
       </v-row>
+      <v-row class="align-center mt-5">
+        <v-col cols="12" class="d-flex justify-center align-center">
+          <v-col cols="6" >
+            <v-card
+                dark
+            >
+              <div class="d-flex flex-no-wrap justify-space-between">
+                <div>
+                  <v-card-title
+                      class="text-h5 white--text"
+                  >Descripción de la rutina</v-card-title>
+                  <v-card-text class="white--text" >{{ detail }}
+                  </v-card-text>
+                  <v-row>
+                    <v-col cols="6" class="ml-16 pl-16">
+                      <v-col cols="3" class="pa-0 ma-0">
+                        <v-rating
+                            size="30"
+                            color="#4DFF00"
+                            background-color="white"
+                            readonly
+                            v-model="difficultyNum"
+                            empty-icon="mdi-fire"
+                            full-icon="mdi-fire"
+                            length="5"
+                        ></v-rating>
+                      </v-col>
+                      <v-col cols="3" class="ma-0 pa-0">
+                        <v-rating
+                            size="30"
+                            color="white"
+                            background-color="white"
+                            readonly
+                            v-model="averageRating"
+                            empty-icon="mdi-star-outline"
+                            full-icon="mdi-star"
+                            length="5"
+                        ></v-rating>
+                      </v-col>
+                    </v-col>
+                  </v-row>
+                </div>
+
+                <v-avatar
+                    class="ma-3"
+                    size="125"
+                >
+                  <v-img :src="avatarUrl" lazy-src="../assets/images/emptyUser.png"></v-img>
+                </v-avatar>
+              </div>
+            </v-card>
+          </v-col>
+        </v-col>
+      </v-row>
+      <v-container>
+        <v-row class="mt-8">
+          <v-col cols="12" class="d-flex ma-0 pa-0 justify-space-between align-start justify-center">
+            <v-row class="d-flex align-start justify-center mb-2">
+              <v-col cols="4" v-for="(cycle,indexC) in cycles" :key="indexC">
+                <div class="justify-center align-center rounded-xl grey darken-4 white--text">
+                  <v-col class="d-flex align-center justify-center mb-4">
+                    <h2 class="white--text">{{cycle.name}}</h2>
+                    <v-spacer></v-spacer>
+                    <h3 class="green--text">{{cycle.repetitions}} vueltas</h3>
+                  </v-col>
+                </div>
+                <v-col v-for="(ex,indexE) in exercises[indexC]" :key="indexE">
+                  <exercise-line :exercise="ex"></exercise-line>
+                </v-col>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-container>
-  </v-container>
   </div>
   <div v-else>
     <v-col cols="12" class="d-flex justify-center align-center">
@@ -136,7 +172,9 @@ export default {
       exercises: [],
       fav: false,
       loaded: false,
-      progress: 0
+      progress: 0,
+      deleteDialog: false,
+      hasPermission: false
     }
   },
 
@@ -164,6 +202,9 @@ export default {
           this.ispublic = aux1.isPublic;
           this.username = aux1.user.username;
           this.avatarUrl = aux1.user.avatarUrl;
+          if(this.username === this.currentUser){
+            this.hasPermission = true;
+          }
           this.progress = 50;
           try {
             const aux = await this.$store.dispatch('getRoutineCycles', {routineId: this.id});
@@ -222,9 +263,51 @@ export default {
         }
       }
     },
+    async deleteRoutine(){
+      await this.deleteExercises();
+      await this.deleteCycles();
+      try {
+        await this.$store.dispatch('removeRoutine',{routineId: this.id});
+      } catch(e){
+        console.log(e);
+      }
+      await this.$router.replace('/home/myRoutines');
+    },
+    async deleteExercises(){
+      try {
+        for (const cycle of this.cycles) {
+          for (const ex of this.exercises) {
+            await this.$store.dispatch('removeExerciseFromCycle', {
+              routineId: this.id,
+              cycleId: cycle.id,
+              exerciseId: ex.id,
+            });
+          }
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async deleteCycles(){
+      try {
+        for(const cycle of this.cycles){
+          await this.$store.dispatch('removeCycle',{
+            routineId: this.id,
+            cycleId: cycle.id
+          });
+        }
+      }catch (e) {
+        console.log(e);
+      }
+    },
 
 
   },
+  computed: {
+    currentUser() {
+      return this.$store.getters["user/userData"].username;
+    },
+  }
 }
 </script>
 

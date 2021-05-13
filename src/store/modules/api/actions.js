@@ -514,7 +514,23 @@ export default {
             throw new Error(responseInfo.message);
         }
         return responseInfo;
+    },
+    async removeCycle(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}/cycles/${payload.cycleId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        let responseInfo = await response.json();
+        if (!response.ok) {
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
     }
+
 }
 
 
