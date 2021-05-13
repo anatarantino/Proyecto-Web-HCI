@@ -10,7 +10,7 @@
                 mdi-heart
               </v-icon>
             </v-btn>
-            <v-btn color="transparent" x-small :to="`/home/editroutine/${this.id}`">
+            <v-btn color="transparent" x-small :to="`/home/editroutine/${id}`">
               <v-icon color="white">
                 mdi-pencil
               </v-icon>
