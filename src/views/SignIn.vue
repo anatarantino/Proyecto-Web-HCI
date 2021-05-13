@@ -117,12 +117,12 @@ export default {
         this.loading = true;
         await sleep(1000);
         await this.$store.dispatch('signIn', {
-          username: this.username,
+          username: this.username.toUpperCase(),
           password: this.password
         })
         await sleep(1000);
         this.loading = false;
-        await this.$router.replace('/home');
+        await this.$router.replace('/home/main');
       } catch (e) {
         if (e.message === "verificado") {
           this.verified = true;

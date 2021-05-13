@@ -2,7 +2,6 @@
   <v-container>
     <v-col cols="12">
       <routine-comp :routine="types[0]"></routine-comp>
-
     </v-col>
   </v-container>
 </template>

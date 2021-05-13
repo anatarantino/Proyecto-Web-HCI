@@ -11,16 +11,18 @@
       </v-col>
     </v-row>
     <v-row class="d-flex mt-5 pa-0 justify-center">
-        <v-btn
-            color="white"
-            rounded
-            depressed
-            class="text-capitalize"
-            width="150"
-            @click="logout"
-        >
-            Cerrar Sesión
-        </v-btn>
+      <v-btn
+          color="white"
+          rounded
+          depressed
+          absolute
+          bottom
+          elevation="10"
+          class="text-capitalize"
+          width="150"
+          @click="logout"
+      >Cerrar Sesión
+      </v-btn>
     </v-row>
   </v-container>
 </template>

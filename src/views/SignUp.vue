@@ -141,7 +141,7 @@ export default {
         this.loading = true;
         await sleep(1000);
         await this.$store.dispatch('signUp', {
-          username: this.username.toLowerCase(),
+          username: this.username.toUpperCase(),
           email: this.email.toLowerCase(),
           password: this.password,
         });
