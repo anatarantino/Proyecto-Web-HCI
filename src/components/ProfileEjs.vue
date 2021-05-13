@@ -6,7 +6,7 @@
       elevation="0"
   >
     <v-row class="d-flex ma-0 pa-0">
-      <v-col cols="12" class="d-flex ma-0 pa-0">
+      <v-col cols="12" class="d-flex ma-0 pa-0 ml-1 pl-2">
         <h3 class="subt">Mis ejercicios</h3>
       </v-col>
     </v-row>
@@ -14,19 +14,19 @@
       <v-col cols="6" v-for="card in cards" :key="card.id">
         <ExerciseCard :excard="card"></ExerciseCard>
       </v-col>
-      <v-col>
-        <v-btn
-            color="#4DFF00"
-            elevation="2"
-            class="mx-2"
-            fab
-            to="/home/createexercise"
-        >
-          <v-icon>
-            mdi-plus
-          </v-icon>
-        </v-btn>
-      </v-col>
+<!--      <v-col class="d-flex ma-0 pa-0 ml-16 pl-16">-->
+<!--        <v-btn-->
+<!--            color="#4DFF00"-->
+<!--            elevation="2"-->
+<!--            class="mx-2"-->
+<!--            fab-->
+<!--            to="/home/createexercise"-->
+<!--        >-->
+<!--          <v-icon>-->
+<!--            mdi-plus-->
+<!--          </v-icon>-->
+<!--        </v-btn>-->
+<!--      </v-col>-->
     </v-row>
   </v-card>
 </template>
