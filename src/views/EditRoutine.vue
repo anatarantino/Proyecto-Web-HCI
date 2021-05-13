@@ -1,9 +1,10 @@
 <template>
-  <v-container>
+  <v-container v-if="loaded" >
     <v-col cols="12">
-      <routine-comp :title="title" :routine="routine"></routine-comp>
+      <routine-comp :title="title" :routine="fullRoutine"></routine-comp>
     </v-col>
   </v-container>
+  <v-container v-else></v-container>
 </template>
 
 <script>
@@ -22,70 +23,63 @@ export default {
     return {
       title: "Editá tu rutina",
       apiDifficulties: ["rookie", "beginner", "intermediate", "advanced", "expert"],
-      routine: {
+      fullRoutine: {
         name: '',
         detail: '',
         difficultyNum: 0,
-        date: 0,
-        ispublic: false,
-        averageRating: 0,
-        username: '',
-        avatarUrl: '',
+        isPublic: false,
         cycles: [],
         exercises: [],
-
-      }
-
+      },
+      loaded: false,
 
     }
   },
+  created() {
+    this.loadData();
+  },
   methods: {
 
-    async getRoutine() {
-      this.progress = 20;
-      if (this.id !== "undefined") {
+    async loadData() {
+      const idNum = parseInt(this.id);
+      if ( (this.id !== undefined) && (idNum !== 0)) {
         try {
           const aux1 = await this.$store.dispatch('getRoutineById', {routineId: this.id});
-          this.name = aux1.name;
-          this.detail = aux1.detail;
+          this.fullRoutine.name = aux1.name;
+          this.fullRoutine.detail = aux1.detail;
+          this.fullRoutine.isPublic = aux1.isPublic;
+          this.fullRoutine.category = aux1.category;
           let index = 0;
           for (let d of this.apiDifficulties) {
             if (aux1.difficulty === this.apiDifficulties[index]) {
-              this.difficultyNum = index + 1
+              this.fullRoutine.difficultyNum = index + 1
             }
             index++;
           }
-          this.averageRating = aux1.averageRating;
-          this.date = aux1.date;
-          this.ispublic = aux1.isPublic;
-          this.username = aux1.user.username;
-          this.avatarUrl = aux1.user.avatarUrl;
           try {
             const aux = await this.$store.dispatch('getRoutineCycles', {routineId: this.id});
-            this.cycles = aux.content;
+            this.fullRoutine.cycles = aux.content;
             try {
-              const aux2 = await this.$store.dispatch('getCycleExercises', {cycleId: this.cycles[0].id});
-              this.exercises[0] = aux2.content
+              const aux2 = await this.$store.dispatch('getCycleExercises', {cycleId: this.fullRoutine.cycles[0].id});
+              this.fullRoutine.exercises[0] = aux2.content
             } catch (e) {
               console.log(e);
             }
             try {
-              const aux3 = await this.$store.dispatch('getCycleExercises', {cycleId: this.cycles[1].id});
-              this.exercises[1] = aux3.content
+              const aux3 = await this.$store.dispatch('getCycleExercises', {cycleId: this.fullRoutine.cycles[1].id});
+              this.fullRoutine.exercises[1] = aux3.content
             } catch (e) {
               console.log(e);
             }
             try {
-              const aux4 = await this.$store.dispatch('getCycleExercises', {cycleId: this.cycles[2].id});
-              this.exercises[2] = aux4.content
-              this.progress = 80;
+              const aux4 = await this.$store.dispatch('getCycleExercises', {cycleId: this.fullRoutine.cycles[2].id});
+              this.fullRoutine.exercises[2] = aux4.content
             } catch (e) {
               console.log(e);
             }
           } catch (e) {
             console.log(e);
           }
-          this.progress = 100;
           this.loaded = true;
         } catch (e) {
           console.log(e);

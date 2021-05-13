@@ -101,6 +101,7 @@ const routes = [
             },
             {
                 meta: {auth: true},
+                props: true,
                 path: 'editroutine/:id',
                 name: 'editRoutine',
                 component: EditRoutine

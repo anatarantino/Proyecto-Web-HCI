@@ -114,7 +114,7 @@
               rounded
               width="150"
               class="text-capitalize white--text ma-1 pt-1 pb-1"
-              to="/home/myroutiness"
+              to="/home/myroutines"
           >Cancelar
           </v-btn>
           <v-btn
@@ -125,7 +125,7 @@
               rounded
               width="150"
               @click="createRoutine"
-          >Publicar rutina
+          >Publicar
           </v-btn>
         </v-col>
       </v-row>
@@ -154,13 +154,28 @@ export default {
       difficultyNum: 1,
       state: 'Privada',
       apiDifficulties: [ "rookie", "beginner", "intermediate", "advanced", "expert" ],
-      chosenCategory: ''
+      chosenCategory: '',
+      editMode: false
     }
   },
   created() {
     this.getCategories();
+    this.loadData();
   },
   methods: {
+    loadData(){
+      if(this.routine.id !== 0) {
+        this.editMode = true;
+        this.routines.name = this.routine.name;
+        console.log(this.routines.name)
+        this.routines.id = this.id;
+        this.routines.detail = this.routine.detail;
+        this.routines.isPublic = this.routine.isPublic;
+        this.changeStatus();
+        this.difficultyNum = this.routine.difficultyNum;
+        this.chosenCategory = this.routine.category;
+      }
+    },
     resetRoutine(){
       this.resetForm();
     },

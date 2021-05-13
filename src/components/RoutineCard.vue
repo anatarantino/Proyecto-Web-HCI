@@ -86,9 +86,9 @@ export default {
     },
     getPrivacyIcon(){
       if(this.routine.isPublic){
-        this.privacyIcon = "mdi-lock"
-      }else{
         this.privacyIcon = "mdi-lock-open-variant"
+      }else{
+        this.privacyIcon = "mdi-lock"
       }
     }
   },

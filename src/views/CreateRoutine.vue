@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-col cols="12">
-      <routine-comp :title="title" :routine="0"></routine-comp>
+      <routine-comp :title="title" :routine="routine"></routine-comp>
     </v-col>
   </v-container>
 </template>
@@ -16,8 +16,10 @@ export default {
   components: {routineComp},
   data() {
     return {
-
-      title: "Creá tu rutina"
+      title: "Creá tu rutina",
+      routine: {
+        id: 0
+      }
 
     }
   }
