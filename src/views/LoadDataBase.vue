@@ -7,7 +7,7 @@
                  :max-height="this.$vuetify.breakpoint.smAndDown ? '120':'180'" contain/>
           <h2 class="white--text text-center text-h6 text-md-h4 font-weight-medium my-5">La base de datos ya está cargada</h2>
           <v-col cols="12" class="d-flex align-center justify-center">
-            <v-btn class="text-capitalize" rounded to="/home">
+            <v-btn class="text-capitalize" rounded to="/home/main">
               Volver al inicio
             </v-btn>
           </v-col>
