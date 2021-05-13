@@ -70,7 +70,7 @@
               <v-card-actions class="align-center justify-center">
                 <h3 class="font-weight-regular">Dificultad</h3>
                 <v-rating
-                    v-model="routines.difficultyNum"
+                    v-model="difficultyNum"
                     color="#4DFF00"
                     empty-icon="mdi-fire"
                     full-icon="mdi-fire"
