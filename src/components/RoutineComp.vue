@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-col cols="12" class="d-flex align-center justify-center">
-          <h1 class="font-italic white--text font-weight-regular">{{ routines.title }}</h1>
+          <h1 class="font-italic white--text font-weight-regular">{{ title.title }}</h1>
         </v-col>
         <v-col cols="12" class="d-flex mx-auto" sm="4">
           <v-text-field
@@ -138,7 +138,7 @@ import bloque from "@/components/Bloque";
 
 export default {
   name: "routineComp",
-  props: ["routine"],
+  props: ["title","routine"],
   components: {bloque},
   data() {
     return {

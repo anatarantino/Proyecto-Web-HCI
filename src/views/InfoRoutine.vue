@@ -14,7 +14,7 @@
               mdi-heart
             </v-icon>
           </v-btn>
-          <v-btn color="transparent" x-small to="/home/editroutine">
+          <v-btn color="transparent" x-small :to="`/home/editroutine/${this.id}`">
             <v-icon color="white">
               mdi-pencil
             </v-icon>
@@ -121,7 +121,7 @@
           <v-col cols="12" class="d-flex ma-0 pa-0 justify-space-between align-start justify-center">
             <v-row class="d-flex align-start justify-center mb-2">
               <v-col cols="4" v-for="(cycle,indexC) in cycles" :key="indexC">
-                <div class="justify-center align-center rounded-xl grey darken-4 white--text">
+                <div class="justify-center align-center rounded-xl grey darken-3 white--text">
                   <v-col class="d-flex align-center justify-center mb-4">
                     <h2 class="white--text">{{cycle.name}}</h2>
                     <v-spacer></v-spacer>
@@ -238,10 +238,6 @@ export default {
         }catch (e){
           console.log(e);
         }
-        console.log("this.exercises")
-        console.log(this.exercises)
-        console.log("this.exercises[0]")
-        console.log(this.exercises[0])
       }
     },
     async markFav(){
