@@ -1,16 +1,32 @@
 <template>
-  <v-container fluid mt-8>
-    <v-row class="d-flex ma-0 pa-0 justify-center">
-      <v-col md="8">
+  <v-container fluid>
+    <v-row justify="center" class="d-flex ma-0 pa-0">
+      <v-col md="8" class="d-flex justify-center align-center">
         <ProfileMain></ProfileMain>
       </v-col>
     </v-row>
     <v-row class="d-flex ma-0 pa-0 justify-center">
-      <v-col md="8">
+      <v-col md="8" class="d-flex justify-center align-center">
         <ProfileEjs></ProfileEjs>
       </v-col>
     </v-row>
-    <v-row class="d-flex mt-5 pa-0 justify-center">
+    <v-row class="d-flex ma-0 pa-4">
+      <v-col class="d-flex justify-center align-center">
+        <v-btn
+            color="#4DFF00"
+            elevation="2"
+            class="mx-2"
+            fab
+            to="/home/createexercise"
+        >
+          <v-icon>
+            mdi-plus
+          </v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+    <v-col cols="12" class="d-flex justify-center align-center">
       <v-btn
           color="white"
           rounded
@@ -23,6 +39,7 @@
           @click="logout"
       >Cerrar Sesión
       </v-btn>
+    </v-col>
     </v-row>
   </v-container>
 </template>
