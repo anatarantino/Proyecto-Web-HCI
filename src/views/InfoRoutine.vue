@@ -311,18 +311,21 @@ export default {
       } catch (e) {
         console.log(e);
       }
-      await this.$router.replace("`/home/myRoutines`");
+      await this.$router.replace("/home/myRoutines");
     },
     async deleteExercises() {
       try {
         for (const cycle of this.cycles) {
-          for (const ex of this.exercises) {
+          if(this.exercises[cycle.order-1].length !== 0){
+            for (const ex of this.exercises[cycle.order-1]) {
             await this.$store.dispatch('removeExerciseFromCycle', {
               routineId: this.id,
               cycleId: cycle.id,
-              exerciseId: ex.id,
+              exerciseId: ex.exercise.id,
             });
           }
+          }
+
         }
       } catch (e) {
         console.log(e);

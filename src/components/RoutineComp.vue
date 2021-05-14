@@ -226,11 +226,7 @@ export default {
       }
     },
     publish() {
-      if (this.$v.$invalid) {
-        this.$v.$touch();
-        console.log("Por favor complete todos los datos");
-        return;
-      }
+
       this.routines.name = this.name;
       if(this.editMode){
         this.updateRoutine();

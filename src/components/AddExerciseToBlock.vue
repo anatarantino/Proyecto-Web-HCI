@@ -88,10 +88,10 @@ export default {
       this.$emit('exMarked', this.checkbox, this.exercise);
     },
     update(){
-      this.checkbox = !this.checkbox;
+      this.$emit('exMarked', !this.checkbox, this.exercise); //primero borro el ejercicio
       this.exercise.repetitions = parseInt(this.reps);
       this.exercise.duration = parseInt(this.duration);
-      this.$emit('exMarked', this.checkbox, this.exercise);
+      this.$emit('exMarked', this.checkbox, this.exercise); //lo vuelvo a agregar con los nuevos datos
     },
     loadDataIfEdited(){
       if(this.exercise.changed === true){

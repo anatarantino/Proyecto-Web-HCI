@@ -190,9 +190,12 @@ export default {
                 'Authorization': `bearer ${context.getters.getToken}`
             }
         });
+        let responseInfo = await response.text();
         if (!response.ok) {
-            throw new Error(response.statusText);
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
         }
+        return responseInfo;
     },
     async removeExerciseFromCycle(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`, {
@@ -201,9 +204,12 @@ export default {
                 'Authorization': `bearer ${context.getters.getToken}`
             }
         });
+        let responseInfo = await response.text();
         if (!response.ok) {
-            throw new Error(response.statusText);
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
         }
+        return responseInfo;
     },
     async addExerciseToCycle(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`, {
@@ -269,9 +275,12 @@ export default {
                 'Authorization': `bearer ${context.getters.getToken}`
             }
         });
+        let responseInfo = await response.text();
         if (!response.ok) {
-            throw new Error(response.statusText);
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
         }
+        return responseInfo;
     },
     async modifyExercise(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/exercises/${payload.exerciseId}`, {
@@ -599,7 +608,7 @@ export default {
                 'Content-Type': 'application/json'
             }
         });
-        let responseInfo = await response.json();
+        let responseInfo = await response.text();
         if (!response.ok) {
             console.log(responseInfo);
             throw new Error(responseInfo.message);

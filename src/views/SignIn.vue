@@ -112,15 +112,12 @@ export default {
         console.log("Por favor complete todos los datos.");
         return;
       }
-      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
       try {
         this.loading = true;
-        await sleep(1000);
         await this.$store.dispatch('signIn', {
           username: this.username.toUpperCase(),
           password: this.password
         })
-        await sleep(1000);
         this.loading = false;
         await this.$router.replace('/home');
       } catch (e) {
