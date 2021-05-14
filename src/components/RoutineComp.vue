@@ -11,7 +11,7 @@
               filled
               clearable
               dark
-              v-model="routines.name"
+              v-model="name"
               color="#4DFF00"
               :error-messages=errorName
               @blur="$v.name.$touch()"
@@ -165,6 +165,7 @@ export default {
           detail: null
         }
       },
+      name: '',
       categories: [],
       difficultyNum: 1,
       state: 'Privada',
@@ -190,6 +191,7 @@ export default {
     loadData(){
       if(this.routine.id !== 0) {
         this.editMode = true;
+        this.name = this.routine.name;
         this.routines.name = this.routine.name;
         this.routines.id = this.id;
         this.routines.detail = this.routine.detail;
@@ -229,6 +231,7 @@ export default {
         console.log("Por favor complete todos los datos");
         return;
       }
+      this.routines.name = this.name;
       if(this.editMode){
         this.updateRoutine();
       }else{

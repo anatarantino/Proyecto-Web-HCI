@@ -93,12 +93,7 @@ export default {
           }
           index++;
         }
-        if (this.publicRoutines.length === 0) {
-          this.isEmpty = true
-        } else {
-          this.isEmpty = false
-        }
-        console.log(this.publicRoutines);
+        this.isEmpty = this.publicRoutines.length === 0;
       } catch (e) {
         console.log(e);
       }
