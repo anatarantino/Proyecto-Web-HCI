@@ -7,7 +7,7 @@
           <v-spacer></v-spacer>
           <div>
           <v-icon color="white">{{this.privacyIcon}}</v-icon>
-          <v-btn icon :to="`info/${routine.id}`" >
+          <v-btn icon @click="redirect" >
             <v-icon color="white">mdi-information-outline</v-icon>
           </v-btn>
           </div>
@@ -90,12 +90,17 @@ export default {
       }else{
         this.privacyIcon = "mdi-lock"
       }
+    },
+    async redirect(){
+      const idNum = this.routine.id;
+      await this.$router.push({ path: `/home/info/${idNum}` });
     }
   },
   computed: {
     categoryImg() {
       return require(`../assets/images/${this.routine.category.id}.jpeg`)
-    }
+    },
+
   }
 }
 </script>

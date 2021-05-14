@@ -9,7 +9,7 @@
           <h2 class="white--text text-center text-h6 text-md-h4 font-weight-medium my-5">Oops! La dirección que quieres
             buscar no es válida.</h2>
           <v-col cols="12" class="d-flex align-center justify-center">
-            <v-btn color="black" dark depressed rounded elevation="10" width="150" class="text-capitalize" to="/home/main">Volver al inicio</v-btn>
+            <v-btn color="black" dark depressed rounded elevation="10" width="150" class="text-capitalize" to="/home">Volver al inicio</v-btn>
           </v-col>
         </v-card>
       </v-col>

@@ -64,7 +64,7 @@ const routes = [
         children: [
             {
                 meta: {auth: true},
-                path: 'main',
+                path: '',
                 name: 'Home',
                 component: Home
             },
@@ -153,7 +153,7 @@ router.beforeEach(function (to, from, next) {
   if (to.meta.auth && !store.getters['isOK']) {
     next('/');
   } else if (to.meta.unauth && store.getters['isOK']) {
-    next('/home/main');
+    next('/home');
   } else {
     next();
   }
