@@ -14,12 +14,14 @@
                     label="Repeticiones"
                     v-model="reps"
                     class="mt-0 pt-3 ml-6 mb-4"
-                    hide-details
+
                     type="number"
                     min="1"
                     style="width: 50px"
                     color="black"
                     :error-messages="errorReps"
+                    @change="update"
+                    @blur="$v.reps.$touch()"
                 ></v-text-field>
               </v-col>
               <v-col cols="7" class="d-flex justify-end align-center">
@@ -27,12 +29,13 @@
                     label="Duración (en segundos)"
                     v-model="duration"
                     class="mt-0 pt-3 ml-6 mb-4"
-                    hide-details
                     type="number"
                     min="1"
                     style="width: 50px"
                     color="black"
                     :error-messages="errorDur"
+                    @change="update"
+                    @blur="$v.duration.$touch()"
                 ></v-text-field>
               </v-col>
             </v-col>
@@ -55,7 +58,7 @@
 </template>
 
 <script>
-import {required} from 'vuelidate/lib/validators'
+import {required,minValue,maxValue} from 'vuelidate/lib/validators'
 
 export default {
   name: "AddExerciseToBlock",
@@ -85,6 +88,12 @@ export default {
       this.exercise.duration = parseInt(this.duration);
       this.$emit('exMarked', this.checkbox, this.exercise);
     },
+    update(){
+      this.checkbox = !this.checkbox;
+      this.exercise.repetitions = parseInt(this.reps);
+      this.exercise.duration = parseInt(this.duration);
+      this.$emit('exMarked', this.checkbox, this.exercise);
+    },
     loadDataIfEdited(){
       if(this.exercise.changed === true){
         this.checkbox = true;
@@ -97,10 +106,14 @@ export default {
   },
   validations: {
     reps: {
-      required
+      required,
+      minValue: minValue(1),
+      maxValue: maxValue(999)
     },
     duration: {
-      required
+      required,
+      minValue: minValue(1),
+      maxValue: maxValue(999)
     }
   },
   computed: {
@@ -109,7 +122,9 @@ export default {
       if (!this.$v.reps.$dirty) {
         return errors
       }
-      !this.$v.reps.required && errors.push('Ingrese una cantidad')
+      !this.$v.reps.required && errors.push('Ingrese una cantidad');
+      !this.$v.reps.minValue && errors.push('El valor mínimo es 1');
+      !this.$v.reps.maxValue && errors.push('El valor máximo es 999');
       return errors
     },
     errorDur() {
@@ -118,6 +133,8 @@ export default {
         return errors
       }
       !this.$v.duration.required && errors.push('Ingrese una cantidad')
+      !this.$v.duration.minValue && errors.push('El valor mínimo es 1');
+      !this.$v.duration.maxValue && errors.push('El valor máximo es 999');
       return errors
     },
 
