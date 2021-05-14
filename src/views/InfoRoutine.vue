@@ -133,7 +133,7 @@
                     </v-col>
                   </v-row>
                 </div>
-                <v-col class="d-flex px-0 py-0">
+                <v-col class="d-flex px-0 py-0 align-end mb-8">
                   <v-avatar
                       size="125"
                   >
