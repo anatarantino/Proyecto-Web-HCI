@@ -122,7 +122,7 @@ export default {
         })
         await sleep(1000);
         this.loading = false;
-        await this.$router.replace('/home/main');
+        await this.$router.replace('/home');
       } catch (e) {
         if (e.message === "verificado") {
           this.verified = true;
