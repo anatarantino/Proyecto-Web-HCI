@@ -268,7 +268,6 @@ export default {
           this.progress = 100;
           try{
             this.fav = await this.$store.dispatch('isFavourite',{routineId: this.id});
-            console.log(this.fav);
           }catch(e){
             console.log(e);
           }
