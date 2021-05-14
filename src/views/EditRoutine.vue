@@ -24,9 +24,11 @@ export default {
       title: "Editá tu rutina",
       apiDifficulties: ["rookie", "beginner", "intermediate", "advanced", "expert"],
       fullRoutine: {
+        id: this.id,
         name: '',
         detail: '',
         difficultyNum: 0,
+        difficulty: '',
         isPublic: false,
         cycles: [],
         exercises: [],
@@ -49,6 +51,7 @@ export default {
           this.fullRoutine.detail = aux1.detail;
           this.fullRoutine.isPublic = aux1.isPublic;
           this.fullRoutine.category = aux1.category;
+          this.fullRoutine.difficulty = aux1.difficulty;
           let index = 0;
           for (let d of this.apiDifficulties) {
             if (aux1.difficulty === this.apiDifficulties[index]) {

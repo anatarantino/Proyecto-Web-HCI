@@ -1,54 +1,57 @@
 <template>
-  <v-row>
-    <v-col cols="12">
-      <v-list-item>
+  <v-container v-if="loaded">
+    <v-row>
+      <v-col cols="12">
+        <v-list-item>
           <v-list-item-content>
             <v-list-item-title>{{ exercise.name }}</v-list-item-title>
             <v-list-item-subtitle >{{ exercise.detail }}</v-list-item-subtitle>
           </v-list-item-content>
-        <v-row pa-3>
-          <v-col cols="12" class="d-flex align-center justify-center ma-0 pa-0">
-            <v-col cols="5" class="d-flex justify-end align-center">
-              <v-text-field
-                  label="Repeticiones"
-                  v-model="reps"
-                  class="mt-0 pt-3 ml-6 mb-4"
-                  hide-details
-                  type="number"
-                  min="1"
-                  style="width: 50px"
-                  color="black"
-                  :error-messages="errorReps"
-              ></v-text-field>
+          <v-row pa-3>
+            <v-col cols="12" class="d-flex align-center justify-center ma-0 pa-0">
+              <v-col cols="5" class="d-flex justify-end align-center">
+                <v-text-field
+                    label="Repeticiones"
+                    v-model="reps"
+                    class="mt-0 pt-3 ml-6 mb-4"
+                    hide-details
+                    type="number"
+                    min="1"
+                    style="width: 50px"
+                    color="black"
+                    :error-messages="errorReps"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="7" class="d-flex justify-end align-center">
+                <v-text-field
+                    label="Duración (en segundos)"
+                    v-model="duration"
+                    class="mt-0 pt-3 ml-6 mb-4"
+                    hide-details
+                    type="number"
+                    min="1"
+                    style="width: 50px"
+                    color="black"
+                    :error-messages="errorDur"
+                ></v-text-field>
+              </v-col>
             </v-col>
-            <v-col cols="7" class="d-flex justify-end align-center">
-              <v-text-field
-                  label="Duración (en segundos)"
-                  v-model="duration"
-                  class="mt-0 pt-3 ml-6 mb-4"
-                  hide-details
-                  type="number"
-                  min="1"
-                  style="width: 50px"
-                  color="black"
-                  :error-messages="errorDur"
-              ></v-text-field>
-            </v-col>
-          </v-col>
-        </v-row>
-        <v-list-item-action>
-          <v-btn
-              :disabled="$v.$invalid"
-              icon
-              color="transparent"
-              @click="check"
-          >
-            <v-icon color="black">{{icon}}</v-icon>
-          </v-btn>
-        </v-list-item-action>
-      </v-list-item>
-    </v-col>
-  </v-row>
+          </v-row>
+          <v-list-item-action>
+            <v-btn
+                :disabled="$v.$invalid"
+                icon
+                color="transparent"
+                @click="check"
+            >
+              <v-icon color="black">{{icon}}</v-icon>
+            </v-btn>
+          </v-list-item-action>
+        </v-list-item>
+      </v-col>
+    </v-row>
+  </v-container>
+  <v-container v-else></v-container>
 </template>
 
 <script>
@@ -61,10 +64,13 @@ export default {
     return {
       checkbox: false,
       icon: 'mdi-checkbox-blank-outline',
-      prueba: 1,
       reps: '',
-      duration: ''
+      duration: '',
+      loaded: false
     }
+  },
+  created() {
+    this.loadDataIfEdited();
   },
   methods: {
     check(){
@@ -78,7 +84,15 @@ export default {
       this.exercise.repetitions = parseInt(this.reps);
       this.exercise.duration = parseInt(this.duration);
       this.$emit('exMarked', this.checkbox, this.exercise);
-
+    },
+    loadDataIfEdited(){
+      if(this.exercise.changed === true){
+        this.checkbox = true;
+        this.icon = 'mdi-checkbox-marked';
+        this.reps = this.exercise.repetitions;
+        this.duration = this.exercise.duration;
+      }
+      this.loaded = true;
     }
   },
   validations: {

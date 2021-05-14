@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="loaded">
     <v-row>
       <v-col cols="12">
         <v-col cols="12" class="d-flex align-center justify-center">
@@ -29,13 +29,13 @@
         </v-col>
         <v-row>
           <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center">
-            <bloque title="Entrada en calor" section="EntradaEnCalor"></bloque>
+            <bloque title="Entrada en calor" section="EntradaEnCalor" :reps="cycles[0].repetitions" :exercisesData="exercises[0]" :editMode="editMode"></bloque>
           </v-col>
           <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center">
-            <bloque title="Ejercitación" section="Ejercitacion"></bloque>
+            <bloque title="Ejercitación" section="Ejercitacion" :reps="cycles[1].repetitions" :exercisesData="exercises[1]" :editMode="editMode"></bloque>
           </v-col>
           <v-col cols="12" md="8" class="d-flex mx-auto align-center justify-center">
-            <bloque title="Enfriamiento" section="Enfriamiento" ></bloque>
+            <bloque title="Enfriamiento" section="Enfriamiento" :reps="cycles[2].repetitions" :exercisesData="exercises[2]" :editMode="editMode"></bloque>
           </v-col>
         </v-row>
       </v-col>
@@ -47,24 +47,23 @@
                 <v-col cols="12" class="d-flex justify-center align-center pa-0 ma-0">
                   <v-card-title><h3 class="font-weight-regular">Elija el enfoque de su rutina</h3></v-card-title>
                 </v-col>
-                <div class="pl-2 pr-2 pb-1">
-<!--                  <v-select-->
-<!--                      :items="categories.name"-->
-<!--                      label="Categorias"-->
-<!--                      outlined-->
-<!--                  >-->
-
-<!--                  </v-select>-->
-                  <v-chip-group
-                      v-model="chosenCategory"
-                      active-class="light-green accent-3 black--text "
-                      column
-                      class="pl-6 pr-2 "
-
-                  >
-                    <v-chip v-for="cat in this.categories" :key="cat.id" :value="cat" :input-value="catSelected(cat)">{{ cat.name }}</v-chip>
-                  </v-chip-group>
-                </div>
+                <v-row align="center">
+                  <v-col cols="12" class="d-flex align-center justify-center">
+                    <v-col cols="6" class="d-flex align-center justify-center">
+                      <v-select
+                          color="#4DFF00"
+                          :items="categories"
+                          v-model="chosenCategory"
+                          item-text="name"
+                          label="Categorias"
+                          return-object
+                          outlined
+                          item-color="#4DFF00"
+                      >
+                      </v-select>
+                    </v-col>
+                  </v-col>
+                </v-row>
               </v-row>
             </v-container>
           </v-card>
@@ -139,6 +138,7 @@
       </v-row>
     </v-row>
   </v-container>
+  <v-container v-else></v-container>
 </template>
 <script>
 
@@ -156,14 +156,26 @@ export default {
         name: '',
         detail: '',
         isPublic: false,
-        category: {}
+        category: {
+          name: '',
+          id: '',
+          detail: null
+        }
       },
-      categories: '',
+      categories: [],
       difficultyNum: 1,
       state: 'Privada',
       apiDifficulties: [ "rookie", "beginner", "intermediate", "advanced", "expert" ],
       chosenCategory: {},
-      editMode: false
+      cycles: [
+        {reps: 0},
+        {reps: 0},
+        {reps:0}
+      ],
+      exercises: [],
+      editMode: false,
+      loadedCat: false,
+      loadedData: false
     }
   },
   created() {
@@ -181,18 +193,22 @@ export default {
         this.routines.isPublic = this.routine.isPublic;
         this.changeStatus();
         this.difficultyNum = this.routine.difficultyNum;
+        this.routines.difficulty = this.routine.difficulty;
         this.chosenCategory = this.routine.category;
-        this.routines.category = this.routine.category;
-
+        this.cycles = this.routine.cycles;
+        this.exercises = this.routine.exercises;
       }
+      this.loadedData = true;
     },
     resetRoutine(){
       this.resetForm();
     },
     async getCategories() {
+
       try {
         const aux = await this.$store.dispatch('getCategories');
         this.categories = aux.content;
+        this.loadedCat = true;
       } catch (e) {
         console.log(e);
       }
@@ -212,15 +228,76 @@ export default {
       }
     },
     async updateRoutine(){
+      try {
+        await this.removeExercisesFromCycles();
+        this.routines.name = this.routines.name.toUpperCase();
+        this.routines.category = this.chosenCategory;
+        this.routines.date = Date.now();
+        this.routines.difficulty = this.apiDifficulties[this.difficultyNum-1];
+        let routine = await this.$store.dispatch('modifyRoutine',{
+          routineId: this.routine.id,
+          name: this.routines.name,
+          detail: this.routines.detail,
+          isPublic: this.routines.isPublic,
+          difficulty: this.routines.difficulty,
+          category: this.routines.category
+        });
+        const cyclesData = await this.$store.dispatch('getRoutineCycles', {
+          routineId: this.routine.id
+        })
+        let storeData = this.$store.getters[`routines/getCycles`];
+        let index=1;
+        for (const ex of storeData.EntradaEnCalor) {
+          await this.$store.dispatch('addExerciseToCycle', {
+            routineId: this.routine.id,
+            cycleId: cyclesData.content[0].id,
+            exerciseId: ex.id,
+            order: index,
+            repetitions: ex.repetitions,
+            duration: ex.duration
+          });
+          index++;
+        }
 
+        index=1;
+        for (const ex of storeData.Ejercitacion) {
+          await this.$store.dispatch('addExerciseToCycle', {
+            routineId: this.routine.id,
+            cycleId: cyclesData.content[1].id,
+            exerciseId: ex.id,
+            order: index,
+            repetitions: ex.repetitions,
+            duration: ex.duration
+          });
+          index++;
+        }
+
+        index=1;
+        for (const ex of storeData.Enfriamiento) {
+          await this.$store.dispatch('addExerciseToCycle', {
+            routineId: this.routineId,
+            cycleId: cyclesData.content[2].id,
+            exerciseId: ex.id,
+            order: index,
+            repetitions: ex.repetitions,
+            duration: ex.duration
+          });
+          index++;
+        }
+      } catch(e){
+        console.log(e);
+      }
+      this.$store.commit('routines/resetEjercicios');
+      await this.$router.replace('/home/myRoutines');
     },
+
     async createRoutine() {
 
       try {
         this.routines.name = this.routines.name.toUpperCase();
         this.routines.category = this.chosenCategory;
         this.routines.date = Date.now();
-        this.routines.difficulty = this.apiDifficulties[this.routines.difficultyNum-1];
+        this.routines.difficulty = this.apiDifficulties[this.difficultyNum-1];
         let routine = await this.$store.dispatch('createRoutine',this.routines);
         let exercises = this.$store.getters['routines/getCycles'];
         let entradaEnCalor = await this.$store.dispatch('createCycle', {
@@ -290,8 +367,29 @@ export default {
       }
 
     },
-    catSelected(cat){
-      return this.chosenCategory.id === cat.id;
+    async removeExercisesFromCycles(){
+      try {
+        const cyclesData = await this.$store.dispatch('getRoutineCycles', {
+          routineId: this.routine.id
+        });
+        for (const cycle of cyclesData.content) {
+          let exercises = await this.$store.dispatch('getCycleExercises', {
+            routineId: this.routine.id,
+            cycleId: cycle.id
+          });
+          for (const ex of exercises.content) {
+            await this.$store.dispatch('removeExerciseFromCycle', {
+              cycleId: cycle.id,
+              exerciseId: ex.exercise.id
+            });
+          }
+        }
+      } catch(e) {
+        console.log(e);
+      }
+    },
+    chooseCat(cat) {
+      this.chosenCategory = cat;
     },
     resetForm() {
       this.$v.$reset();
@@ -304,6 +402,11 @@ export default {
 
 
   },
+  computed: {
+    loaded(){
+      return this.loadedCat && this.loadedData;
+    }
+  }
 }
 </script>
 

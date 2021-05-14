@@ -299,6 +299,73 @@ export default {
         }
         return responseInfo;
     },
+    async modifyRoutine(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}`,{
+            method: 'PUT',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: payload.name,
+                detail: payload.detail,
+                isPublic: payload.isPublic,
+                difficulty: payload.difficulty,
+                category: payload.category,
+                metadata: null
+            })
+        });
+        let responseInfo = await response.json();
+        if (!response.ok) {
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async modifyRoutineCycle(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/routines/${payload.routineId}/cycles/${payload.cycleId}`,{
+            method: 'PUT',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: payload.name,
+                detail: payload.detail,
+                type: payload.type,
+                order: payload.order,
+                repetitions: payload.repetitions,
+                metadata: null
+            })
+        });
+        let responseInfo = await response.json();
+        if (!response.ok) {
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
+    async modifyCycleExercise(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/${payload.exerciseId}`,{
+            method: 'PUT',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                order: payload.order,
+                duration: payload.duration,
+                repetitions: payload.repetitions,
+                metadata: null
+            })
+        });
+        let responseInfo = await response.json();
+        if (!response.ok) {
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
     async getCycleExercises(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/cycles/${payload.cycleId}/exercises/?` + new URLSearchParams({
             ...payload
@@ -322,10 +389,6 @@ export default {
             headers: {
                 'Authorization': `bearer ${context.getters.getToken}`,
             },
-            body: JSON.stringify({
-                routineId: payload.routineId,
-                cycleId: payload.cycleId
-            })
         });
         let responseInfo = await response.json();
         if (!response.ok) {
