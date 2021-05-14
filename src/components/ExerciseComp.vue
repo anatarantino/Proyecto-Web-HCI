@@ -99,7 +99,7 @@ export default {
       try{
         const aux = await this.$store.dispatch('modifyExercise', {
           exerciseId: this.exercise.id,
-          name: this.name,
+          name: this.name.toUpperCase(),
           detail: this.detail
         })
       }catch (e) {
