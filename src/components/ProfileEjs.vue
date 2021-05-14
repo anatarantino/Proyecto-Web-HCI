@@ -14,19 +14,6 @@
       <v-col cols="6" v-for="card in cards" :key="card.id">
         <ExerciseCard :excard="card"></ExerciseCard>
       </v-col>
-<!--      <v-col class="d-flex ma-0 pa-0 ml-16 pl-16">-->
-<!--        <v-btn-->
-<!--            color="#4DFF00"-->
-<!--            elevation="2"-->
-<!--            class="mx-2"-->
-<!--            fab-->
-<!--            to="/home/createexercise"-->
-<!--        >-->
-<!--          <v-icon>-->
-<!--            mdi-plus-->
-<!--          </v-icon>-->
-<!--        </v-btn>-->
-<!--      </v-col>-->
     </v-row>
   </v-card>
 </template>

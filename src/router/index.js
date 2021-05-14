@@ -108,13 +108,15 @@ const routes = [
             },
             {
                 meta: {auth: true},
-                path: 'createexercise',
+                props: true,
+                path: 'createexercise/:id',
                 name: 'createExercise',
                 component: CreateExercise
             },
             {
                 meta: {auth: true},
-                path: 'editexercise',
+                props: true,
+                path: 'editexercise/:id',
                 name: 'editExercise',
                 component: EditExercise
             },

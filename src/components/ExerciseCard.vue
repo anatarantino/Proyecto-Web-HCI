@@ -7,7 +7,7 @@
             <h3 class="text-start white--text text-truncate"> {{ excard.name }} </h3>
           </v-col>
           <v-col class="d-flex justify-end" cols="3">
-            <v-btn icon to="/home/editexercise">
+            <v-btn icon :to="`/home/editexercise/${excard.id}`">
               <v-icon color="white">mdi-pencil</v-icon>
             </v-btn>
             <v-btn icon @click="deleteExercise(excard.id)">

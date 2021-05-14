@@ -248,6 +248,20 @@ export default {
         }
         return responseInfo;
     },
+    async getExerciseById(context, payload) {
+        let response = await fetch(`${context.getters.baseUrl}/exercises/${payload.exerciseId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${context.getters.getToken}`,
+            },
+        });
+        let responseInfo = await response.json();
+        if (!response.ok) {
+            console.log(responseInfo);
+            throw new Error(responseInfo.message);
+        }
+        return responseInfo;
+    },
     async deleteExercise(context, payload) {
         let response = await fetch(`${context.getters.baseUrl}/exercises/${payload.exerciseId}`, {
             method: 'DELETE',

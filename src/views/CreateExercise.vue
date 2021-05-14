@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-col cols="12">
-      <exerciseComp :exercise="types[0]"></exerciseComp>
+      <exerciseComp :title="title" :exercise="exerciseInfo"></exerciseComp>
     </v-col>
   </v-container>
 </template>
@@ -12,14 +12,20 @@ import exerciseComp from "@/components/ExerciseComp";
 
 export default {
   name: "CreateExercise",
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
   components: {exerciseComp},
   data() {
     return {
-      types: [
-        {
-          title: "Creá tu ejecicio"
-        }
-      ]
+      title: "Creá tu ejecicio",
+      exerciseInfo: {
+        id: this.id,
+        fromCreate: true
+      }
     }
   }
 }

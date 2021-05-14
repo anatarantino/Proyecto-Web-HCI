@@ -19,7 +19,7 @@
           </v-text-field>
         </v-col>
         <v-col class="d-flex align-center justify-center">
-          <v-btn to="/home/createexercise"
+          <v-btn to="/home/createexercise/-1"
                  class="mx-2 text-capitalize"
                  rounded
                  width="150"
@@ -229,7 +229,6 @@ export default {
         console.log("Por favor complete todos los datos");
         return;
       }
-      console.log("sigo aca")
       if(this.editMode){
         this.updateRoutine();
       }else{

@@ -17,7 +17,7 @@
             elevation="2"
             class="mx-2"
             fab
-            to="/home/createexercise"
+            to="/home/createexercise/-2"
         >
           <v-icon>
             mdi-plus
