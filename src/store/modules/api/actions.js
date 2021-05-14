@@ -562,7 +562,7 @@ export default {
     async isFavourite(context, payload) {
         let routinesInfo;
         try {
-            routinesInfo = await context.dispatch("getFavourite", {
+            routinesInfo = await context.dispatch("getFavourites", {
                 orderBy: `id`,
                 direction: `desc`
             });
@@ -571,7 +571,7 @@ export default {
         }
         const routines = routinesInfo.content;
         for (const routine of routines) {
-            if (routine.id === payload.routineId) {
+            if (routine.id === parseInt(payload.routineId)) {
                 return true;
             }
         }

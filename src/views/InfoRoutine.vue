@@ -266,6 +266,13 @@ export default {
             console.log(e);
           }
           this.progress = 100;
+          try{
+            this.fav = await this.$store.dispatch('isFavourite',{routineId: this.id});
+            console.log(this.fav);
+          }catch(e){
+            console.log(e);
+          }
+
           this.loaded = true;
         } catch (e) {
           console.log(e);
@@ -318,12 +325,12 @@ export default {
         for (const cycle of this.cycles) {
           if(this.exercises[cycle.order-1].length !== 0){
             for (const ex of this.exercises[cycle.order-1]) {
-            await this.$store.dispatch('removeExerciseFromCycle', {
-              routineId: this.id,
-              cycleId: cycle.id,
-              exerciseId: ex.exercise.id,
-            });
-          }
+              await this.$store.dispatch('removeExerciseFromCycle', {
+                routineId: this.id,
+                cycleId: cycle.id,
+                exerciseId: ex.exercise.id,
+              });
+            }
           }
 
         }
