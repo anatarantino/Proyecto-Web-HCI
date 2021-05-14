@@ -89,7 +89,7 @@
 
 <script>
 import Footer from "../components/Footer";
-import {required, minLength, maxLength} from 'vuelidate/lib/validators'
+import {alphaNum,required, minLength, maxLength} from 'vuelidate/lib/validators'
 
 export default {
   name: 'SignIn',
@@ -149,7 +149,8 @@ export default {
     username: {
       required,
       minLength: minLength(2),
-      maxLength: maxLength(50)
+      maxLength: maxLength(50),
+      alphaNum
     },
     password: {
       required,
@@ -166,6 +167,7 @@ export default {
       !this.$v.username.required && errors.push('Ingrese un usuario.')
       !this.$v.username.minLength && errors.push('Mínimo 2 caracteres.')
       !this.$v.username.maxLength && errors.push('Máximo 50 caracteres.')
+      !this.$v.username.alphaNum && errors.push('El usuario solo debe contener letras y/o números.')
       return errors
     },
     passwordError() {
