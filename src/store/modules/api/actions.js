@@ -525,7 +525,6 @@ export default {
                 'Content-Type': 'application/json; charset=utf-8'
             },
             body: JSON.stringify({
-                routineId: payload.routineId,
                 score: payload.score,
                 review: ''
             })
