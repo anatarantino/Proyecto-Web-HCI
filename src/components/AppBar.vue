@@ -14,9 +14,9 @@
       <template>
         <v-tabs append background-color="rgb(0,0,0,0)" dark color="#4DFF00">
           <v-tab to="/home/main" exact>Inicio</v-tab>
-          <v-tab to="/home/exploreRoutines">Explorar rutinas</v-tab>
-          <v-tab to="/home/myRoutines">Mis rutinas</v-tab>
-          <v-tab to="/home/myProfile">Mi perfil</v-tab>
+          <v-tab to="/home/main/exploreRoutines">Explorar rutinas</v-tab>
+          <v-tab to="/home/main/myRoutines">Mis rutinas</v-tab>
+          <v-tab to="/home/main/myProfile">Mi perfil</v-tab>
         </v-tabs>
       </template>
     </v-flex>

@@ -59,12 +59,12 @@ const routes = [
         ]
     },
     {
-        path: '/home',
+        path: '/home/main',
         component: DefaultLayout,
         children: [
             {
                 meta: {auth: true},
-                path: 'main',
+                path: '',
                 name: 'Home',
                 component: Home
             },
