@@ -14,7 +14,6 @@
                     label="Repeticiones"
                     v-model="reps"
                     class="mt-0 pt-3 ml-6 mb-4"
-
                     type="number"
                     min="1"
                     style="width: 50px"

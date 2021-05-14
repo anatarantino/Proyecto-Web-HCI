@@ -11,10 +11,10 @@
               filled
               clearable
               dark
-              required
-              hide-details
               v-model="routines.name"
               color="#4DFF00"
+              :error-messages=errorName
+              @blur="$v.name.$touch()"
           >
           </v-text-field>
         </v-col>
@@ -59,6 +59,8 @@
                           return-object
                           outlined
                           item-color="#4DFF00"
+                          @blur="$v.chosenCategory.$touch()"
+                          :error-messages=errorCat
                       >
                       </v-select>
                     </v-col>
@@ -143,6 +145,7 @@
 <script>
 
 import bloque from "@/components/Bloque";
+import {required,minLength,maxLength,minValue,maxValue} from 'vuelidate/lib/validators';
 
 export default {
   name: "routineComp",
@@ -221,6 +224,12 @@ export default {
       }
     },
     publish() {
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        console.log("Por favor complete todos los datos");
+        return;
+      }
+      console.log("sigo aca")
       if(this.editMode){
         this.updateRoutine();
       }else{
@@ -402,10 +411,36 @@ export default {
 
 
   },
+  validations: {
+    name: {
+      required,
+      maxLength: maxLength(100)
+    },
+    chosenCategory: {
+      required
+    }
+  },
   computed: {
     loaded(){
       return this.loadedCat && this.loadedData;
+    },
+    errorName(){
+      const errors = []
+      if (!this.$v.name.$dirty) {
+        return errors
+      }
+      !this.$v.name.required && errors.push('');
+      !this.$v.name.maxLength && errors.push('Máximo 100 caracteres');
+      return errors
+    },
+    errorCat(){
+      const errors = []
+      if (!this.$v.chosenCategory.$dirty) {
+        return errors
+      }
+      !this.$v.chosenCategory.required && errors.push('Seleccione una categoria');
     }
+
   }
 }
 </script>

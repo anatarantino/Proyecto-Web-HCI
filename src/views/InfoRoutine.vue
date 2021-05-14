@@ -11,8 +11,9 @@
                   depressed
                   class="text-capitalize"
                   @click="ratingPopUp=true"
+                  v-if="!hasPermission"
               >
-                Puntuación
+                Puntuar
               </v-btn>
             </v-col>
             <v-dialog v-model="ratingPopUp" width="350" persistent>
@@ -39,10 +40,12 @@
                           full-icon="mdi-star"
                       ></v-rating>
                     </v-col>
-                    <v-btn @click="addRating" rounded color="white" elevation="5" width="150"
-                           class="text-capitalize">
-                      Confirmar
-                    </v-btn>
+                    <v-col cols="12" class="d-flex justify-center align-center">
+                      <v-btn @click="addRating" rounded color="white" elevation="5" width="150"
+                             class="text-capitalize">
+                        Confirmar
+                      </v-btn>
+                    </v-col>
                   </v-container>
                 </v-row>
               </v-card>
@@ -294,10 +297,11 @@ export default {
           routineId: this.id,
           score: this.rating
         });
-      }
-      catch(e){
+      } catch(e){
         console.log(e);
       }
+      this.ratingPopUp = false;
+
     },
     async deleteRoutine() {
       await this.deleteExercises();
@@ -307,7 +311,7 @@ export default {
       } catch (e) {
         console.log(e);
       }
-      await this.$router.replace('/home/myRoutines');
+      await this.$router.replace("`/home/myRoutines`");
     },
     async deleteExercises() {
       try {

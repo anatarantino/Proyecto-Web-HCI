@@ -27,11 +27,12 @@
                   v-model="rounds"
                   class="mt-0 pt-0 ml-6 sm2"
                   light
-                  hide-details
                   type="number"
                   min="1"
                   color="black"
                   @change="updateRounds"
+                  :error-messages="errorRounds"
+                  @blur="$v.rounds.$touch()"
               ></v-text-field>
             </v-col>
           </v-col>
@@ -60,6 +61,7 @@
 
 <script>
 import AddExerciseToBlock from "@/components/AddExerciseToBlock";
+import {required,minValue,maxValue} from 'vuelidate/lib/validators'
 
 export default {
   name: "Bloque",
@@ -142,9 +144,26 @@ export default {
       this.$store.commit(`routines/updateRounds${this.section}`, this.rounds);
     }
   },
+  validations: {
+    rounds: {
+      required,
+      minValue: minValue(1),
+      maxValue: maxValue(999)
+    }
+  },
   computed: {
     loaded(){
       return this.loadedEx && this.loadedData
+    },
+    errorRounds(){
+      const errors = []
+      if (!this.$v.rounds.$dirty) {
+        return errors
+      }
+      !this.$v.rounds.required && errors.push('Ingrese una cantidad');
+      !this.$v.rounds.minValue && errors.push('El valor mínimo es 1');
+      !this.$v.rounds.maxValue && errors.push('El valor máximo es 999');
+      return errors
     }
   }
 
