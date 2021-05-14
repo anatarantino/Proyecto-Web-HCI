@@ -112,7 +112,7 @@ export default {
         await sleep(1000);
         await this.$store.dispatch('verifyAccount', {
           email: email,
-          code: code
+          code: code.toUpperCase()
         });
         this.message = "Your account is now verified, redirecting to home";
         await sleep(2000);
