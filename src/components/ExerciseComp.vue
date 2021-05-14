@@ -14,6 +14,7 @@
                 filled
                 label="Nombre"
                 @blur="$v.name.$touch()"
+                :error-messages="errorName"
                 v-model="name"
             ></v-text-field>
             <v-textarea
@@ -25,6 +26,7 @@
                 solo
                 auto-grow
                 @blur="$v.detail.$touch()"
+                :error-messages="errorDetail"
                 v-model="detail"
             ></v-textarea>
           </v-card>
@@ -158,6 +160,28 @@ export default {
       required,
       minLength: minLength(2),
       maxLength: maxLength(200)
+    }
+  },
+  computed: {
+    errorName(){
+      const errors = []
+      if (!this.$v.name.$dirty) {
+        return errors
+      }
+      !this.$v.name.required && errors.push('Ingrese un nombre');
+      !this.$v.name.minLength && errors.push('Máximo 100 caracteres');
+      !this.$v.name.maxLength && errors.push('Máximo 100 caracteres');
+      return errors
+    },
+    errorDetail(){
+      const errors = []
+      if (!this.$v.detail.$dirty) {
+        return errors
+      }
+      !this.$v.detail.required && errors.push('Ingrese una descripción');
+      !this.$v.detail.minLength && errors.push('Máximo 100 caracteres');
+      !this.$v.detail.maxLength && errors.push('Máximo 100 caracteres');
+      return errors
     }
   }
 }
