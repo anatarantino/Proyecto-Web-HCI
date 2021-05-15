@@ -114,32 +114,20 @@ export default {
         this.$v.$touch();
         return;
       }
-      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
       try {
-        this.loading = true;
-        await sleep(1000);
+
         await this.$store.dispatch('addExercise', {
           name: this.name.toUpperCase(),
           detail: this.detail
         });
         this.message = "Ejercicio creado exitosamente";
-        await sleep(2000);
-        this.loading = false;
-        this.message = "";
         if(this.fromProfilePage){
           await this.$router.push('/home/myProfile');
         }else{
           await this.$router.push('/home/createroutine');
         }
       } catch (e) {
-        this.error = true;
-        this.message = e;
-        await setTimeout(() => {
-          this.message = "";
-          this.loading = false;
-          this.error = false;
-          this.resetForm();
-        }, 3500);
+        console.log(e);
       }
     },
     async exit() {

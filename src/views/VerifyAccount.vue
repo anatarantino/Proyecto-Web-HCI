@@ -62,23 +62,33 @@
                       v-model="code"
                       @blur="$v.code.$touch()"
                   ></v-text-field>
-
-                  <v-col class="d-flex justify-center align-center">
-                    <v-btn
-                        color="black"
-                        elevation="3"
-                        rounded
-                        class="white--text text-capitalize"
-                        width="150"
-                        @click="verifyUser"
-                    >Verificar
-                    </v-btn>
-                  </v-col>
+                  <v-row>
+                    <v-col cols="12" class="d-flex justify-center align-center">
+                      <v-btn
+                          color="black"
+                          elevation="3"
+                          rounded
+                          class="white--text text-capitalize"
+                          width="150"
+                          @click="verifyUser"
+                      >Verificar
+                      </v-btn>
+                    </v-col>
+                  </v-row>
                 </v-col>
               </v-row>
             </v-card-text>
           </v-card>
         </v-flex>
+        <v-dialog v-model="processed" max-width="550">
+          <v-card class="pa-6">
+            <v-row align="center" justify="center">
+              <v-col cols="6" >
+                <h3 class="text-h5 text-center black--text">{{message}}</h3>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-dialog>
       </v-layout>
     </template>
   </v-container>
@@ -96,37 +106,23 @@ export default {
       show: false,
       email: '',
       code: '',
-      loading: false,
-      message: "",
-      error: false,
-      verified: false
+      verified: false,
+      processed: false,
+      message: ''
     }
   },
   async mounted() {
     const email = this.$route.query.email;
     const code = this.$route.query.code;
-    const sleep = (delay) => new Promise((resolve => setTimeout(resolve, delay)));
     if (email && code) {
       try {
-        this.loading = true;
-        await sleep(1000);
         await this.$store.dispatch('verifyAccount', {
           email: email,
           code: code.toUpperCase()
         });
-        this.message = "Your account is now verified, redirecting to home";
-        await sleep(2000);
-        this.loading = false;
-        this.message = "";
         await this.$router.replace('/');
       } catch (e) {
-        this.error = true
-        this.message = "Something went wrong validating your account";
-        await setTimeout(() => {
-          this.message = "";
-          this.loading = false;
-          this.error = false;
-        }, 2000);
+        console.log(e);
       }
     }
   }
@@ -135,63 +131,22 @@ export default {
     async verifyUser() {
       if (this.$v.code.$invalid) {
         this.$v.code.$touch();
-        console.log("invalid");
+        console.log("inválido");
         return;
       }
-      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
       try {
-        this.loading = true;
-        await sleep(1000);
         const userData = this.$store.getters["user/userData"];
         await this.$store.dispatch('verifyAccount', {
           email: userData.email,
           code: this.code
         });
-        this.message = "Cuenta verificada exitosamente.";
-        await sleep(2000);
-        this.loading = false;
-        this.message = "";
         await this.$router.replace('/signIn');
       } catch (e) {
-        this.error = true;
-        this.message = "Oops..hubo un problema, verifica tu código.";
-        await setTimeout(() => {
-          this.message = "";
-          this.loading = false;
-          this.error = false;
-        }, 2000);
+        this.message = "Oops..hubo un problema, verifica los datos.";
       }
+      this.processed = true;
     }
-    ,
-    async resendVerification() {
-      this.$v.email.$touch();
-      if (this.$v.email.$invalid) {
-        this.$v.email.$touch();
-        console.log("invalid");
-        return;
-      }
-      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
-      try {
-        this.loading = true;
-        await sleep(1000);
-        await this.$store.dispatch('resendVerification', {
-          email: this.email
-        });
-        this.message = "Mail reenviado con éxito.";
-        await sleep(2000);
-        this.loading = false;
-        this.message = "";
-      } catch (e) {
-        this.error = true
-        this.message = "Error al reenviar la verificación.";
-        await setTimeout(() => {
-          this.message = "";
-          this.loading = false;
-          this.error = false;
-        }, 2000);
-        console.log(e);
-      }
-    }
+
   }
   ,
   validations: {

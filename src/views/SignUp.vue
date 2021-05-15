@@ -105,9 +105,17 @@
             </v-card-text>
           </v-card>
         </v-flex>
+        <v-dialog v-model="processed" max-width="550" >
+          <v-card class="pa-6">
+            <v-row align="center" justify="center">
+              <v-col cols="6" class="d-flex align-center justify-center">
+                <h3 class="text-h5 text-center black--text">{{errorMessage}}</h3>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-dialog>
       </v-layout>
     </template>
-
   </v-container>
 </template>
 
@@ -124,9 +132,9 @@ export default {
       password: '',
       confirmPassword: '',
       username: '',
-      loading: false,
       message: "",
-      error: false
+      processed: false,
+      errorMessage: ''
     }
   },
   methods: {
@@ -136,30 +144,18 @@ export default {
         console.log("Por favor complete todos los datos");
         return;
       }
-      const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
       try {
-        this.loading = true;
-        await sleep(1000);
         await this.$store.dispatch('signUp', {
           username: this.username.toUpperCase(),
           email: this.email.toLowerCase(),
           password: this.password,
         });
-        this.message = "Cuenta creada exitosamente";
-        await sleep(2000);
-        this.loading = false;
         this.message = "";
         await this.$router.push('/verifyAccount');
       } catch (e) {
-        this.error = true;
-        this.message = e;
-        await setTimeout(() => {
-          this.message = "";
-          this.loading = false;
-          this.error = false;
-          this.resetForm();
-        }, 3500);
+        this.errorMessage = e;
       }
+      this.processed = true;
     },
 
     resetForm() {

@@ -1,12 +1,12 @@
 <template>
   <v-container fluid>
     <v-row justify="center" class="d-flex ma-0 pa-0">
-      <v-col md="8" class="d-flex justify-center align-center">
+      <v-col cols="12" md="8" class="d-flex justify-center align-center">
         <ProfileMain></ProfileMain>
       </v-col>
     </v-row>
     <v-row class="d-flex ma-0 pa-0 justify-center">
-      <v-col md="8" class="d-flex justify-center align-center">
+      <v-col cols="12" md="8" >
         <ProfileEjs></ProfileEjs>
       </v-col>
     </v-row>

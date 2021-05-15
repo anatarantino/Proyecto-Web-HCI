@@ -38,7 +38,7 @@
           <v-card color="rgb(0, 0, 0, 0)" elevation="0">
             <v-card-title primary-title class="justify-center">
               <div>
-                <h3 class="let headline mb-0">Bienvenido nuevamente!</h3>
+                <h3 class="let headline mb-0">Iniciar sesión</h3>
               </div>
             </v-card-title>
             <v-card-text>
@@ -66,7 +66,19 @@
                       @blur="$v.password.$touch()"
                       v-model="password"
                   ></v-text-field>
-                  <v-col class="d-flex justify-center align-center">
+                  <v-row>
+                    <v-col cols="6" class="d-flex justify-center align-center">
+                      <v-btn
+                        color="black"
+                        elevation="3"
+                        rounded
+                        class="white--text text-capitalize"
+                        width="150"
+                        to="/verifyAccount"
+                    >Verificar mail
+                    </v-btn>
+                    </v-col>
+                  <v-col cols="6" class="d-flex justify-center align-center">
                     <v-btn
                         color="black"
                         elevation="3"
@@ -77,11 +89,22 @@
                     >Ingresar
                     </v-btn>
                   </v-col>
+
+                    </v-row>
                 </v-col>
               </v-row>
             </v-card-text>
           </v-card>
         </v-flex>
+        <v-dialog v-model="processed" max-width="550" >
+          <v-card class="pa-6">
+            <v-row align="center" justify="center">
+              <v-col cols="6" class="d-flex align-center justify-center">
+                <h3 class="text-h5 text-center black--text">{{errorMessage}}</h3>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-dialog>
       </v-layout>
     </template>
   </v-container>
@@ -102,7 +125,9 @@ export default {
       loading: false,
       message: "",
       error: false,
-      verified: false
+      verified: false,
+      processed: false,
+      errorMessage: ''
     }
   },
   methods: {
@@ -113,28 +138,18 @@ export default {
         return;
       }
       try {
-        this.loading = true;
         await this.$store.dispatch('signIn', {
           username: this.username.toUpperCase(),
           password: this.password
         })
-        this.loading = false;
         await this.$router.replace('/home');
       } catch (e) {
-        if (e.message === "verificado") {
-          this.verified = true;
-          this.message = e;
-        } else {
-          this.error = true;
-          this.message = e;
-          await setTimeout(() => {
-            this.message = "";
-            this.loading = false;
-            this.error = false;
-            this.resetForm();
-          }, 4000);
+        this.errorMessage = e;
+        if(e.message !== "Error en verificación de mail."){
+         this.resetForm();
         }
       }
+      this.processed = true;
     },
     resetForm() {
       this.$v.$reset();
